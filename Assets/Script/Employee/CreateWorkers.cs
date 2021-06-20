@@ -11,12 +11,13 @@ public class CreateWorkers : MonoBehaviour
     public GameObject WorkerList;
     public SelectWorkers SW;
     public SelectWorkers ServerText, ClientText, GraphicText, SoundText;
+    public GameObject manager;
     public LeftMoneyScript CostText;
     public int ClickedWorkers = 0;
     // Start is called before the first frame update
     void Start()
     {
-    
+        manager = GameObject.Find("GameManager");
         // 임의의 세가지 박스 생성
         for(int i=0;i<3;i++){
             GameObject newPanel = new GameObject("Panel");

@@ -2,20 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
-public class PlanManager : MonoBehaviour
+public class EmployeeManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    public void gotoSetMonth(){
-        SceneManager.LoadScene("SetMonthScene");
-    }
-    public void gotoSetEmployee(){
-        SceneManager.LoadScene("EmployeeScene");
-    }
+    public Button next;
+    GameObject gamemanager;
+
     void Start()
     {
-        
+        gamemanager = GameObject.Find("GameManager");
+        next.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetMonth);
     }
 
     // Update is called once per frame
