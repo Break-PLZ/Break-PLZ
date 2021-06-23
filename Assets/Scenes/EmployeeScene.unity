@@ -1938,11 +1938,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1094399563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a74b85913fd7a44c847f8f471f754ab, type: 3}
+  m_Script: {fileID: 11500000, guid: ff15f74dd7f63a241aa3bf4cbd55baa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftMoney: {fileID: 1094399567}
-  money: 0
+  text: {fileID: 1094399567}
+  num: 0
 --- !u!114 &1094399566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2360,12 +2360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerSelect: {fileID: 1253167604}
   WorkerList: {fileID: 1392615559}
-  SW: {fileID: 1365866482}
-  ServerText: {fileID: 1488077063}
-  ClientText: {fileID: 1797027122}
-  GraphicText: {fileID: 1516233935}
-  SoundText: {fileID: 860183338}
-  CostText: {fileID: 1094399565}
+  manager: {fileID: 0}
+  employeeManager: {fileID: 2006954004}
   ClickedWorkers: 0
 --- !u!1 &1344844954
 GameObject:
@@ -3035,7 +3031,7 @@ GameObject:
   - component: {fileID: 1488077060}
   - component: {fileID: 1488077063}
   m_Layer: 5
-  m_Name: SeversText
+  m_Name: ServersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4303,6 +4299,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   next: {fileID: 1344844956}
+  temp:
+    WL: []
+  WorkerList: {fileID: 1392615559}
 --- !u!1 &2013203804
 GameObject:
   m_ObjectHideFlags: 0

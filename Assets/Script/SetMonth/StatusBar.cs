@@ -6,15 +6,16 @@ public class StatusBar : MonoBehaviour
 {
     // Start is called before the first frame update
     public Slider slider;
-    public int stat;
+    public SelectWorkers obj;
+    
     void Start()
     {
-        slider.value = stat;
+        slider.value = obj.num;
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = stat;
+        slider.value = obj.num;
     }
 }

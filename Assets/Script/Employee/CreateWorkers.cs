@@ -9,28 +9,30 @@ public class CreateWorkers : MonoBehaviour
 {
     public GameObject WorkerSelect; // work 선텍 오브젝트 (worker 3개 포함하는 오브젝트)
     public GameObject WorkerList;
-    public SelectWorkers SW;
-    public SelectWorkers ServerText, ClientText, GraphicText, SoundText;
-    public GameObject manager;
-    public LeftMoneyScript CostText;
+    public GameManager manager;
+    public List<Worker> tmplist;
+    public EmployeeManager employeeManager;
     public int ClickedWorkers = 0;
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.Find("GameManager");
+        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
         // 임의의 세가지 박스 생성
         for(int i=0;i<3;i++){
             GameObject newPanel = new GameObject("Panel");
             // workers stat
-            newPanel.AddComponent<Worker>();
-            newPanel.GetComponent<Worker>().SetProperty();
             newPanel.AddComponent<CanvasRenderer>();
             newPanel.AddComponent<Image>();
             int rand = Random.Range(0,256);
             newPanel.GetComponent<Image>().color = new Color(0,(float)rand/255,(float)rand/255);
             newPanel.transform.SetParent(WorkerSelect.transform,false);
-            WorkerContents(newPanel);
+            WorkerContents(newPanel,i);
         }
+        
+        
+        // for(int j=0;j<manager.WL.Count;j++){
+        //     manager.WL[j].transform.SetParent(WorkerList.transform,false);
+        // }
     }
     // Update is called once per frame
     void Update()
@@ -42,18 +44,17 @@ public class CreateWorkers : MonoBehaviour
         //클릭시 삭제 후 재생성
         for(int i=0;i<3;i++){
             if(eventData.pointerCurrentRaycast.gameObject==WorkerSelect.transform.GetChild(i).gameObject||eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject==WorkerSelect.transform.GetChild(i).gameObject){
-                Worker tmp = WorkerSelect.transform.GetChild(i).gameObject.GetComponent<Worker>();
-                SW.num++;
-                ServerText.num += tmp.server;
-                ClientText.num += tmp.client;
-                GraphicText.num += tmp.graphic;
-                SoundText.num += tmp.sound;
-                CostText.money -= tmp.cost;
+                Worker tmp = tmplist[i];
+                manager.sinfo.server += tmp.server;
+                manager.sinfo.client += tmp.client;
+                manager.sinfo.graphic += tmp.graphic;
+                manager.sinfo.sound += tmp.sound;
+                manager.sinfo.cost -= tmp.cost;
+                employeeManager.temp.WL.Add(tmp);
+                tmplist.Remove(tmp);
                 WorkerSelect.transform.GetChild(i).gameObject.transform.SetParent(WorkerList.transform,false);
                 GameObject newPanel = new GameObject("Panel");
                 // workers stat
-                newPanel.AddComponent<Worker>();
-                newPanel.GetComponent<Worker>().SetProperty();
                 newPanel.AddComponent<CanvasRenderer>();
                 newPanel.AddComponent<Image>();
                 int rand = Random.Range(0,256);
@@ -61,7 +62,7 @@ public class CreateWorkers : MonoBehaviour
                 newPanel.transform.SetParent(WorkerSelect.transform,false);
                 newPanel.transform.SetSiblingIndex(i);
                 ClickedWorkers +=1;
-                WorkerContents(newPanel);
+                WorkerContents(newPanel,i);
                 break;
             }
         }
@@ -69,8 +70,10 @@ public class CreateWorkers : MonoBehaviour
         // 
     }
 
-    void WorkerContents(GameObject obj){
-        Worker worker= obj.GetComponent<Worker>();
+    void WorkerContents(GameObject obj,int i){
+        Worker worker = new Worker();
+        worker.InitProperty();
+        worker.image = obj.GetComponent<Image>();
         GameObject infoText = new GameObject("infoText");
         infoText.AddComponent<Text>();
         Text content = infoText.GetComponent<Text>();
@@ -80,23 +83,23 @@ public class CreateWorkers : MonoBehaviour
         + "Client: " + worker.client + "\n" + "Graphic: " + worker.graphic + "\n"
         + "Sound: " + worker.sound + "\n" + "Cost: " + worker.cost;
         infoText.transform.SetParent(obj.transform,false);
+        tmplist.Insert(i,worker);
     }
 
     public void ReRoll(){
         foreach(Transform child in transform){
             Destroy(child.gameObject);
         }
+        tmplist.Clear();
         for(int i=0;i<3;i++){
             GameObject newPanel = new GameObject("Panel");
             // workers stat
-            newPanel.AddComponent<Worker>();
-            newPanel.GetComponent<Worker>().SetProperty();
             newPanel.AddComponent<CanvasRenderer>();
             newPanel.AddComponent<Image>();
             int rand = Random.Range(0,256);
             newPanel.GetComponent<Image>().color = new Color(0,(float)rand/255,(float)rand/255);
             newPanel.transform.SetParent(WorkerSelect.transform,false);
-            WorkerContents(newPanel);
+            WorkerContents(newPanel,i);
         }
     }
 

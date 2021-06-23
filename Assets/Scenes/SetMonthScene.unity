@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 123017042}
-  stat: 100
+  obj: {fileID: 1784059841}
 --- !u!114 &123017042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1144,7 +1144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 375139846}
-  stat: 450
+  obj: {fileID: 2011394702}
 --- !u!114 &375139846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1342,7 +1342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 417190315}
-  stat: 50
+  obj: {fileID: 557657463}
 --- !u!114 &417190315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1602,6 +1602,7 @@ GameObject:
   - component: {fileID: 548624742}
   - component: {fileID: 548624744}
   - component: {fileID: 548624743}
+  - component: {fileID: 548624745}
   m_Layer: 5
   m_Name: LeftMoney
   m_TagString: Untagged
@@ -1667,6 +1668,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 548624741}
   m_CullTransparentMesh: 1
+--- !u!114 &548624745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 548624741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff15f74dd7f63a241aa3bf4cbd55baa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 1378295433}
+  num: 0
 --- !u!1 &557657461
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,7 +2306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 878372560}
-  stat: 250
+  obj: {fileID: 214538380}
 --- !u!114 &878372560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3237,7 +3252,6 @@ GameObject:
   - component: {fileID: 1378295434}
   - component: {fileID: 1378295433}
   - component: {fileID: 1378295432}
-  - component: {fileID: 1378295431}
   m_Layer: 5
   m_Name: LText
   m_TagString: Untagged
@@ -3264,20 +3278,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1378295431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1378295429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a74b85913fd7a44c847f8f471f754ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  LeftMoney: {fileID: 1378295433}
-  money: 0
 --- !u!114 &1378295432
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3945,7 +3945,7 @@ GameObject:
   - component: {fileID: 1784059842}
   - component: {fileID: 1784059841}
   m_Layer: 5
-  m_Name: SeversText
+  m_Name: ServersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
