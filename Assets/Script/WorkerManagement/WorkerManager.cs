@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EmployeeManager : Managers
+public class WorkerManager : Managers
 {
-    // Start is called before the first frame update
-    public Button next;
+    public Button prev;
     
     public GameObject WorkerList;
     GameObject gamemanager;
@@ -14,7 +13,7 @@ public class EmployeeManager : Managers
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
-        next.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetMonth);
+        prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetMonth);
         temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"EmployeeTemp");
         if(temp==null){
             temp = new WorkerList();

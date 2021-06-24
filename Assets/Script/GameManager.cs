@@ -11,18 +11,7 @@ public class GameManager : MonoBehaviour
 {
 
     private static GameManager _instance;
-    public struct statinfo{
-        public int server, client, graphic, sound, cost;
-        
-        public statinfo(int server, int client, int graphic, int sound, int cost){
-            this.server = server;
-            this.client = client;
-            this.graphic = graphic;
-            this.sound = sound;
-            this.cost = cost;
-        }
-    }
-    public statinfo sinfo;
+    Managers managers;
     public static GameManager Instance
     {
         get {
@@ -52,18 +41,28 @@ public class GameManager : MonoBehaviour
 
     
     public void gotoSetMonth(){
-        GameObject obj = GameObject.Find("EmployeeManager");
-        EmployeeManager em = obj.GetComponent<EmployeeManager>();
-        string jsonData = ObjectToJson(em.temp);
+        GameObject obj;
+        if(SceneManager.GetActiveScene().name=="EmployeeScene"){
+            obj = GameObject.Find("EmployeeManager");
+            managers = obj.GetComponent<EmployeeManager>();
+        }
+        else if(SceneManager.GetActiveScene().name=="WorkerManagementScene"){
+            obj = GameObject.Find("WorkerManager");
+            managers = obj.GetComponent<WorkerManager>();
+        }    
+        string jsonData = ObjectToJson(managers.temp);
         CreatetoJsonFile(Application.dataPath,"EmployeeTemp",jsonData);
         SceneManager.LoadScene("SetMonthScene");
     }
     public void gotoSetEmployee(){
         SceneManager.LoadScene("EmployeeScene");
     }
+    public void gotoWorkerManagement(){
+        SceneManager.LoadScene("WorkerManagementScene");
+    }
     void Start()
     {
-        sinfo = new statinfo(0,0,0,0,500);
+        
     }
 
     // Update is called once per frame

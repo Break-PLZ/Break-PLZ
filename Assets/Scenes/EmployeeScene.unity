@@ -2360,8 +2360,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerSelect: {fileID: 1253167604}
   WorkerList: {fileID: 1392615559}
-  manager: {fileID: 0}
-  employeeManager: {fileID: 2006954004}
+  tmplist: []
+  manager: {fileID: 2006954004}
   ClickedWorkers: 0
 --- !u!1 &1344844954
 GameObject:
@@ -2692,6 +2692,7 @@ GameObject:
   - component: {fileID: 1392615560}
   - component: {fileID: 1392615561}
   - component: {fileID: 1392615562}
+  - component: {fileID: 1392615563}
   m_Layer: 5
   m_Name: WorkerList
   m_TagString: Untagged
@@ -2756,6 +2757,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 0
+--- !u!114 &1392615563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1392615559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59d0965f241ff154695ee5e3e7cb1161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  manager: {fileID: 2006954004}
 --- !u!1 &1458948384
 GameObject:
   m_ObjectHideFlags: 0
@@ -2787,6 +2801,7 @@ RectTransform:
   m_Children:
   - {fileID: 1014583468}
   - {fileID: 1547452634}
+  - {fileID: 2013203805}
   m_Father: {fileID: 1896307028}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4094,7 +4109,6 @@ RectTransform:
   - {fileID: 183846506}
   - {fileID: 721630006}
   - {fileID: 1469128770}
-  - {fileID: 2013203805}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4298,9 +4312,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3c2671b22a13884eb21fcc6afc5372c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  next: {fileID: 1344844956}
   temp:
     WL: []
+    server: 0
+    client: 0
+    graphic: 0
+    sound: 0
+    cost: 0
+  next: {fileID: 1344844956}
   WorkerList: {fileID: 1392615559}
 --- !u!1 &2013203804
 GameObject:
@@ -4328,17 +4347,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013203804}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 858264175}
-  m_Father: {fileID: 1896307028}
-  m_RootOrder: 14
+  m_Father: {fileID: 1458948385}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1417.4, y: -53.325}
+  m_AnchoredPosition: {x: 926.6023, y: -38.66521}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2013203806

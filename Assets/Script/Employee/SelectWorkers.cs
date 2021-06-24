@@ -2,33 +2,46 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class SelectWorkers : MonoBehaviour
 {
     public Text text;
     GameObject obj;
-    GameManager manager;
+    Managers managers;
     public int num = 0;
     // Start is called before the first frame update
     void Start()
     {
         //initialize
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        if(SceneManager.GetActiveScene().name=="EmployeeScene"){
+            managers = GameObject.Find("EmployeeManager").GetComponent<EmployeeManager>();
+        }
+        else if(SceneManager.GetActiveScene().name=="SetMonthScene"){
+            managers = GameObject.Find("SetMonthManager").GetComponent<SetMonthManager>();
+        }
+        else if(SceneManager.GetActiveScene().name=="WorkerManagementScene"){
+            managers = GameObject.Find("WorkerManager").GetComponent<WorkerManager>();
+        }
+        
         obj = text.gameObject;
         if(obj.name.Contains("Server")){
-            num = manager.sinfo.server;
+            num = managers.temp.server;
         }
         else if(obj.name.Contains("Client")){
-            num = manager.sinfo.client;
+            num = managers.temp.client;
         }
         else if(obj.name.Contains("Graphic")){
-            num = manager.sinfo.graphic;
+            num = managers.temp.graphic;
         }
         else if(obj.name.Contains("Sound")){
-            num = manager.sinfo.sound;
+            num = managers.temp.sound;
         }
         else if(obj.name.Contains("LText")){
-            num = manager.sinfo.cost;
+            num = managers.temp.cost;
+        }
+        else if(obj.name.Contains("SelectedP")){
+            num = managers.temp.WL.Count;
         }
         if(obj.name.Contains("LText")){
             text.text = "$"+num;
@@ -43,19 +56,22 @@ public class SelectWorkers : MonoBehaviour
     void Update()
     {
         if(obj.name.Contains("Server")){
-            num = manager.sinfo.server;
+            num = managers.temp.server;
         }
         else if(obj.name.Contains("Client")){
-            num = manager.sinfo.client;
+            num = managers.temp.client;
         }
         else if(obj.name.Contains("Graphic")){
-            num = manager.sinfo.graphic;
+            num = managers.temp.graphic;
         }
         else if(obj.name.Contains("Sound")){
-            num = manager.sinfo.sound;
+            num = managers.temp.sound;
         }
         else if(obj.name.Contains("LText")){
-            num = manager.sinfo.cost;
+            num = managers.temp.cost;
+        }
+        else if(obj.name.Contains("SelectedP")){
+            num = managers.temp.WL.Count;
         }
         if(obj.name.Contains("LText")){
             text.text = "$"+num;

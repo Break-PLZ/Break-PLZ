@@ -9,14 +9,13 @@ public class CreateWorkers : MonoBehaviour
 {
     public GameObject WorkerSelect; // work 선텍 오브젝트 (worker 3개 포함하는 오브젝트)
     public GameObject WorkerList;
-    public GameManager manager;
     public List<Worker> tmplist;
-    public EmployeeManager employeeManager;
+    public Managers manager;
     public int ClickedWorkers = 0;
     // Start is called before the first frame update
     void Start()
     {
-        manager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        
         // 임의의 세가지 박스 생성
         for(int i=0;i<3;i++){
             GameObject newPanel = new GameObject("Panel");
@@ -45,12 +44,12 @@ public class CreateWorkers : MonoBehaviour
         for(int i=0;i<3;i++){
             if(eventData.pointerCurrentRaycast.gameObject==WorkerSelect.transform.GetChild(i).gameObject||eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject==WorkerSelect.transform.GetChild(i).gameObject){
                 Worker tmp = tmplist[i];
-                manager.sinfo.server += tmp.server;
-                manager.sinfo.client += tmp.client;
-                manager.sinfo.graphic += tmp.graphic;
-                manager.sinfo.sound += tmp.sound;
-                manager.sinfo.cost -= tmp.cost;
-                employeeManager.temp.WL.Add(tmp);
+                manager.temp.server += tmp.server;
+                manager.temp.client += tmp.client;
+                manager.temp.graphic += tmp.graphic;
+                manager.temp.sound += tmp.sound;
+                manager.temp.cost -= tmp.cost;
+                manager.temp.WL.Add(tmp);
                 tmplist.Remove(tmp);
                 WorkerSelect.transform.GetChild(i).gameObject.transform.SetParent(WorkerList.transform,false);
                 GameObject newPanel = new GameObject("Panel");

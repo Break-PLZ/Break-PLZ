@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SetMonthScene.unity
     guid: 0f5564d99438e0c48b3083cec169e4b2
+  - enabled: 1
+    path: Assets/Scenes/WorkerManagementScene.unity
+    guid: 49371b463b61122429bcb9b8a1202281
   m_configObjects: {}

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[System.Serializable]
-public class WorkerList
+
+public class Managers : MonoBehaviour
 {
     // Start is called before the first frame update
-    public List<Worker> WL;
-    public int server, client, graphic, sound, cost;
+    public WorkerList temp;
+
+    
 }
