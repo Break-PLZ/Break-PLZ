@@ -2359,10 +2359,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorkerSelect: {fileID: 1253167604}
+  prefabWorker: {fileID: 7115971920292729417, guid: bca8c2ed7e8157a4f884734ee9961033, type: 3}
+  prefabWorker1: {fileID: 6355604924769942858, guid: 65d96c80fe919bf4ca75f65eff26737d, type: 3}
   WorkerList: {fileID: 1392615559}
   tmplist: []
   manager: {fileID: 2006954004}
-  ClickedWorkers: 0
 --- !u!1 &1344844954
 GameObject:
   m_ObjectHideFlags: 0
@@ -4320,6 +4321,7 @@ MonoBehaviour:
     sound: 0
     cost: 0
   next: {fileID: 1344844956}
+  prefabWorker: {fileID: 6355604924769942858, guid: 65d96c80fe919bf4ca75f65eff26737d, type: 3}
   WorkerList: {fileID: 1392615559}
 --- !u!1 &2013203804
 GameObject:

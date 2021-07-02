@@ -2274,10 +2274,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WorkerSelect: {fileID: 1028430941}
+  prefabWorker: {fileID: 7115971920292729417, guid: bca8c2ed7e8157a4f884734ee9961033, type: 3}
+  prefabWorker1: {fileID: 6355604924769942858, guid: 65d96c80fe919bf4ca75f65eff26737d, type: 3}
   WorkerList: {fileID: 2057390052}
   tmplist: []
   manager: {fileID: 1921639833}
-  ClickedWorkers: 0
 --- !u!114 &1028430943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4606,6 +4607,8 @@ MonoBehaviour:
     cost: 0
   prev: {fileID: 180895129}
   WorkerList: {fileID: 2057390052}
+  CW: {fileID: 1028430942}
+  prefabWorker: {fileID: 7115971920292729417, guid: bca8c2ed7e8157a4f884734ee9961033, type: 3}
 --- !u!4 &1921639834
 Transform:
   m_ObjectHideFlags: 0

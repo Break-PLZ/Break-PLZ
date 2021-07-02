@@ -12,6 +12,8 @@ public class Worker
     public int graphic;
     public int sound;
     public Image image;
+    public string name;
+    public string img_name;
 
     // Start is called before the first frame update
     public void SetProperty(Worker worker){
@@ -20,6 +22,8 @@ public class Worker
         sound = worker.sound;
         graphic = worker.graphic;
         cost = worker.cost;
+        name = worker.name;
+        img_name = worker.img_name;
     }
     public void InitProperty(){
         server = Random.Range(0,11);
@@ -27,8 +31,12 @@ public class Worker
         sound = Random.Range(0,11);
         graphic = Random.Range(0,11);
         cost = Random.Range(0,11);
+        img_name = "test_"+Random.Range(1,13).ToString("D3");
+        name="testbot"+Random.Range(0,101);
     }
+
+    
     public void TestMethod(){
-        Debug.Log("hihi "+server+" "+client+" "+graphic+" "+sound+" "+cost);
+        Debug.Log("hihi "+img_name);
     }
 }

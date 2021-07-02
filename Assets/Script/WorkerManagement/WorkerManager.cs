@@ -8,6 +8,8 @@ public class WorkerManager : Managers
     public Button prev;
     
     public GameObject WorkerList;
+    public CreateWorkers CW;
+    public GameObject prefabWorker;
     GameObject gamemanager;
 
     void Start()
@@ -25,20 +27,9 @@ public class WorkerManager : Managers
             temp.cost = 500;
         }
         for(int i=0;i<temp.WL.Count;i++){
-            GameObject newPanel = new GameObject("Panel");
-            newPanel.AddComponent<CanvasRenderer>();
-            newPanel.AddComponent<Image>();
+            GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
             Worker worker = temp.WL[i];
-            GameObject infoText = new GameObject("infoText");
-            infoText.AddComponent<Text>();
-            Text content = infoText.GetComponent<Text>();
-            content.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
-            content.color = Color.red;
-            content.text = "Server: " + worker.server + "\n"
-            + "Client: " + worker.client + "\n" + "Graphic: " + worker.graphic + "\n"
-            + "Sound: " + worker.sound + "\n" + "Cost: " + worker.cost;
-            infoText.transform.SetParent(newPanel.transform,false);
-            newPanel.gameObject.transform.SetParent(WorkerList.transform,false);
+            WorkerContents(newPanel,i);
         }
         // var jsonData = gamemanager.GetComponent<GameManager>().LoadJsonFile(Application.dataPath,"EmployeeTemp");
     }

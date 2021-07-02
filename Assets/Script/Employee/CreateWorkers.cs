@@ -3,35 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 public class CreateWorkers : MonoBehaviour
 , IPointerClickHandler
 {
     public GameObject WorkerSelect; // work 선텍 오브젝트 (worker 3개 포함하는 오브젝트)
+    public GameObject prefabWorker,prefabWorker1;
     public GameObject WorkerList;
     public List<Worker> tmplist;
     public Managers manager;
-    public int ClickedWorkers = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
         // 임의의 세가지 박스 생성
         for(int i=0;i<3;i++){
-            GameObject newPanel = new GameObject("Panel");
-            // workers stat
-            newPanel.AddComponent<CanvasRenderer>();
-            newPanel.AddComponent<Image>();
-            int rand = Random.Range(0,256);
-            newPanel.GetComponent<Image>().color = new Color(0,(float)rand/255,(float)rand/255);
-            newPanel.transform.SetParent(WorkerSelect.transform,false);
+            GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
             WorkerContents(newPanel,i);
         }
-        
-        
-        // for(int j=0;j<manager.WL.Count;j++){
-        //     manager.WL[j].transform.SetParent(WorkerList.transform,false);
-        // }
     }
     // Update is called once per frame
     void Update()
@@ -51,16 +40,17 @@ public class CreateWorkers : MonoBehaviour
                 manager.temp.cost -= tmp.cost;
                 manager.temp.WL.Add(tmp);
                 tmplist.Remove(tmp);
-                WorkerSelect.transform.GetChild(i).gameObject.transform.SetParent(WorkerList.transform,false);
-                GameObject newPanel = new GameObject("Panel");
-                // workers stat
-                newPanel.AddComponent<CanvasRenderer>();
-                newPanel.AddComponent<Image>();
-                int rand = Random.Range(0,256);
-                newPanel.GetComponent<Image>().color = new Color(0,(float)rand/255,(float)rand/255);
-                newPanel.transform.SetParent(WorkerSelect.transform,false);
+                Destroy(WorkerSelect.transform.GetChild(i).gameObject);
+                GameObject newPanel1;
+                if(SceneManager.GetActiveScene().name=="EmployeeScene"){
+                    newPanel1 = Instantiate(prefabWorker1,WorkerList.transform);
+                }
+                else{
+                    newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
+                }
+                manager.WorkerContents(newPanel1,manager.temp.WL.Count-1);
+                GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
                 newPanel.transform.SetSiblingIndex(i);
-                ClickedWorkers +=1;
                 WorkerContents(newPanel,i);
                 break;
             }
@@ -69,20 +59,18 @@ public class CreateWorkers : MonoBehaviour
         // 
     }
 
-    void WorkerContents(GameObject obj,int i){
+    public void WorkerContents(GameObject obj,int i){
         Worker worker = new Worker();
         worker.InitProperty();
-        worker.image = obj.GetComponent<Image>();
-        GameObject infoText = new GameObject("infoText");
-        infoText.AddComponent<Text>();
-        Text content = infoText.GetComponent<Text>();
-        content.font = Resources.GetBuiltinResource(typeof(Font), "Arial.ttf") as Font;
-        content.color = Color.red;
-        content.text = "Server: " + worker.server + "\n"
-        + "Client: " + worker.client + "\n" + "Graphic: " + worker.graphic + "\n"
-        + "Sound: " + worker.sound + "\n" + "Cost: " + worker.cost;
-        infoText.transform.SetParent(obj.transform,false);
+        worker.TestMethod();
         tmplist.Insert(i,worker);
+        obj.transform.Find("status").gameObject.GetComponent<Text>().text = "Server: " + worker.server + "\n"
+        + "Client: " + worker.client + "\n" + "Graphic: " + worker.graphic + "\n"
+        + "Sound: " + worker.sound;
+        obj.transform.Find("name").gameObject.GetComponent<Text>().text = worker.name;
+        obj.transform.Find("cost").gameObject.GetComponent<Text>().text = "Cost: " + worker.cost;
+        obj.transform.Find("Image").gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/"+worker.img_name);
+        Debug.Log("Image/"+worker.img_name); 
     }
 
     public void ReRoll(){
@@ -91,13 +79,7 @@ public class CreateWorkers : MonoBehaviour
         }
         tmplist.Clear();
         for(int i=0;i<3;i++){
-            GameObject newPanel = new GameObject("Panel");
-            // workers stat
-            newPanel.AddComponent<CanvasRenderer>();
-            newPanel.AddComponent<Image>();
-            int rand = Random.Range(0,256);
-            newPanel.GetComponent<Image>().color = new Color(0,(float)rand/255,(float)rand/255);
-            newPanel.transform.SetParent(WorkerSelect.transform,false);
+            GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
             WorkerContents(newPanel,i);
         }
     }
