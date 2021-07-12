@@ -25,7 +25,7 @@ public class SelectedWorkersBar : MonoBehaviour
         if(state==false){
             target.SetActive(true);
             state = true;
-            btn.transform.position = new Vector2(768,250);
+            btn.transform.position = new Vector2(768,248);
         }
         else{
             target.SetActive(false);
