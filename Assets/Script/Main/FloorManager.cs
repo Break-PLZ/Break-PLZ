@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class FloorManager : MonoBehaviour
 {
-    int floor_num = 1;  // Default 1
+    public int floor_num = 1;  // Default 1
     GameObject[] obj=new GameObject[100];
-    GameObject[] obj_canvas=new GameObject[100];
+    public GameObject[] obj_canvas;
 
     public GameObject tmp1, tmp2;
 
     // Start is called before the first frame update
     void Start()
     {
+        obj_canvas = new GameObject[100];
+        obj_canvas[0] = tmp2;
+
         floor_num = 3;  // For test
         for(int i = 1; i < floor_num; i++)
         {
