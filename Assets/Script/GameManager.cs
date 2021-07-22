@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             managers = obj.GetComponent<WorkerManager>();
         }    
         string jsonData = ObjectToJson(managers.temp);
-        CreatetoJsonFile(Application.dataPath,"EmployeeTemp",jsonData);
+        CreatetoJsonFile(Application.dataPath,"Script/EmployeeTemp",jsonData);
         SceneManager.LoadScene("SetMonthScene");
     }
     public void gotoSetEmployee(){

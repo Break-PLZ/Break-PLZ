@@ -11,7 +11,6 @@ public class Worker
     public int client;
     public int graphic;
     public int sound;
-    public Image image;
     public string name;
     public string img_name;
 

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEditor;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
@@ -32,27 +33,30 @@ public class CreateWorkers : MonoBehaviour
         //클릭시 삭제 후 재생성
         for(int i=0;i<3;i++){
             if(eventData.pointerCurrentRaycast.gameObject==WorkerSelect.transform.GetChild(i).gameObject||eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject==WorkerSelect.transform.GetChild(i).gameObject){
-                Worker tmp = tmplist[i];
-                manager.temp.server += tmp.server;
-                manager.temp.client += tmp.client;
-                manager.temp.graphic += tmp.graphic;
-                manager.temp.sound += tmp.sound;
-                manager.temp.cost -= tmp.cost;
-                manager.temp.WL.Add(tmp);
-                tmplist.Remove(tmp);
-                Destroy(WorkerSelect.transform.GetChild(i).gameObject);
-                GameObject newPanel1;
-                if(SceneManager.GetActiveScene().name=="EmployeeScene"){
-                    newPanel1 = Instantiate(prefabWorker1,WorkerList.transform);
+                bool result  = EditorUtility.DisplayDialog("고용","정말로 고용하시겠습니까?","Yes","No");
+                if(result){
+                    Worker tmp = tmplist[i];
+                    manager.temp.server += tmp.server;
+                    manager.temp.client += tmp.client;
+                    manager.temp.graphic += tmp.graphic;
+                    manager.temp.sound += tmp.sound;
+                    manager.temp.cost -= tmp.cost;
+                    manager.temp.WL.Add(tmp);
+                    tmplist.Remove(tmp);
+                    Destroy(WorkerSelect.transform.GetChild(i).gameObject);
+                    GameObject newPanel1;
+                    if(SceneManager.GetActiveScene().name=="EmployeeScene"){
+                        newPanel1 = Instantiate(prefabWorker1,WorkerList.transform);
+                    }
+                    else{
+                        newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
+                    }
+                    manager.WorkerContents(newPanel1,manager.temp.WL.Count-1);
+                    GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
+                    newPanel.transform.SetSiblingIndex(i);
+                    WorkerContents(newPanel,i);
+                    break;
                 }
-                else{
-                    newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
-                }
-                manager.WorkerContents(newPanel1,manager.temp.WL.Count-1);
-                GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
-                newPanel.transform.SetSiblingIndex(i);
-                WorkerContents(newPanel,i);
-                break;
             }
         }
         
