@@ -30,7 +30,7 @@ public class FloorSettingButtonEvent : MonoBehaviour
         
     }
 
-    public void OnClickShowSetting()
+    public void OnClick()
     {
 
         floor_num = GameObject.Find("FloorManager").GetComponent<FloorManager>().floor_num;
