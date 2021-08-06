@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
             managers = obj.GetComponent<WorkerManager>();
         }    
         string jsonData = ObjectToJson(managers.temp);
-        CreatetoJsonFile(Application.dataPath,"EmployeeTemp",jsonData);
+        CreatetoJsonFile(Application.dataPath,"Script/EmployeeTemp",jsonData);
         SceneManager.LoadScene("SetMonthScene");
     }
     public void gotoSetEmployee(){
@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
     }
     public T LoadJsonFile<T>(string loadPath, string fileName)
     {
-        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", loadPath, fileName), FileMode.Open);
+        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", loadPath, fileName), FileMode.OpenOrCreate);
+        
         byte[] data = new byte[fileStream.Length];
         fileStream.Read(data, 0, data.Length);
         fileStream.Close();

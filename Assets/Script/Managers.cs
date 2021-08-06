@@ -14,8 +14,8 @@ public class Managers : MonoBehaviour
         + "Sound: " + worker.sound;
         obj.transform.Find("name").gameObject.GetComponent<Text>().text = worker.name;
         obj.transform.Find("cost").gameObject.GetComponent<Text>().text = "Cost: " + worker.cost;
-        obj.transform.Find("Image").gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/"+worker.img_name);
-        Debug.Log("Image/"+worker.img_name);
+        obj.transform.Find("Image").gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/EmployeeScene/"+worker.img_name);
+        // Debug.Log("Image/"+worker.img_name);
     }
     
 }
