@@ -85,7 +85,8 @@ public class GameManager : MonoBehaviour
     }
     public T LoadJsonFile<T>(string loadPath, string fileName)
     {
-        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", loadPath, fileName), FileMode.Open);
+        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", loadPath, fileName), FileMode.OpenOrCreate);
+        
         byte[] data = new byte[fileStream.Length];
         fileStream.Read(data, 0, data.Length);
         fileStream.Close();
