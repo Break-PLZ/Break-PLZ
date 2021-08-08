@@ -8,11 +8,14 @@ public class SelectedWorkersBar : MonoBehaviour
     public GameObject target;
     public GameObject btn;
     bool state;
+    float x, y;
     void Start()
     {
         target.SetActive(false);
         state = false;
-        btn.transform.position = new Vector2(768,25);
+        x = Camera.main.pixelWidth/2;
+        y = btn.GetComponent<RectTransform>().rect.height/2;
+        btn.transform.position = new Vector2(x, y);
     }
 
     // Update is called once per frame
@@ -25,12 +28,13 @@ public class SelectedWorkersBar : MonoBehaviour
         if(state==false){
             target.SetActive(true);
             state = true;
-            btn.transform.position = new Vector2(768,248);
+            btn.transform.position = new Vector2(target.transform.position.x,target.transform.position.y + target.GetComponent<RectTransform>().rect.height/2+y);
+            // Debug.Log(target.GetComponent<RectTransform>().rect.height);
         }
         else{
             target.SetActive(false);
             state = false;
-            btn.transform.position = new Vector2(768,25);
+            btn.transform.position = new Vector2(x, y);
         }
     }
 }
