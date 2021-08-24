@@ -11,12 +11,12 @@ public class StatusBar : MonoBehaviour
     
     void Start()
     {
-        slider.value = obj.num*month.slider.value;
+        slider.value = (int)obj.num*month.slider.value;
     }
 
     // Update is called once per frame
     void Update()
     {
-        slider.value = obj.num*month.slider.value;
+        slider.value = (int)obj.num*month.slider.value;
     }
 }
