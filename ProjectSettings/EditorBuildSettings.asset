@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WorkerManagementScene.unity
     guid: 49371b463b61122429bcb9b8a1202281
+  - enabled: 1
+    path: Assets/Scenes/CashScene.unity
+    guid: 5fd5a8f293f2b6f4f9b40710355cd765
+  - enabled: 1
+    path: Assets/Scenes/AddItemScene.unity
+    guid: 943fb645d35b9aa49aad93361b26f2ca
   m_configObjects: {}
