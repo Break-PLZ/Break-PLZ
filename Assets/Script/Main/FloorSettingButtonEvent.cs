@@ -9,10 +9,12 @@ public class FloorSettingButtonEvent : MonoBehaviour
 
     GameObject[] obj_canvas;
     int floor_num, now_floor_num;
+    public GameObject ArrangementMode_Canvas;
 
     // Start is called before the first frame update
     void Start()
     {
+        ArrangementMode_Canvas.SetActive(false);
         isFloorSetting = false;
 
         floor_num = GameObject.Find("FloorManager").GetComponent<FloorManager>().floor_num;
@@ -21,7 +23,6 @@ public class FloorSettingButtonEvent : MonoBehaviour
 
         for (int i = 0; i < floor_num; i++)
             obj_canvas[i].transform.GetChild(1).gameObject.SetActive(false);
-
     }
 
     // Update is called once per frame

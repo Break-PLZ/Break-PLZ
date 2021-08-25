@@ -3,10 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+public class Floor_data
+{
+
+}
+
 public class FloorManager : MonoBehaviour
 {
     public int floor_num = 1;  // Default 1
     GameObject[] obj=new GameObject[100];
+    GameObject[,] floor_data = new GameObject[100,4];
     public GameObject[] obj_canvas;
 
     public GameObject tmp1, tmp2;

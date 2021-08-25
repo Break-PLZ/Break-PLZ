@@ -10,6 +10,8 @@ public class FreeCamera : MonoBehaviour
     GameObject background, canvas;
     float background_left, background_right, background_up, background_down;
 
+    bool isActive = true;
+
     void Start()
     {
         background = GameObject.FindWithTag("Background");
@@ -29,29 +31,42 @@ public class FreeCamera : MonoBehaviour
 
     void Update()
     {
-        if (!Input.GetMouseButton(0))
-            return;
+        if (isActive)
+        {
+            if (!Input.GetMouseButton(0))
+                return;
 
-        if (Input.GetAxis("Mouse X") < 0)
-        {
-            if(transform.position.x<background_right)
-                transform.Translate(0.07f, 0, 0);
-        }
-        else if (Input.GetAxis("Mouse X") > 0)
-        {
-            if (transform.position.x > background_left)
-                transform.Translate(-0.07f, 0, 0);
-        }
+            if (Input.GetAxis("Mouse X") < 0)
+            {
+                if (transform.position.x < background_right)
+                    transform.Translate(0.07f, 0, 0);
+            }
+            else if (Input.GetAxis("Mouse X") > 0)
+            {
+                if (transform.position.x > background_left)
+                    transform.Translate(-0.07f, 0, 0);
+            }
 
-        if (Input.GetAxis("Mouse Y") < 0)
-        {
-            if (transform.position.y < background_up)
-                transform.Translate(0, 0.07f, 0);
+            if (Input.GetAxis("Mouse Y") < 0)
+            {
+                if (transform.position.y < background_up)
+                    transform.Translate(0, 0.07f, 0);
+            }
+            else if (Input.GetAxis("Mouse Y") > 0)
+            {
+                if (transform.position.y > background_down)
+                    transform.Translate(0, -0.07f, 0);
+            }
         }
-        else if (Input.GetAxis("Mouse Y") > 0)
-        {
-            if (transform.position.y > background_down)
-                transform.Translate(0, -0.07f, 0);
-        }
+    }
+
+    public void Deactivate()
+    {
+        isActive = false;
+    }
+
+    public void Activate()
+    {
+        isActive = true;
     }
 }

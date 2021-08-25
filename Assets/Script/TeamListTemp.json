@@ -1,0 +1,70 @@
+"FL": [
+    {
+        "floorNumber": 1,
+        "teamList": [
+            {
+                "type": "graphic",
+                "name": "그래픽 1팀",
+                "work": false,
+                "waiting": true,
+                "error": false,
+                "vacation": false,
+                "progress": 0,
+                "task": "대기 중",
+                "server": 3,
+                "client": 0,
+                "graphic": 10,
+                "sound": 0,
+                "chamber_number": -1,
+            }
+        ]
+    },
+    {
+        "floorNumber": 2,
+        "teamList": [
+            {
+                "type": "graphic",
+                "name": "그래픽 1팀",
+                "work": false,
+                "waiting": true,
+                "error": false,
+                "vacation": false,
+                "progress": 0,
+                "task": "대기 중",
+                "server": 3,
+                "client": 0,
+                "graphic": 10,
+                "sound": 0
+            },
+            {
+                "type": "graphic",
+                "name": "그래픽 1팀",
+                "work": false,
+                "waiting": true,
+                "error": false,
+                "vacation": false,
+                "progress": 0,
+                "task": "대기 중",
+                "server": 3,
+                "client": 0,
+                "graphic": 10,
+                "sound": 0
+            },
+            {
+                "type": "graphic",
+                "name": "그래픽 1팀",
+                "work": false,
+                "waiting": true,
+                "error": false,
+                "vacation": false,
+                "progress": 0,
+                "task": "대기 중",
+                "server": 3,
+                "client": 0,
+                "graphic": 10,
+                "sound": 0
+            }
+        ]
+    }
+]
+}

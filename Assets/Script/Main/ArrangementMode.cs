@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This is just for test
+
+
 public class ArrangementMode : MonoBehaviour
 {
-    bool isFloorSetting=false;
-    public Button b;
-
     // Start is called before the first frame update
+
     void Start()
     {
         
@@ -22,11 +23,6 @@ public class ArrangementMode : MonoBehaviour
 
     void OnClick()
     {
-        isFloorSetting = !isFloorSetting;
 
-        if (b.gameObject.activeSelf == false) b.gameObject.SetActive(true);
-        else b.gameObject.SetActive(false);
-
-        GameObject.Find("FloorSettingButton").gameObject.SetActive(false);
     }
 }
