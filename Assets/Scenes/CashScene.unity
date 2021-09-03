@@ -1255,7 +1255,7 @@ GameObject:
   - component: {fileID: 512205370}
   - component: {fileID: 512205373}
   m_Layer: 5
-  m_Name: ItemBox2
+  m_Name: GoseumDochi
   m_TagString: NotSelling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1389,6 +1389,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel1: {fileID: 934092928}
   panel2: {fileID: 456825252}
+  panel1Image: {fileID: 1156433405}
+  panel1NameText: {fileID: 750995064}
+  panel1TypeText: {fileID: 2088587456}
+  panel1ChanceText: {fileID: 1202656747}
+  panel1PriceText: {fileID: 2002168822}
+  panel2Image: {fileID: 1958712742}
+  panel2NameText: {fileID: 1613063918}
+  panel2TypeText: {fileID: 1816912762}
+  panel2ChanceText: {fileID: 292250992}
+  panel2PriceText: {fileID: 1971748025}
 --- !u!1 &513868604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2849,7 +2859,7 @@ GameObject:
   - component: {fileID: 1325760011}
   - component: {fileID: 1325760010}
   m_Layer: 5
-  m_Name: EmptyItemBox
+  m_Name: ItemEx1
   m_TagString: Selling
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2889,6 +2899,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel1: {fileID: 934092928}
   panel2: {fileID: 456825252}
+  panel1Image: {fileID: 1156433405}
+  panel1NameText: {fileID: 750995064}
+  panel1TypeText: {fileID: 2088587456}
+  panel1ChanceText: {fileID: 1202656747}
+  panel1PriceText: {fileID: 2002168822}
+  panel2Image: {fileID: 1958712742}
+  panel2NameText: {fileID: 1613063918}
+  panel2TypeText: {fileID: 1816912762}
+  panel2ChanceText: {fileID: 292250992}
+  panel2PriceText: {fileID: 1971748025}
 --- !u!114 &1325760011
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4318,7 +4338,7 @@ GameObject:
   - component: {fileID: 1958721703}
   - component: {fileID: 1958721702}
   m_Layer: 0
-  m_Name: EventSystem
+  m_Name: CashManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
