@@ -1,15 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-// This is just for test
-
-
-public class ArrangementMode : MonoBehaviour
+public class NewBehaviourScript : MonoBehaviour
 {
     // Start is called before the first frame update
-
     void Start()
     {
         
@@ -18,11 +13,12 @@ public class ArrangementMode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        print("Clicked222");
     }
 
-    void OnClick()
+    void onClick()
     {
-
+        Debug.Log("Clicked0");
+        print("Clicked1");
     }
 }
