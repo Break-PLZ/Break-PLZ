@@ -16,6 +16,7 @@ public class SelectedWorkersBar : MonoBehaviour
         x = Camera.main.pixelWidth/2;
         y = btn.GetComponent<RectTransform>().rect.height/2;
         btn.transform.position = new Vector2(x, y);
+        Debug.Log(btn.transform.position);
     }
 
     // Update is called once per frame
@@ -28,8 +29,8 @@ public class SelectedWorkersBar : MonoBehaviour
         if(state==false){
             target.SetActive(true);
             state = true;
-            btn.transform.position = new Vector2(target.transform.position.x,target.transform.position.y + target.GetComponent<RectTransform>().rect.height/2+y);
-            // Debug.Log(target.GetComponent<RectTransform>().rect.height);
+            btn.transform.position = new Vector2(x,400);
+            Debug.Log(btn.transform.position);
         }
         else{
             target.SetActive(false);
