@@ -14,6 +14,8 @@ public class CreateWorkers : MonoBehaviour
     public GameObject WorkerList;
     public List<Worker> tmplist;
     public Managers manager;
+    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,6 @@ public class CreateWorkers : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void OnPointerClick(PointerEventData eventData){
@@ -36,12 +37,13 @@ public class CreateWorkers : MonoBehaviour
                 StartCoroutine(RunPause(i));
                 break;
             }
-        }
-        
-        // 
+        } 
     }
+    
+    
 
     public void WorkerContents(GameObject obj,int i){
+        obj.AddComponent<ShowTalents>();
         Worker worker = new Worker();
         worker.InitProperty();
         // worker.TestMethod();

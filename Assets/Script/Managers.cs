@@ -8,6 +8,7 @@ public class Managers : MonoBehaviour
     // Start is called before the first frame update
     public WorkerList temp;
     public void WorkerContents(GameObject obj,int i){
+        obj.AddComponent<ShowTalents>();
         Worker worker = temp.WL[i];
         obj.transform.Find("status").gameObject.GetComponent<Text>().text = "Server: " + worker.server + "\n" 
         + "Client: " + worker.client + "\n" + "Graphic: " + worker.graphic + "\n"
