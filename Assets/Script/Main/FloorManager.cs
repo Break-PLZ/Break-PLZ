@@ -30,6 +30,10 @@ public class FloorManager : MonoBehaviour
             obj_canvas[i] = GameObject.Instantiate(tmp2, new Vector3(0, 3*i, 0), Quaternion.identity);
 
             obj_canvas[i].transform.GetChild(0).GetComponent<Text>().text = string.Concat((i+1).ToString(), "F");
+
+            for(int j=0;j<4;j++)
+                obj_canvas[i].transform.GetChild(1).GetChild(j).GetComponent<AreaClickEvent>().FloorNumber=i+1;
+
         }
     }
 
