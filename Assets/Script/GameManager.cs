@@ -40,8 +40,24 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }// Start is called before the first frame update
 
-    
+    //Scene Move
     public void gotoSetMonth(){
+        SceneManager.LoadScene("SetMonthScene");
+    }
+    public void gotoSetEmployee(){
+        SceneManager.LoadScene("EmployeeScene");
+    }
+    public void gotoStartMenu(){
+        SceneManager.LoadScene("MainMenuScene");
+    }
+    public void gotoSelectGame(){
+        SceneManager.LoadScene("SelectGameScene");
+    }
+    public void gotoWorkerManagement(){
+        SceneManager.LoadScene("WorkerManagementScene");
+    }
+    // additional method
+    public void saveEmployee(){
         GameObject obj;
         if(SceneManager.GetActiveScene().name=="EmployeeScene"){
             obj = GameObject.Find("EmployeeManager");
@@ -53,13 +69,6 @@ public class GameManager : MonoBehaviour
         }    
         string jsonData = ObjectToJson(managers.temp);
         CreatetoJsonFile(Application.dataPath,"Script/EmployeeTemp",jsonData);
-        SceneManager.LoadScene("SetMonthScene");
-    }
-    public void gotoSetEmployee(){
-        SceneManager.LoadScene("EmployeeScene");
-    }
-    public void gotoWorkerManagement(){
-        SceneManager.LoadScene("WorkerManagementScene");
     }
     void Start()
     {
