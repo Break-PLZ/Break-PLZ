@@ -10,9 +10,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
+    
     private static GameManager _instance;
     Managers managers;
+    public int sceneNumber = 0;
     public static GameManager Instance
     {
         get {
@@ -39,7 +40,6 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }// Start is called before the first frame update
-
     //Scene Move
     public void gotoSetMonth(){
         SceneManager.LoadScene("SetMonthScene");
@@ -48,9 +48,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("EmployeeScene");
     }
     public void gotoStartMenu(){
+        sceneNumber = 0;
         SceneManager.LoadScene("MainMenuScene");
     }
-    public void gotoSelectGame(){
+    public void gotoSelectGame(int i){
+        sceneNumber = i;
         SceneManager.LoadScene("SelectGameScene");
     }
     public void gotoWorkerManagement(){
