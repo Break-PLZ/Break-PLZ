@@ -7,6 +7,7 @@ public class EmployeeManager : Managers
 {
     // Start is called before the first frame update
     public Button next;
+    public Button prev;
     public GameObject prefabWorker;
     public GameObject WorkerList;
     GameObject gamemanager;
@@ -16,6 +17,8 @@ public class EmployeeManager : Managers
         gamemanager = GameObject.Find("GameManager");
         next.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetMonth);
         next.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveEmployee);
+        prev.onClick.AddListener(() => gamemanager.GetComponent<GameManager>().gotoSelectGame(2));
+
         temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
         if(temp==null){
             temp = new WorkerList();

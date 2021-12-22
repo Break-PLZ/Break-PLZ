@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     
     private static GameManager _instance;
     Managers managers;
+    public List<Dictionary<string, object>> talentList;
     public int sceneNumber = 0;
     public static GameManager Instance
     {
@@ -74,7 +75,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        talentList = CSVReader.Read("Data/talents");
     }
 
     // Update is called once per frame
@@ -104,5 +105,5 @@ public class GameManager : MonoBehaviour
         fileStream.Close();
         string jsonData = Encoding.UTF8.GetString(data);
         return JsonUtility.FromJson<T>(jsonData);
-    }
+    }   
 }

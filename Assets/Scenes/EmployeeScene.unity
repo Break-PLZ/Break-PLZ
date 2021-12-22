@@ -994,6 +994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 998aeda952e44f84280e629150b2536d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneNumber: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -4321,6 +4322,7 @@ MonoBehaviour:
     sound: 0
     cost: 0
   next: {fileID: 1344844956}
+  prev: {fileID: 1529282660}
   prefabWorker: {fileID: 6355604924769942858, guid: 65d96c80fe919bf4ca75f65eff26737d, type: 3}
   WorkerList: {fileID: 1392615559}
 --- !u!1 &2013203804

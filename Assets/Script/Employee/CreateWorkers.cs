@@ -13,6 +13,7 @@ public class CreateWorkers : MonoBehaviour
     public GameObject prefabWorker,prefabWorker1;
     public GameObject WorkerList;
     public List<Worker> tmplist;
+    List<Dictionary<string, object>> tList; //for talent setting
     public Managers manager;
     
 
@@ -20,6 +21,7 @@ public class CreateWorkers : MonoBehaviour
     void Start()
     {
         // 임의의 세가지 박스 생성
+        tList = GameObject.Find("GameManager").GetComponent<GameManager>().talentList;
         for(int i=0;i<3;i++){
             GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
             WorkerContents(newPanel,i);
@@ -40,12 +42,11 @@ public class CreateWorkers : MonoBehaviour
         } 
     }
     
-    
-
     public void WorkerContents(GameObject obj,int i){
         obj.AddComponent<ShowTalents>();
         Worker worker = new Worker();
         worker.InitProperty();
+        worker.setTalents(tList);
         // worker.TestMethod();
         tmplist.Insert(i,worker);
         obj.transform.Find("status").gameObject.GetComponent<Text>().text = "Server: " + worker.server + "\n"

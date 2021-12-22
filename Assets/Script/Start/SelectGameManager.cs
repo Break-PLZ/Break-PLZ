@@ -20,8 +20,11 @@ public class SelectGameManager : MonoBehaviour
     void setSaveList(){
         for(int i=0;i<3;i++){
             GameObject newPanel = Instantiate(prefab,SaveList.transform);
+            newPanel.AddComponent<Button>();
             if(gamemanager.GetComponent<GameManager>().sceneNumber==2){
-                newPanel.AddComponent<Button>();
+                newPanel.GetComponent<Button>().onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetEmployee);
+            }
+            else{
                 newPanel.GetComponent<Button>().onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetEmployee);
             }
         }

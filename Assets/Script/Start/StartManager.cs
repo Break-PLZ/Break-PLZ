@@ -13,6 +13,7 @@ public class StartManager : MonoBehaviour
         gamemanager = GameObject.Find("GameManager");
         playGame.onClick.AddListener(() => gamemanager.GetComponent<GameManager>().gotoSelectGame(1));
         newGame.onClick.AddListener(() => gamemanager.GetComponent<GameManager>().gotoSelectGame(2));
+        
     }
 
     // Update is called once per frame

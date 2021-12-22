@@ -36,13 +36,17 @@ public class Worker
         cost = Random.Range(1,16);
         img_name = "test_"+Random.Range(1,16).ToString("D3");
         name="testbot"+Random.Range(0,101);
+    }
+    public void setTalents(List<Dictionary<string, object>> talentList){
         talent = new List<string>();
-        talent.Add("응애");
-        talent.Add("응기잇");
-        talent.Add("헤으응");
+        int num = Random.Range(1,4);
+        int k = 0;
+        for(int i =0; i < num; i++){
+            k = Random.Range(0,talentList.Count);
+            talent.Add(talentList[k]["특성이름"].ToString());
+        }
     }
 
-    
     public void TestMethod(){
         Debug.Log("hihi "+img_name);
     }
