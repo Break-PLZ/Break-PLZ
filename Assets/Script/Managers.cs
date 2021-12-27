@@ -9,14 +9,10 @@ public class Managers : MonoBehaviour
     public WorkerList temp;
     public void WorkerContents(GameObject obj,int i){
         obj.AddComponent<ShowTalents>();
-        Worker worker = temp.WL[i];
-        obj.transform.Find("status").gameObject.GetComponent<Text>().text = "Server: " + worker.server + "\n" 
-        + "Client: " + worker.client + "\n" + "Graphic: " + worker.graphic + "\n"
-        + "Sound: " + worker.sound;
-        obj.transform.Find("name").gameObject.GetComponent<Text>().text = worker.name;
-        obj.transform.Find("cost").gameObject.GetComponent<Text>().text = "Cost: " + worker.cost;
-        obj.transform.Find("Image").gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/EmployeeScene/"+worker.img_name);
-        // Debug.Log("Image/"+worker.img_name);
+        workerstatus ws = obj.AddComponent<workerstatus>();
+        ws.InitProperty();
+        ws.SetProperty(temp.WL[i]);
+        ws.showStatus(obj);
     }
     
 }

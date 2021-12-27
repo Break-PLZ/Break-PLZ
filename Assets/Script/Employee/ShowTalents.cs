@@ -28,9 +28,14 @@ public class ShowTalents : MonoBehaviour
     public void OnPointerEnter(PointerEventData eventData){
         inoutcursor = true;
         show = Instantiate(obj,GameObject.FindWithTag("Background").transform);
-        
-        if(show==null){
-            Debug.Log("eheh");
+        Transform temp = show.transform.GetChild(0);
+        Debug.Log(temp.childCount);
+        workerstatus ws = gameObject.GetComponent<workerstatus>();
+        for(int i = 0; i < 3; i++){
+            temp.GetChild(i).GetComponent<Text>().text = "";
+        }
+        for(int i = 0; i < ws.worker.talent.Count; i++){
+            temp.GetChild(i).GetComponent<Text>().text = ws.worker.talent[i];
         }
       //  Debug.Log("들어감");
     }

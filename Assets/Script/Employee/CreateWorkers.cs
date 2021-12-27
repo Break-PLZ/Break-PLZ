@@ -12,7 +12,6 @@ public class CreateWorkers : MonoBehaviour
     public GameObject WorkerSelect; // work 선텍 오브젝트 (worker 3개 포함하는 오브젝트)
     public GameObject prefabWorker,prefabWorker1;
     public GameObject WorkerList;
-    public List<Worker> tmplist;
     List<Dictionary<string, object>> tList; //for talent setting
     public Managers manager;
     
@@ -24,7 +23,7 @@ public class CreateWorkers : MonoBehaviour
         tList = GameObject.Find("GameManager").GetComponent<GameManager>().talentList;
         for(int i=0;i<3;i++){
             GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
-            WorkerContents(newPanel,i);
+            WorkerContents(newPanel);
         }
     }
     // Update is called once per frame
@@ -34,43 +33,36 @@ public class CreateWorkers : MonoBehaviour
 
     public void OnPointerClick(PointerEventData eventData){
         //클릭시 삭제 후 재생성
-        for(int i=0;i<3;i++){
-            if(eventData.pointerCurrentRaycast.gameObject==WorkerSelect.transform.GetChild(i).gameObject||eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject==WorkerSelect.transform.GetChild(i).gameObject){
-                StartCoroutine(RunPause(i));
-                break;
-            }
-        } 
+        if(eventData.pointerCurrentRaycast.gameObject.GetComponent<workerstatus>()){
+            workerstatus tmp = eventData.pointerCurrentRaycast.gameObject.GetComponent<workerstatus>();
+            StartCoroutine(RunPause(tmp));
+        }
+        else if(eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<workerstatus>()){
+            workerstatus tmp = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject.GetComponent<workerstatus>();
+            StartCoroutine(RunPause(tmp));
+        }
     }
     
-    public void WorkerContents(GameObject obj,int i){
+    public void WorkerContents(GameObject obj){
         obj.AddComponent<ShowTalents>();
-        Worker worker = new Worker();
-        worker.InitProperty();
-        worker.setTalents(tList);
-        // worker.TestMethod();
-        tmplist.Insert(i,worker);
-        obj.transform.Find("status").gameObject.GetComponent<Text>().text = "Server: " + worker.server + "\n"
-        + "Client: " + worker.client + "\n" + "Graphic: " + worker.graphic + "\n"
-        + "Sound: " + worker.sound;
-        obj.transform.Find("name").gameObject.GetComponent<Text>().text = worker.name;
-        obj.transform.Find("cost").gameObject.GetComponent<Text>().text = "Cost: " + worker.cost;
-        obj.transform.Find("Image").gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/EmployeeScene/"+worker.img_name);
-        // Debug.Log("Image/"+worker.img_name); 
+        workerstatus tmp = obj.AddComponent<workerstatus>();
+        tmp.InitProperty();
+        tmp.setTalents(tList);
+        tmp.showStatus(obj);
     }
 
     public void ReRoll(){
         foreach(Transform child in transform){
             Destroy(child.gameObject);
         }
-        tmplist.Clear();
         for(int i=0;i<3;i++){
             GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
-            WorkerContents(newPanel,i);
+            WorkerContents(newPanel);
         }
     }
 
-    IEnumerator RunPause(int i){
-        Worker tmp = tmplist[i];
+    IEnumerator RunPause(workerstatus ws){
+        Worker tmp = ws.worker;
         GameObject reconsider = Instantiate(Resources.Load("Prefabs/Pause"),GameObject.FindWithTag("Background").transform) as GameObject;
         reconsider.GetComponent<Reconsideration>().setcontents(tmp.name,"Cost: "+tmp.cost,"Server: " + tmp.server + "\n"
         + "Client: " + tmp.client + "\n" + "Graphic: " + tmp.graphic + "\n"
@@ -85,8 +77,6 @@ public class CreateWorkers : MonoBehaviour
             manager.temp.sound += tmp.sound;
             manager.temp.cost -= tmp.cost;
             manager.temp.WL.Add(tmp);
-            tmplist.Remove(tmp);
-            Destroy(WorkerSelect.transform.GetChild(i).gameObject);
             GameObject newPanel1;
             if(SceneManager.GetActiveScene().name=="EmployeeScene"){
                 newPanel1 = Instantiate(prefabWorker1,WorkerList.transform);
@@ -95,9 +85,9 @@ public class CreateWorkers : MonoBehaviour
                 newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
             }
             manager.WorkerContents(newPanel1,manager.temp.WL.Count-1);
-            GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
-            newPanel.transform.SetSiblingIndex(i);
-            WorkerContents(newPanel,i);
+            ws.InitProperty();
+            ws.setTalents(tList);
+            ws.showStatus(ws.gameObject);
         }
     }
 
