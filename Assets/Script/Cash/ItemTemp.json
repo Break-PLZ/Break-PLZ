@@ -1,1 +1,3 @@
-{"IL":[{"name":"HashBrown","type":1,"chance":"chance","price":20,"img_name":"itemEx1"},{"name":"GoseumDochi","type":1,"chance":"chancechance","price":10,"img_name":"itemEx2"}]}
+{"IL":[{"name":"HashBrown","tag": 1, "type":1,"chance":"chance","price":20,"img_name":"itemEx1"},
+    {"name":"GoseumDochi","tag": 2, "type":1,"chance":"chancechance","price":10,"img_name":"itemEx2"},
+    {"name":"GoseumDochi","tag": 2, "type":2,"chance":"chance","price":10,"img_name":"itemEx1"}]}

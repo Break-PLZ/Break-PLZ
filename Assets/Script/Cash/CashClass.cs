@@ -11,6 +11,7 @@ public class CashClass
     public string chance;
     public int price;
     public string img_name;
+    public int tag;
 
     // Start is called before the first frame update
     public void SetProperty(CashClass cash){
@@ -19,6 +20,7 @@ public class CashClass
         chance = cash.chance;
         price = cash.price;
         img_name = cash.img_name;
+        tag = cash.tag;
     }
 
     public void InitProperty(){
@@ -27,6 +29,7 @@ public class CashClass
         chance = "test_chance_"+ Random.Range(0, 101);
         price = Random.Range(1, 51);
         img_name = "itemEx2";
+        tag = 1;
     }
     
     public void TestMethod(){
@@ -40,6 +43,7 @@ public class CashClass
         Debug.Log("chance = " + chance);
         Debug.Log("price = " + price);
         Debug.Log("img_name = " + img_name);
+        Debug.Log("tag = " + tag);
     }
 
 }
