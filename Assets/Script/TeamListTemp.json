@@ -1,7 +1,8 @@
-"FL": [
+{
+    "FloorList": [
     {
-        "floorNumber": 1,
-        "teamList": [
+        "FloorNum": 1,
+        "TeamsInFloor": [
             {
                 "type": "graphic",
                 "name": "그래픽 1팀",
@@ -15,16 +16,17 @@
                 "client": 0,
                 "graphic": 10,
                 "sound": 0,
-                "chamber_number": -1,
+                "floor_number": 1,
+                "chamber_number": 1
             }
         ]
     },
     {
-        "floorNumber": 2,
-        "teamList": [
+        "FloorNum": 2,
+        "TeamsInFloor": [
             {
                 "type": "graphic",
-                "name": "그래픽 1팀",
+                "name": "그래픽 2팀",
                 "work": false,
                 "waiting": true,
                 "error": false,
@@ -34,11 +36,13 @@
                 "server": 3,
                 "client": 0,
                 "graphic": 10,
-                "sound": 0
+                "sound": 0,
+                "floor_number": 2,
+                "chamber_number": 1
             },
             {
                 "type": "graphic",
-                "name": "그래픽 1팀",
+                "name": "그래픽 3팀",
                 "work": false,
                 "waiting": true,
                 "error": false,
@@ -48,11 +52,13 @@
                 "server": 3,
                 "client": 0,
                 "graphic": 10,
-                "sound": 0
+                "sound": 0,
+                "floor_number": 2,
+                "chamber_number": 2
             },
             {
                 "type": "graphic",
-                "name": "그래픽 1팀",
+                "name": "그래픽 4팀",
                 "work": false,
                 "waiting": true,
                 "error": false,
@@ -62,7 +68,9 @@
                 "server": 3,
                 "client": 0,
                 "graphic": 10,
-                "sound": 0
+                "sound": 0,
+                "floor_number": 2,
+                "chamber_number": 3
             }
         ]
     }

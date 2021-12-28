@@ -8,31 +8,35 @@ public class TaskStatusManager : MonoBehaviour
     public GameObject team;
     public GameObject content;
 
+    GameObject gamemanager;
+    FloorInfo floorinfo;
+
     // Start is called before the first frame update
     void Start()
     {
-        GameObject floor1 = (GameObject)Instantiate(floor);
-        GameObject button1_1 = (GameObject)Instantiate(team);
-        GameObject button1_2 = (GameObject)Instantiate(team);
-        button1_1.transform.parent = floor1.transform;
-        button1_2.transform.parent = floor1.transform;
-        floor1.transform.parent = content.transform;
+        gamemanager = GameObject.Find("GameManager");
+        floorinfo = gamemanager.GetComponent<GameManager>().LoadJsonFile<FloorInfo>(Application.dataPath, "Script/TeamListTemp");
 
-        GameObject floor2 = (GameObject)Instantiate(floor);
-        GameObject button2_1 = (GameObject)Instantiate(team);
-        GameObject button2_2 = (GameObject)Instantiate(team);
-        GameObject button2_3 = (GameObject)Instantiate(team);
-        GameObject button2_4 = (GameObject)Instantiate(team);
-        button2_1.transform.parent = floor2.transform;
-        button2_2.transform.parent = floor2.transform;
-        button2_3.transform.parent = floor2.transform;
-        button2_4.transform.parent = floor2.transform;
-        floor2.transform.parent = content.transform;
+        SetUI();
     }
 
     // Update is called once per frame
     void Update()
     {
 
+    }
+
+    void SetUI(){
+        
+        for(int i=0;i<floorinfo.FloorList.Count;i++){
+            GameObject f = (GameObject)Instantiate(floor);
+            f.transform.parent = content.transform;
+
+            for(int j=0;j<floorinfo.FloorList[i].TeamsInFloor.Count;j++){
+                GameObject t = (GameObject)Instantiate(team);
+                t.transform.parent = f.transform;
+                
+            }
+        }
     }
 }
