@@ -18,7 +18,7 @@ public class EmployeeManager : Managers
         next.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetMonth);
         next.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveEmployee);
         prev.onClick.AddListener(() => gamemanager.GetComponent<GameManager>().gotoSelectGame(2));
-
+        prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveEmployee);
         temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
         if(temp==null){
             temp = new WorkerList();
