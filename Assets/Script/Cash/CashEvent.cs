@@ -13,9 +13,13 @@ public class CashEvent : MonoBehaviour
     public GameObject prefab1;
     public GameObject prefab2;
     public Transform parent;
-    GameObject[] instances;
+    Button[] instances;
     int itemCnt;
     CashList data;
+
+    int idx = -1;
+
+    public GameObject panel1, panel2;
     void Start()
     {
         // GameObject myInstance = Instantiate(prefab, parent);
@@ -23,33 +27,38 @@ public class CashEvent : MonoBehaviour
         int posY = 181;
         data = LoadJsonFile<CashList>(Application.dataPath, "Script/Cash/ItemTemp");
         itemCnt = data.IL.Count;
-        instances = new GameObject[itemCnt];
+        instances = new Button[itemCnt];
         Debug.Log("itemCnt: " + itemCnt);
         for(int i=0;i<itemCnt;i++){
             int objX = posX[i%5];
             int objY = posY - (i/5) * 128;
             if(data.IL[i].tag == 1){
-                GameObject tempInstance = Instantiate(prefab1, parent);          
-                // Vector3 position = tempInstance.transform.localPosition;
-                // position.x = objX;
-                // position.y = objY;
-                // tempInstance.transform.localPosition = position;
-                // tempInstance.GetChild(0).GetComponent<Image>().sprite = Resources.Load("Image/CashShop/"+data.IL[i].img_name, typeof(Sprite)) as Sprite;
+                //Button tempInstance = Instantiate(prefab1, parent);
+                GameObject tempInstance = Instantiate(prefab1, parent);
                 SetChild(tempInstance, objX, objY, "Image/CashShop/"+data.IL[i].img_name);
+                int tag = data.IL[i].tag;
+                int type = data.IL[i].type;
+                int price = data.IL[i].price;
+                string chance = data.IL[i].chance;
+                string img_name = data.IL[i].img_name;
+                string name = data.IL[i].name;
+                int index = i;
+                tempInstance.GetComponent<Button>().onClick.AddListener(() => openPanel(tag, type, price, chance, img_name, index, name));
+                Debug.Log(tempInstance);
+                // tempInstance.onClick.AddListener(openPanel);
             } else if(data.IL[i].tag == 2){
                 GameObject tempInstance = Instantiate(prefab2, parent);
-                // Vector3 position = tempInstance.transform.localPosition;
-                // position.x = objX;
-                // position.y = objY;
-                // tempInstance.transform.localPosition = position;
                 SetChild(tempInstance, objX, objY, "Image/CashShop/"+data.IL[i].img_name);
-                // tempInstance.GetChild(0).GetComponent<Image>().sprite = Resources.Load("Image/CashShop/"+data.IL[i].img_name, typeof(Sprite)) as Sprite;
+                int tag = data.IL[i].tag;
+                int type = data.IL[i].type;
+                int price = data.IL[i].price;
+                string chance = data.IL[i].chance;
+                string img_name = data.IL[i].img_name;
+                string name = data.IL[i].name;
+                int index = i;
+                tempInstance.GetComponent<Button>().onClick.AddListener(() => openPanel(tag, type, price, chance, img_name, index, name));
             }        
-            
-            
-            // panel1Image.GetComponent<Image>().sprite = Resources.Load("Image/CashShop/"+data.IL[idx].img_name, typeof(Sprite)) as Sprite;
         }
-        // Debug.Log("idx: "+idx+"\ngameObject name: "+gameObject.name);
     }
 
     // Update is called once per frame
@@ -73,12 +82,44 @@ public class CashEvent : MonoBehaviour
         position.x = objX;
         position.y = objY;
         parent.transform.localPosition = position;
-        // Debug.Log(parent.GetChild(0).name);
         GameObject imageObj = parent.transform.GetChild(0).gameObject;
         imageObj.GetComponent<Image>().sprite = Resources.Load(resourceName, typeof(Sprite)) as Sprite;
-        // GameObject imageObj = parent.GetComponent("Item");
-        // imageObj.GetComponent<Image>().sprite = Resource.Load(resourceName, typeof(Sprite)) as Sprite;
     }
 
-
+    public void openPanel(int tag, int type, int price, string chance, string img_name, int index, string name)
+    {   
+        Debug.Log("index: " + index + " and idx: " + idx);
+        if(tag==1){
+            if(panel1.activeSelf == true && index == idx){
+                panel1.SetActive(false);
+            } else{
+                if(panel2.activeSelf == true){
+                    panel2.SetActive(false);
+                }
+                panel1.SetActive(true);
+                idx = index;
+                panel1.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = Resources.Load("Image/CashShop/"+img_name, typeof(Sprite)) as Sprite;
+                panel1.transform.GetChild(1).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = name;
+                panel1.transform.GetChild(2).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = ""+type;
+                panel1.transform.GetChild(3).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = chance;
+                panel1.transform.GetChild(4).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = ""+price;
+            }
+            
+        } else if(tag==2){
+            if(panel2.activeSelf == true && index == idx){
+                panel2.SetActive(false);
+            } else{
+                if(panel1.activeSelf == true){
+                    panel1.SetActive(false);
+                }
+                panel2.SetActive(true);
+                idx = index;
+                panel2.transform.GetChild(0).GetChild(0).gameObject.GetComponent<Image>().sprite = Resources.Load("Image/CashShop/"+img_name, typeof(Sprite)) as Sprite;
+                panel2.transform.GetChild(1).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = name;
+                panel2.transform.GetChild(2).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = ""+type;
+                panel2.transform.GetChild(3).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = chance;
+                panel2.transform.GetChild(4).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = ""+price;
+            }
+        }
+    }
 }
