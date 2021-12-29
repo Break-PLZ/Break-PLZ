@@ -20,7 +20,9 @@ public class CreateWorkers : MonoBehaviour
     void Start()
     {
         // 임의의 세가지 박스 생성
+        
         tList = GameObject.Find("GameManager").GetComponent<GameManager>().talentList;
+
         for(int i=0;i<3;i++){
             GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
             WorkerContents(newPanel);

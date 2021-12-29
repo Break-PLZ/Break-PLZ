@@ -17,9 +17,9 @@ public class SelectedWorkersBar : MonoBehaviour
 
         x = Camera.main.pixelWidth/2;
         y = btn.GetComponent<RectTransform>().rect.height/2;
-        btn.transform.position = new Vector2(x,y*1.25f);
-        Debug.Log(btn.transform.position);
-        move = target.GetComponent<RectTransform>().rect.height*1.25f;
+        btn.transform.position = new Vector2(x,y);
+        // Debug.Log(btn.transform.position);
+        move = target.GetComponent<RectTransform>().rect.height;
     }
 
     // Update is called once per frame

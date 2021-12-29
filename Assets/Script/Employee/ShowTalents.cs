@@ -11,25 +11,40 @@ public class ShowTalents : MonoBehaviour
     // Start is called before the first frame update
     bool inoutcursor;
     GameObject obj,show;
+
+    Vector3 showDirection,center;
     void Start()
     {
         obj = Resources.Load("Prefabs/talentInfo") as GameObject;
         inoutcursor = false;
+        showDirection = new Vector3(255,-180);
+        center = new Vector3(Camera.main.pixelWidth/2, Camera.main.pixelHeight/2);
     }
 
     // Update is called once per frame
     void Update()
     {
         if(inoutcursor){
-            // Debug.Log(Input.mousePosition);
-            show.transform.position = Input.mousePosition + new Vector3(255,-180);
+            if(center.x > Input.mousePosition.x){
+                showDirection.x = 205;
+            }
+            else{
+                showDirection.x = -205;
+            }
+            if(center.y > Input.mousePosition.y){
+                showDirection.y = 130;
+            }
+            else{
+                showDirection.y = -130;
+            }
+            show.transform.position = Input.mousePosition + showDirection;
         }
     }
     public void OnPointerEnter(PointerEventData eventData){
         inoutcursor = true;
         show = Instantiate(obj,GameObject.FindWithTag("Background").transform);
         Transform temp = show.transform.GetChild(0);
-        Debug.Log(temp.childCount);
+        // Debug.Log(temp.childCount);
         workerstatus ws = gameObject.GetComponent<workerstatus>();
         for(int i = 0; i < 3; i++){
             temp.GetChild(i).GetComponent<Text>().text = "";
