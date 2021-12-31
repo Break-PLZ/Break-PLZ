@@ -23,15 +23,19 @@ public class CashEvent : MonoBehaviour
     void Start()
     {
         // GameObject myInstance = Instantiate(prefab, parent);
-        int[] posX = new int[]{-256, -128, 0, 128, 256};
-        int posY = 181;
+        // int[] posX = new int[]{-256, -128, 0, 128, 256};
+        float[] posX = new float[]{-457.5f, -305.0f, -152.5f, 0.0f, 152.5f, 305.0f, 457.5f};
+        // float posY = 181;
+        float posY = 307.5f;
         data = LoadJsonFile<CashList>(Application.dataPath, "Script/Cash/ItemTemp");
         itemCnt = data.IL.Count;
         instances = new Button[itemCnt];
         Debug.Log("itemCnt: " + itemCnt);
         for(int i=0;i<itemCnt;i++){
-            int objX = posX[i%5];
-            int objY = posY - (i/5) * 128;
+            float objX = posX[i%7];
+            int row = i/7;
+            float row_float = (float)row;
+            float objY = posY - row_float * 152.5f;
             if(data.IL[i].tag == 1){
                 //Button tempInstance = Instantiate(prefab1, parent);
                 GameObject tempInstance = Instantiate(prefab1, parent);
@@ -77,11 +81,11 @@ public class CashEvent : MonoBehaviour
         return JsonUtility.FromJson<T>(jsonData);
     }
 
-    public void SetChild(GameObject parent, int objX, int objY, string resourceName){
-        Vector3 position = parent.transform.localPosition;
-        position.x = objX;
-        position.y = objY;
-        parent.transform.localPosition = position;
+    public void SetChild(GameObject parent, float objX, float objY, string resourceName){
+        // Vector3 position = parent.transform.localPosition;
+        // position.x = objX;
+        // position.y = objY;
+        // parent.transform.localPosition = position;
         GameObject imageObj = parent.transform.GetChild(0).gameObject;
         imageObj.GetComponent<Image>().sprite = Resources.Load(resourceName, typeof(Sprite)) as Sprite;
     }
