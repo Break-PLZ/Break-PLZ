@@ -8,6 +8,7 @@ public class workerstatus : MonoBehaviour
 {
     // Start is called before the first frame update
     public Worker worker;
+    
     public void SetProperty(Worker tmp){
         worker.server = tmp.server;
         worker.client = tmp.client;
@@ -29,7 +30,15 @@ public class workerstatus : MonoBehaviour
         worker.graphic = Random.Range(0,11);
         worker.cost = Random.Range(1,16);
         worker.img_name = "test_"+Random.Range(1,16).ToString("D3");
-        name="testbot"+Random.Range(0,101);
+        worker.name=nameGenerate();
+    }
+
+    string nameGenerate(){
+        string name_generated;
+        List<string> first = new List<string>() {"곽","김","강","남궁","류","무","박","서","유","윤","이","임","장","정","제갈","하","황"};
+        List<string> last = new List<string>() {"민수","병준","건마","태풍","형","모칠","근출","고춘","순자","명자","혜지"};
+        name_generated = first[Random.Range(0,first.Count)] + last[Random.Range(0,last.Count)];
+        return name_generated;
     }
     public void setTalents(List<Dictionary<string, object>> talentList){
         worker.talent = new List<string>();
