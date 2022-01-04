@@ -59,6 +59,9 @@ public class GameManager : MonoBehaviour
     public void gotoWorkerManagement(){
         SceneManager.LoadScene("WorkerManagementScene");
     }
+    public void gotoMain(){
+        SceneManager.LoadScene("MainScene");
+    }
     // additional method
     public void saveEmployee(){
         GameObject obj;
