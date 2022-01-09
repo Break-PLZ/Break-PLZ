@@ -15,7 +15,7 @@ public class WorkerManager : Managers
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
-        prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetMonth);
+        prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoMain);
         prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveEmployee);
         temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
         if(temp==null){
