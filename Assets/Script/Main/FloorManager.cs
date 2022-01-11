@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Floor_data
-{
-
-}
-
 public class FloorManager : MonoBehaviour
 {
     public int floor_num = 1;  // Default 1
@@ -17,13 +12,19 @@ public class FloorManager : MonoBehaviour
 
     public GameObject tmp1, tmp2;
 
+    GameObject gamemanager;
+    FloorInfo floorinfo;
     // Start is called before the first frame update
     void Start()
     {
+        gamemanager = GameObject.Find("GameManager");
+
+        floorinfo = gamemanager.GetComponent<GameManager>().LoadJsonFile<FloorInfo>(Application.dataPath, "Script/TeamListTemp");
+        
         obj_canvas = new GameObject[100];
         obj_canvas[0] = tmp2;
 
-        floor_num = 3;  // For test
+        floor_num = floorinfo.FloorList.Count;  // For test
         for(int i = 1; i < floor_num; i++)
         {
             obj[i] = GameObject.Instantiate(tmp1, new Vector3(-0.33f, i * 3 - 2f, 0), Quaternion.identity);
@@ -34,6 +35,13 @@ public class FloorManager : MonoBehaviour
             for(int j=0;j<4;j++)
                 obj_canvas[i].transform.GetChild(1).GetChild(j).GetComponent<AreaClickEvent>().FloorNumber=i+1;
 
+        }
+
+        for(int i=0;i<floorinfo.FloorList.Count;i++){
+            for(int j=0;j<floorinfo.FloorList[i].TeamsInFloor.Count;j++){
+                obj_canvas[i].transform.GetChild(1).GetChild(j).GetChild(0).gameObject.SetActive(true);
+                obj_canvas[i].transform.GetChild(1).GetChild(j).GetChild(2).GetComponent<Text>().text=floorinfo.FloorList[i].TeamsInFloor[j].name;
+            }
         }
     }
 
