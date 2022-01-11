@@ -27,6 +27,7 @@ public class CreateWorkers : MonoBehaviour
             GameObject newPanel = Instantiate(prefabWorker,WorkerSelect.transform);
             WorkerContents(newPanel);
         }
+
     }
     // Update is called once per frame
     void Update()
