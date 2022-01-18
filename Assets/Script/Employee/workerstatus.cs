@@ -37,7 +37,7 @@ public class workerstatus : MonoBehaviour
     string nameGenerate(){
         Names names = GameObject.Find("GameManager").GetComponent<GameManager>().LoadJsonFile<Names>(Application.dataPath,"Resources/Data/name");
         string name_generated;
-        name_generated = names.Last[Random.Range(0,names.Last.Count)] + names.First_F[Random.Range(0,names.First_F.Count)];
+        name_generated = names.Last[Random.Range(0,names.Last.Count)] + names.First[Random.Range(0,names.First.Count)];
         return name_generated;
     }
     public void setTalents(List<Dictionary<string, object>> talentList){

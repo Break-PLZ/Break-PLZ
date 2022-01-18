@@ -6,7 +6,6 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Names
 {
-    public List<string> First_F;
-    public List<string> First_M;
+    public List<string> First;
     public List<string> Last;
 }
