@@ -18,6 +18,22 @@
                 "sound": 0,
                 "floor_number": 0,
                 "chamber_number": 0
+            },
+            {
+                "type": "server",
+                "name": "서버 2팀",
+                "work": false,
+                "waiting": true,
+                "error": false,
+                "vacation": false,
+                "progress": 0,
+                "task": "대기 중",
+                "server": 10,
+                "client": 0,
+                "graphic": 3,
+                "sound": 0,
+                "floor_number": 0,
+                "chamber_number": 0
             }
         ]
     },

@@ -11,6 +11,7 @@ public class FloorManager : MonoBehaviour
     public GameObject[] obj_canvas;
 
     public GameObject tmp1, tmp2;
+    public GameObject ViewportContent;
 
     GameObject gamemanager;
     FloorInfo floorinfo;
@@ -53,12 +54,13 @@ public class FloorManager : MonoBehaviour
     }
 
     void SetNotArrangedTeamList(Floor f){
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        for(int j=0;j<f.TeamsInFloor.Count;j++){
+            GameObject tmpGameObject=Instantiate(ViewportContent);
+            Debug.Log(tmpGameObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text);
+            tmpGameObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text=f.TeamsInFloor[j].name;
+            tmpGameObject.transform.SetParent(ViewportContent.transform.parent, false);
+            tmpGameObject.transform.localPosition=new Vector3(0,-80*j,0);
+            tmpGameObject.SetActive(true);
+        }
     }
 }
