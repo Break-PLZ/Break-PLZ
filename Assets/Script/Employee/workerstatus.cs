@@ -30,14 +30,14 @@ public class workerstatus : MonoBehaviour
         worker.sound = Random.Range(0,11);
         worker.graphic = Random.Range(0,11);
         worker.cost = Random.Range(1,16);
-        worker.img_name = "test_"+Random.Range(1,16).ToString("D3");
+        worker.img_name = "worker_"+Random.Range(0,117).ToString("D3");
         worker.name=nameGenerate();
     }
 
     string nameGenerate(){
         Names names = GameObject.Find("GameManager").GetComponent<GameManager>().LoadJsonFile<Names>(Application.dataPath,"Resources/Data/name");
         string name_generated;
-        name_generated = names.Last[Random.Range(0,names.Last.Count)] + names.First[Random.Range(0,names.First.Count)];
+        name_generated = names.Last[Random.Range(0,names.Last.Count)] + names.First_F[Random.Range(0,names.First_F.Count)];
         return name_generated;
     }
     public void setTalents(List<Dictionary<string, object>> talentList){
