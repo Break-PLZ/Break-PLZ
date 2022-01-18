@@ -38,11 +38,22 @@ public class FloorManager : MonoBehaviour
         }
 
         for(int i=0;i<floorinfo.FloorList.Count;i++){
-            for(int j=0;j<floorinfo.FloorList[i].TeamsInFloor.Count;j++){
-                obj_canvas[i].transform.GetChild(1).GetChild(j).GetChild(0).gameObject.SetActive(true);
-                obj_canvas[i].transform.GetChild(1).GetChild(j).GetChild(2).GetComponent<Text>().text=floorinfo.FloorList[i].TeamsInFloor[j].name;
+            Floor tmpFloor=floorinfo.FloorList[i];
+
+            if(tmpFloor.FloorNum==0){
+                SetNotArrangedTeamList(tmpFloor);
+                continue;
+            }
+
+            for(int j=0;j<tmpFloor.TeamsInFloor.Count;j++){
+                obj_canvas[tmpFloor.FloorNum-1].transform.GetChild(1).GetChild(tmpFloor.TeamsInFloor[j].chamber_number-1).GetChild(0).gameObject.SetActive(true);
+                obj_canvas[tmpFloor.FloorNum-1].transform.GetChild(1).GetChild(tmpFloor.TeamsInFloor[j].chamber_number-1).GetChild(2).GetComponent<Text>().text=tmpFloor.TeamsInFloor[j].name;
             }
         }
+    }
+
+    void SetNotArrangedTeamList(Floor f){
+        
     }
 
     // Update is called once per frame
