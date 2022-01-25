@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MainScene.unity
     guid: 70e23328887241445909b43a4ffdfb00
+  - enabled: 1
+    path: Assets/Scenes/TeamDeployScene.unity
+    guid: 2103f660abb04464e83d02c022e18e73
   m_configObjects: {}
