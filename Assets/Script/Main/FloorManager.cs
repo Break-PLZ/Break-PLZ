@@ -11,6 +11,7 @@ public class FloorManager : MonoBehaviour
     public GameObject[] obj_canvas;
 
     public GameObject tmp1, tmp2;
+    public GameObject ViewportContent;
 
     GameObject gamemanager;
     FloorInfo floorinfo;
@@ -38,16 +39,28 @@ public class FloorManager : MonoBehaviour
         }
 
         for(int i=0;i<floorinfo.FloorList.Count;i++){
-            for(int j=0;j<floorinfo.FloorList[i].TeamsInFloor.Count;j++){
-                obj_canvas[i].transform.GetChild(1).GetChild(j).GetChild(0).gameObject.SetActive(true);
-                obj_canvas[i].transform.GetChild(1).GetChild(j).GetChild(2).GetComponent<Text>().text=floorinfo.FloorList[i].TeamsInFloor[j].name;
+            Floor tmpFloor=floorinfo.FloorList[i];
+
+            if(tmpFloor.FloorNum==0){
+                SetNotArrangedTeamList(tmpFloor);
+                continue;
+            }
+
+            for(int j=0;j<tmpFloor.TeamsInFloor.Count;j++){
+                obj_canvas[tmpFloor.FloorNum-1].transform.GetChild(1).GetChild(tmpFloor.TeamsInFloor[j].chamber_number-1).GetChild(0).gameObject.SetActive(true);
+                obj_canvas[tmpFloor.FloorNum-1].transform.GetChild(1).GetChild(tmpFloor.TeamsInFloor[j].chamber_number-1).GetChild(2).GetComponent<Text>().text=tmpFloor.TeamsInFloor[j].name;
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    void SetNotArrangedTeamList(Floor f){
+        for(int j=0;j<f.TeamsInFloor.Count;j++){
+            GameObject tmpGameObject=Instantiate(ViewportContent);
+            Debug.Log(tmpGameObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text);
+            tmpGameObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text=f.TeamsInFloor[j].name;
+            tmpGameObject.transform.SetParent(ViewportContent.transform.parent, false);
+            tmpGameObject.transform.localPosition=new Vector3(0,-80*j,0);
+            tmpGameObject.SetActive(true);
+        }
     }
 }
