@@ -195,8 +195,10 @@ MonoBehaviour:
     graphic: 0
     sound: 0
     cost: 0
-  prefabWorker: {fileID: 7115971920292729417, guid: bca8c2ed7e8157a4f884734ee9961033, type: 3}
+  prefabWorker: {fileID: 6146236788627230890, guid: 35fcac088b61852449e23e5e45ecdef3, type: 3}
   WorkerList: {fileID: 120451125}
+  prefabTeamComposition: {fileID: 6052650083268154538, guid: 9953c6dcd3d09414d89de05cd65cdb83, type: 3}
+  TeamListContent: {fileID: 517266239}
 --- !u!4 &103457119
 Transform:
   m_ObjectHideFlags: 0
@@ -913,11 +915,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 1450
+    m_Left: 50
     m_Right: 0
-    m_Top: 0
+    m_Top: 10
     m_Bottom: 0
-  m_ChildAlignment: 4
+  m_ChildAlignment: 3
   m_Spacing: 30
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
@@ -1548,7 +1550,7 @@ GameObject:
   - component: {fileID: 1418247925}
   - component: {fileID: 1418247924}
   m_Layer: 5
-  m_Name: Scroll View
+  m_Name: TeamList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,0 +1,58 @@
+{
+    "teamList": [
+    {
+        "type": "Server",
+        "name": "서버 1팀",
+        "floor_number": 1,
+        "chamber_number": 0,
+        "members": [
+
+        ] 
+    },
+    {
+        "type": "Server",
+        "name": "서버 2팀",
+        "floor_number": 1,
+        "chamber_number": 1,
+        "members": [
+            
+        ]  
+    },
+    {
+        "type": "Graphic",
+        "name": "그래픽 1팀",
+        "floor_number": 2,
+        "chamber_number": 0,
+        "members": [
+            
+        ]  
+    },
+    {
+        "type": "Graphic",
+        "name": "그래픽 2팀",
+        "floor_number": 2,
+        "chamber_number": 1 ,
+        "members": [
+            
+        ] 
+    },
+    {
+        "type": "Sound",
+        "name": "사운드 1팀",
+        "floor_number": 2,
+        "chamber_number": 2,
+        "members": [
+            
+        ]  
+    },
+    {
+        "type": "Client",
+        "name": "클라 1팀",
+        "floor_number": 2,
+        "chamber_number": 3,
+        "members": [
+            
+        ] 
+    }
+]
+}

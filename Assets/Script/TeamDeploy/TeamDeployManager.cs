@@ -9,6 +9,9 @@ public class TeamDeployManager : Managers
     GameObject gamemanager;
     public GameObject prefabWorker;
     public GameObject WorkerList;
+    public GameObject prefabTeamComposition;
+    public GameObject TeamListContent;
+    TeamList teamList;
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
@@ -25,12 +28,22 @@ public class TeamDeployManager : Managers
         for(int i=0;i<temp.WL.Count;i++){
             GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
             WorkerContents(newPanel,i);
-        }  
+            newPanel.AddComponent<DragWorker>();
+        }
+        teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
+        SetUI();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+    void SetUI(){
+        Debug.Log(teamList.teamList.Count);
+        for(int i=0; i < teamList.teamList.Count; i++ ){
+            GameObject tempObject = Instantiate(prefabTeamComposition,TeamListContent.transform);
+            tempObject.transform.Find("TeamNameBlock").Find("NameText").GetComponent<Text>().text = teamList.teamList[i].name;
+        }
     }
 }
