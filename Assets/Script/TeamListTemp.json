@@ -25,8 +25,8 @@
         "FloorNum": 2,
         "TeamsInFloor": [
             {
-                "type": "graphic",
-                "name": "그래픽 2팀",
+                "type": "sound",
+                "name": "음향 1팀",
                 "work": false,
                 "waiting": true,
                 "error": false,
@@ -41,8 +41,8 @@
                 "chamber_number": 1
             },
             {
-                "type": "graphic",
-                "name": "그래픽 3팀",
+                "type": "server",
+                "name": "서버 개발 1팀",
                 "work": false,
                 "waiting": true,
                 "error": false,
@@ -57,8 +57,8 @@
                 "chamber_number": 2
             },
             {
-                "type": "graphic",
-                "name": "그래픽 4팀",
+                "type": "client",
+                "name": "클라이언트 개발 1팀",
                 "work": false,
                 "waiting": true,
                 "error": false,

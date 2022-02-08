@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TaskStatusManager : MonoBehaviour
 {
@@ -33,9 +34,29 @@ public class TaskStatusManager : MonoBehaviour
             f.transform.parent = content.transform;
 
             for(int j=0;j<floorinfo.FloorList[i].TeamsInFloor.Count;j++){
+                string type_ = floorinfo.FloorList[i].TeamsInFloor[j].type;
+                string name_ = floorinfo.FloorList[i].TeamsInFloor[j].name;
+                string task_ = floorinfo.FloorList[i].TeamsInFloor[j].task;
+
                 GameObject t = (GameObject)Instantiate(team);
                 t.transform.parent = f.transform;
-                
+                t.transform.GetChild(3).GetComponent<Text>().text = name_;
+                t.transform.GetChild(4).GetComponent<Text>().text = task_;
+
+                switch(type_){
+                    case "server":
+                        t.transform.GetChild(1).GetComponent<Image>().color = new Color(255/255f,202/255f, 58/255f, 1.0f);
+                        break;
+                    case "client":
+                        t.transform.GetChild(1).GetComponent<Image>().color = new Color(255/255f,89/255f, 94/255f, 1.0f);
+                        break;
+                    case "sound":
+                        t.transform.GetChild(1).GetComponent<Image>().color = new Color(138/255f,201/255f, 38/255f, 1.0f);
+                        break;
+                    case "graphic":
+                        t.transform.GetChild(1).GetComponent<Image>().color = new Color(25/255f,130/255f, 196/255f, 1.0f);
+                        break;
+                }
             }
         }
     }
