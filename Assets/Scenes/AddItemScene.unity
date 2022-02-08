@@ -1703,6 +1703,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a44f17cfa6fccc44800c026a2a6466e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemName: {fileID: 1621972419}
+  itemPrice: {fileID: 940308201}
+  m_Dropdown: {fileID: 657970955}
 --- !u!1 &577535502
 GameObject:
   m_ObjectHideFlags: 0

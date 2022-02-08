@@ -70,6 +70,4 @@ public class AddItemEvent : MonoBehaviour
             state = 2;
         }
     }
-
-    
 }
