@@ -11,6 +11,7 @@ public class workerstatus : MonoBehaviour
     public Worker worker;
     
     public void SetProperty(Worker tmp){
+        worker.teamNumber = tmp.teamNumber;
         worker.server = tmp.server;
         worker.client = tmp.client;
         worker.sound = tmp.sound;
@@ -25,12 +26,13 @@ public class workerstatus : MonoBehaviour
     }
     public void InitProperty(){
         worker = new Worker();
+        worker.teamNumber = 0;
         worker.server = Random.Range(0,11);
         worker.client = Random.Range(0,11);
         worker.sound = Random.Range(0,11);
         worker.graphic = Random.Range(0,11);
         worker.cost = Random.Range(1,16);
-        worker.img_name = "test_"+Random.Range(1,16).ToString("D3");
+        worker.img_name = "worker_"+Random.Range(0,117).ToString("D3");
         worker.name=nameGenerate();
     }
 

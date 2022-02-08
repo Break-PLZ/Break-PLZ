@@ -9,6 +9,7 @@ public class ShowTalents : MonoBehaviour
 , IPointerEnterHandler , IPointerExitHandler
 {
     // Start is called before the first frame update
+    
     bool inoutcursor;
     GameObject obj,show;
 

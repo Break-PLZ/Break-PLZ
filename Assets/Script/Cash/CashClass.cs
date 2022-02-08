@@ -13,6 +13,7 @@ public class CashClass
     public string img_name;
     public int tag;
 
+
     // Start is called before the first frame update
     public void SetProperty(CashClass cash){
         name = cash.name;
