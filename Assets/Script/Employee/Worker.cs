@@ -6,6 +6,7 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Worker
 {
+    public int teamNumber;
     public int cost; // cost of worker
     public int server;
     public int client;
@@ -14,6 +15,5 @@ public class Worker
     public string name;
     public string img_name;
     public List<string> talent;
-
     // Start is called before the first frame update
 }

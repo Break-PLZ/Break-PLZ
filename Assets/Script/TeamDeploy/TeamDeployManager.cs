@@ -26,9 +26,11 @@ public class TeamDeployManager : Managers
             temp.cost = 500;
         }
         for(int i=0;i<temp.WL.Count;i++){
-            GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
-            WorkerContents(newPanel,i);
-            newPanel.AddComponent<DragWorker>();
+            if(temp.WL[i].teamNumber == 0 ){
+                GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
+                WorkerContents(newPanel,i);
+                newPanel.AddComponent<DragWorker>();
+            }  
         }
         teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
         SetUI();
@@ -40,10 +42,13 @@ public class TeamDeployManager : Managers
         
     }
     void SetUI(){
-        Debug.Log(teamList.teamList.Count);
         for(int i=0; i < teamList.teamList.Count; i++ ){
             GameObject tempObject = Instantiate(prefabTeamComposition,TeamListContent.transform);
             tempObject.transform.Find("TeamNameBlock").Find("NameText").GetComponent<Text>().text = teamList.teamList[i].name;
+            GameObject workspaceObject = tempObject.transform.Find("Content").gameObject;
+            for(int j=0; j< workspaceObject.transform.childCount; j++){
+                workspaceObject.transform.GetChild(j).GetComponent<workerstatus>().worker.teamNumber = teamList.teamList[i].teamNumber;
+            }
         }
     }
 }
