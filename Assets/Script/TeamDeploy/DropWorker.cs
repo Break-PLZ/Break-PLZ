@@ -23,9 +23,6 @@ public class DropWorker : MonoBehaviour, IDropHandler
 
             this.GetComponent<workerstatus>().worker.teamNumber = bf;
             container.worker.teamNumber = af;
-            if(af==0){
-                container.worker.teamNumber = bf;
-            }
         }
     }
     void Start()

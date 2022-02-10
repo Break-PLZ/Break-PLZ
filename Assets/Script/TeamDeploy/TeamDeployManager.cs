@@ -27,15 +27,13 @@ public class TeamDeployManager : Managers
         }
         for(int i=0;i<temp.WL.Count;i++){
             if(temp.WL[i].teamNumber == 0 ){
-                GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
-                WorkerContents(newPanel,i);
-                newPanel.AddComponent<DragWorker>();
+                SetList(i);
             }  
         }
         teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
         SetUI();
     }
-
+    
     // Update is called once per frame
     void Update()
     {
@@ -50,5 +48,10 @@ public class TeamDeployManager : Managers
                 workspaceObject.transform.GetChild(j).GetComponent<workerstatus>().worker.teamNumber = teamList.teamList[i].teamNumber;
             }
         }
+    }
+    public void SetList(int i){
+        GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
+        WorkerContents(newPanel,i);
+        newPanel.AddComponent<DragWorker>();
     }
 }

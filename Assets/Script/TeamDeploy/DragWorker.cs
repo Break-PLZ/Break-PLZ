@@ -43,8 +43,12 @@ public class DragWorker : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDr
     {
         if(isDragged){
             if(this.gameObject.name.IndexOf("Worker")!=-1){
-                if(container.worker.teamNumber != 0){
+                if(container.GetComponent<Image>().overrideSprite == null){
                     Destroy(this.gameObject);
+                }
+                else{
+                    this.GetComponent<workerstatus>().worker = container.worker;
+                    this.GetComponent<workerstatus>().showStatus(this.gameObject);
                 }
             }
             else{
