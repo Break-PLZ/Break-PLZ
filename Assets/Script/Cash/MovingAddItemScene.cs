@@ -13,6 +13,8 @@ public class MovingAddItemScene : MonoBehaviour
     public GameObject itemName;
     public GameObject itemPrice;
     public Dropdown m_Dropdown;
+    public GameObject AlertView;
+    public GameObject AlertString;
     void Start()
     {
         
@@ -36,28 +38,55 @@ public class MovingAddItemScene : MonoBehaviour
 
     public void itemFin()
     {
-        // Debug.Log("cccc");
         // 빈 칸이 있는지 확인
         bool isEmpty = false;
         int where = -1;
-
+        string iName = itemName.GetComponent<Text>().text;
+        string iPrice = itemPrice.GetComponent<Text>().text;
+        if(iName.Length==0){
+            isEmpty = true;
+            where = 1;
+        } else if(iPrice.Length==0){
+            isEmpty = true;
+            where = 2;
+        } 
+        
         // 빈칸이 있으면 아래 출력
+        if(isEmpty){
+            if(where == 1){
+                AlertString.GetComponent<Text>().text = "이름을 입력해주세요.";
+            } else{
+                Debug.Log("값을 입력해주세요.");
+            }
+            return;
+        } else{
+            int priceInt;
+            bool priceNum = int.TryParse(iPrice, out priceInt);
+            if(!priceNum){
+                Debug.Log("가격은 숫자여야 합니다.");
+                return;
+            }
+        }
 
-        // 빈칸이 있으면 아래 실행
+        // 빈칸이 없으면 아래 실행
         addJsonData();
         SceneManager.LoadScene("CashScene");
     }
 
     void addJsonData(){
-        CashList cL = LoadJsonFile<CashList>(Application.dataPath, "Script/Cash/ItemTemp");
+        string iName = itemName.GetComponent<Text>().text;
+        string iPrice = itemPrice.GetComponent<Text>().text;
+        int priceInt;
+        bool priceNum = int.TryParse(iPrice, out priceInt);
 
+        CashList cL = LoadJsonFile<CashList>(Application.dataPath, "Script/Cash/ItemTemp");
         CashClass new_class = new CashClass();
-        new_class.name = "itemSample";
+        new_class.name = iName;
         new_class.type = 1;
         new_class.chance = "확률형 아이템";
         if(m_Dropdown.value==1) new_class.chance = "패키지 아이템";
         else if(m_Dropdown.value == 2) new_class.chance = "단일 아이템";
-        new_class.price = 40;
+        new_class.price = priceInt;
         new_class.img_name = "itemEx2";
         new_class.tag = 1;
 
