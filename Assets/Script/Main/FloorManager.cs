@@ -3,64 +3,62 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class FloorManager : MonoBehaviour
+public class FloorManager : Managers
 {
-    public int floor_num = 1;  // Default 1
-    GameObject[] obj=new GameObject[100];
-    GameObject[,] floor_data = new GameObject[100,4];
-    public GameObject[] obj_canvas;
+    public int floorNum = 3;
 
-    public GameObject tmp1, tmp2;
+    // To Do: How to get max floor num?
+
+    List<GameObject> floorList=new List<GameObject>();
+
+    public GameObject floorPrefab;
     public GameObject ViewportContent;
-
+    public Button floorSettingButton;
+    public Button WorkerManagementButton;
     GameObject gamemanager;
-    FloorInfo floorinfo;
+    TeamList teamList;
     // Start is called before the first frame update
     void Start()
-    {
-        gamemanager = GameObject.Find("GameManager");
-
-        floorinfo = gamemanager.GetComponent<GameManager>().LoadJsonFile<FloorInfo>(Application.dataPath, "Script/TeamListTemp");
-        
-        obj_canvas = new GameObject[100];
-        obj_canvas[0] = tmp2;
-
-        floor_num = floorinfo.FloorList.Count;  // For test
-        for(int i = 1; i < floor_num; i++)
-        {
-            obj[i] = GameObject.Instantiate(tmp1, new Vector3(-0.33f, i * 3 - 2f, 0), Quaternion.identity);
-            obj_canvas[i] = GameObject.Instantiate(tmp2, new Vector3(0, 3*i, 0), Quaternion.identity);
-
-            obj_canvas[i].transform.GetChild(0).GetComponent<Text>().text = string.Concat((i+1).ToString(), "F");
-
-            for(int j=0;j<4;j++)
-                obj_canvas[i].transform.GetChild(1).GetChild(j).GetComponent<AreaClickEvent>().FloorNumber=i+1;
-
+    {      
+        // Initial Floor Setting from 2nd floor
+        floorList.Add(floorPrefab);
+        for(int i=2;i<=floorNum;i++){
+            GameObject tmpFloor=GameObject.Instantiate(floorPrefab, new Vector3(-0.33f, i * 3 - 5f, 0), Quaternion.identity);
+            setFloorNumber(tmpFloor, i);
+            floorList.Add(tmpFloor);
         }
 
-        for(int i=0;i<floorinfo.FloorList.Count;i++){
-            Floor tmpFloor=floorinfo.FloorList[i];
+        // Read JSON and arrange team
+        gamemanager = GameObject.Find("GameManager");
+        teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
+        arrangeTeamfromJSON();
 
-            if(tmpFloor.FloorNum==0){
-                SetNotArrangedTeamList(tmpFloor);
-                continue;
-            }
+        // Set Listensers to Buttons
+        //floorSettingButton.onClick.AddListener()
+    }
 
-            for(int j=0;j<tmpFloor.TeamsInFloor.Count;j++){
-                obj_canvas[tmpFloor.FloorNum-1].transform.GetChild(1).GetChild(tmpFloor.TeamsInFloor[j].chamber_number-1).GetChild(0).gameObject.SetActive(true);
-                obj_canvas[tmpFloor.FloorNum-1].transform.GetChild(1).GetChild(tmpFloor.TeamsInFloor[j].chamber_number-1).GetChild(2).GetComponent<Text>().text=tmpFloor.TeamsInFloor[j].name;
-            }
+    void setFloorNumber(GameObject floorObj, int number){
+        // Setting FloorMarkText
+        floorObj.transform.Find("FloorCanvas").Find("FloorMarkText").GetComponent<Text>().text=string.Concat((number).ToString(), "F");
+
+        // Setting number data to AreaClickEvent
+        for(int i=0;i<4;i++){
+            floorObj.transform.Find("FloorCanvas").GetChild(i).GetComponent<AreaClickEvent>().FloorNumber=number;
         }
     }
 
-    void SetNotArrangedTeamList(Floor f){
-        for(int j=0;j<f.TeamsInFloor.Count;j++){
-            GameObject tmpGameObject=Instantiate(ViewportContent);
-            Debug.Log(tmpGameObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text);
-            tmpGameObject.transform.GetChild(0).GetChild(0).GetComponent<Text>().text=f.TeamsInFloor[j].name;
-            tmpGameObject.transform.SetParent(ViewportContent.transform.parent, false);
-            tmpGameObject.transform.localPosition=new Vector3(0,-80*j,0);
-            tmpGameObject.SetActive(true);
+    void arrangeTeamfromJSON(){
+        for(int i=0; i < teamList.teamList.Count; i++ ){
+            int tmpFloorNumber=teamList.teamList[i].floor_number;
+            int tmpChamberNumber=teamList.teamList[i].chamber_number;
+            string tmpTeamName=teamList.teamList[i].name;
+            arrangeTeam(tmpFloorNumber, tmpChamberNumber, tmpTeamName);
         }
+    }
+
+    void arrangeTeam(int floorNumber, int chamberNumber, string teamName){
+            floorList[floorNumber-1].transform.Find("FloorCanvas").GetChild(chamberNumber).Find("NotBlankImage").gameObject.SetActive(true);
+            floorList[floorNumber-1].transform.Find("FloorCanvas").GetChild(chamberNumber).Find("BlankImage").gameObject.SetActive(false);
+            floorList[floorNumber-1].transform.Find("FloorCanvas").GetChild(chamberNumber).Find("Text").GetComponent<Text>().text=teamName;
     }
 }

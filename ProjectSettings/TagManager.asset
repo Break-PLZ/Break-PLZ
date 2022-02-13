@@ -8,6 +8,7 @@ TagManager:
   - Selling
   - NotSelling
   - ArrangeManager
+  - Button
   layers:
   - Default
   - TransparentFX
