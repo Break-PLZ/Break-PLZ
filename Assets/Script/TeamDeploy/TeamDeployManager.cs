@@ -11,10 +11,12 @@ public class TeamDeployManager : Managers
     public GameObject WorkerList;
     public GameObject prefabTeamComposition;
     public GameObject TeamListContent;
+    public Button prev;
     TeamList teamList;
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
+        prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoMain);
         temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
         if(temp==null){
             temp = new WorkerList();

@@ -199,6 +199,7 @@ MonoBehaviour:
   WorkerList: {fileID: 120451125}
   prefabTeamComposition: {fileID: 6052650083268154538, guid: 9953c6dcd3d09414d89de05cd65cdb83, type: 3}
   TeamListContent: {fileID: 517266239}
+  prev: {fileID: 361986824}
 --- !u!4 &103457119
 Transform:
   m_ObjectHideFlags: 0
@@ -407,8 +408,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -200, y: 0}
-  m_SizeDelta: {x: 400, y: 0}
+  m_AnchoredPosition: {x: -150, y: 0}
+  m_SizeDelta: {x: 300, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &287197817
 MonoBehaviour:
@@ -491,7 +492,7 @@ GameObject:
   - component: {fileID: 361986825}
   - component: {fileID: 361986824}
   m_Layer: 5
-  m_Name: Button
+  m_Name: main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -915,12 +916,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Padding:
-    m_Left: 50
+    m_Left: 20
     m_Right: 0
-    m_Top: 10
+    m_Top: 20
     m_Bottom: 0
   m_ChildAlignment: 3
-  m_Spacing: 30
+  m_Spacing: 20
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -1428,7 +1429,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -62.5}
+  m_AnchoredPosition: {x: -77.5, y: -62.5}
   m_SizeDelta: {x: 150, y: 75}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1386828574
@@ -1572,10 +1573,10 @@ RectTransform:
   m_Father: {fileID: 2053738039}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12.185, y: 20}
-  m_SizeDelta: {x: 1450, y: 638.7612}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 700, y: 20}
+  m_SizeDelta: {x: 1350, y: 638.7612}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1418247924
 MonoBehaviour:
@@ -1770,7 +1771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51f5add2067343b4b8f87f1debbd6bcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  image: {fileID: 0}
   worker:
     teamNumber: 0
     cost: 0
