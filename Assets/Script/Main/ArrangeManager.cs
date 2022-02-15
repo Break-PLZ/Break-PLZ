@@ -3,40 +3,35 @@ using UnityEngine;
 public class ArrangeManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    bool isAreaClicked=false;
-    bool isTeamBoxClicked=false;
-    
+    GameObject selectedTeamBox;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void AreaClick(GameObject area){
-        isAreaClicked=true;
-        if(isAreaClicked&&isTeamBoxClicked){
-            Debug.Log("HI");
-            area.transform.GetChild(1).gameObject.SetActive(false);
-            area.transform.GetChild(0).gameObject.SetActive(true);
+    public void AreaClick(GameObject area, GameObject lastClickedObject){
+        if(selectedTeamBox!=null){
+            Debug.Log("selected: "+selectedTeamBox);
+            Debug.Log("lastClicked: "+lastClickedObject);
+            if(selectedTeamBox==lastClickedObject){
+            area.transform.GetChild(0).gameObject.SetActive(true);  // NotBlankImage
+            area.transform.GetChild(1).gameObject.SetActive(false); // BlankImage
+            area.transform.GetChild(2).gameObject.SetActive(true);  // Text 
 
             area.GetComponent<AreaClickEvent>().isAreaFilled=true;
-
-            isAreaClicked=false;
-            isTeamBoxClicked=false;
+            }
         }
     }
 
     public void AreaRelease(GameObject area){
-        area.transform.GetChild(1).gameObject.SetActive(true);
-        area.transform.GetChild(0).gameObject.SetActive(false);
+        area.transform.GetChild(0).gameObject.SetActive(false); // NotBlankImage
+        area.transform.GetChild(1).gameObject.SetActive(true);  // BlankImage
+        area.transform.GetChild(2).gameObject.SetActive(false); // Text
+
+        area.GetComponent<AreaClickEvent>().isAreaFilled=false;
     }
 
     public void TeamBoxClick(GameObject teamBox){
-        isTeamBoxClicked=true;
+        selectedTeamBox=teamBox;
     }
 }

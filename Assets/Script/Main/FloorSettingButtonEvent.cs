@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class FloorSettingButtonEvent : MonoBehaviour
 {
-    bool isFloorSetting = false;
+    public bool isFloorSetting = false;
     // GameObject[] obj_canvas;
     int floorNum, nowFloorNum;
 
@@ -28,6 +28,7 @@ public class FloorSettingButtonEvent : MonoBehaviour
     public void OnClick()
     {
         isFloorSetting = true;
+
         foreach(GameObject button in buttons){
             button.SetActive(false);
         }

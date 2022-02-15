@@ -62,6 +62,9 @@ public class GameManager : MonoBehaviour
     public void gotoMain(){
         SceneManager.LoadScene("MainScene");
     }
+    public void gotoTeamDeploy(){
+        SceneManager.LoadScene("TeamDeployScene");
+    }
     // additional method
     public void saveEmployee(){
         GameObject obj;

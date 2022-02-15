@@ -59,6 +59,26 @@
         "members": [
             
         ] 
+    },
+    {
+        "type": "Server",
+        "teamNumber": 7,
+        "name": "서버 3팀",
+        "floor_number": 0,
+        "chamber_number": 0,
+        "members": [
+
+        ] 
+    },
+    {
+        "type": "Client",
+        "teamNumber": 8,
+        "name": "클라 2팀",
+        "floor_number": 0,
+        "chamber_number": 3,
+        "members": [
+            
+        ] 
     }
 ]
 }

@@ -8,14 +8,13 @@ public class TeamBoxClickEvent : MonoBehaviour
 {
     // Start is called before the first frame update
     public int num=0; // This is for test
+    public TeamD team;
     void Start()
     {
-        transform.GetChild(0).GetComponent<Text>().text=num.ToString();
+        gameObject.GetComponent<Button>().onClick.AddListener(TeamBoxClickedEvent);   
     }
-
-    // Update is called once per frame
     
-    public void OnButtonClick(){
-        GameObject.FindWithTag("ArrangeManager").GetComponent<ArrangeManager>().TeamBoxClick(gameObject);
+    void TeamBoxClickedEvent(){
+        Debug.Log(team.name+" "+team.teamNumber);
     }
 }
