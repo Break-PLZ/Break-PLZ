@@ -1706,8 +1706,8 @@ MonoBehaviour:
   itemName: {fileID: 1621972419}
   itemPrice: {fileID: 940308201}
   m_Dropdown: {fileID: 657970955}
-  AlertView: {fileID: 0}
-  AlertString: {fileID: 0}
+  AlertView: {fileID: 958667881}
+  AlertString: {fileID: 870004018}
 --- !u!1 &577535502
 GameObject:
   m_ObjectHideFlags: 0
