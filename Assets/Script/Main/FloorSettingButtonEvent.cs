@@ -6,52 +6,43 @@ using UnityEngine.UI;
 public class FloorSettingButtonEvent : MonoBehaviour
 {
     bool isFloorSetting = false;
-    GameObject[] obj_canvas;
-    int floor_num, now_floor_num;
-    public GameObject ArrangementMode_Canvas;
+    // GameObject[] obj_canvas;
+    int floorNum, nowFloorNum;
 
-    // Start is called before the first frame update
+    GameObject[] buttons;
+
+    public GameObject backButton;
+    public GameObject arrangementModeCanvas;
+    // // Start is called before the first frame update
     void Start()
     {
-        ArrangementMode_Canvas.SetActive(false);
+        arrangementModeCanvas.SetActive(false);
         isFloorSetting = false;
 
-        floor_num = GameObject.Find("FloorManager").GetComponent<FloorManager>().floor_num;
-        now_floor_num = floor_num;
-        obj_canvas = GameObject.Find("FloorManager").GetComponent<FloorManager>().obj_canvas;
-
-        // for (int i = 0; i < floor_num; i++)
-        //     obj_canvas[i].transform.GetChild(1).gameObject.SetActive(false);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
+        floorNum = GameObject.Find("FloorManager").GetComponent<FloorManager>().floorNum;
+        nowFloorNum = floorNum;
         
+        buttons=GameObject.FindGameObjectsWithTag("Button");
     }
 
     public void OnClick()
     {
-
-        floor_num = GameObject.Find("FloorManager").GetComponent<FloorManager>().floor_num;
-
-        if (now_floor_num != floor_num)
-        {
-            obj_canvas = GameObject.Find("FloorManager").GetComponent<FloorManager>().obj_canvas;
-            now_floor_num = floor_num;
+        isFloorSetting = true;
+        foreach(GameObject button in buttons){
+            button.SetActive(false);
         }
 
-        isFloorSetting = !isFloorSetting;
+        backButton.SetActive(true);
+        arrangementModeCanvas.SetActive(true);
+    }
 
-        if (isFloorSetting)
-        {
-            for(int i=0;i<floor_num;i++)
-                obj_canvas[i].transform.GetChild(1).gameObject.SetActive(true);
+    public void OnClickBackButton(){
+        isFloorSetting=false;
+        foreach(GameObject button in buttons){
+            button.SetActive(true);
         }
-        else
-        {
-            for (int i = 0; i < floor_num; i++)
-                obj_canvas[i].transform.GetChild(1).gameObject.SetActive(false);
-        }
+
+        backButton.SetActive(false);
+        arrangementModeCanvas.SetActive(false);
     }
 }
