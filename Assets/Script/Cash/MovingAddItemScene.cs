@@ -15,9 +15,10 @@ public class MovingAddItemScene : MonoBehaviour
     public Dropdown m_Dropdown;
     public GameObject AlertView;
     public GameObject AlertString;
+    Animator animator;
     void Start()
     {
-        
+        animator = AlertView.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -56,16 +57,18 @@ public class MovingAddItemScene : MonoBehaviour
             if(where == 1){
                 AlertString.GetComponent<Text>().text = "이름을 입력해주세요.";
             } else{
-                Debug.Log("값을 입력해주세요.");
+                AlertString.GetComponent<Text>().text = "값을 입력해주세요.";
             }
+            animator.SetTrigger("isEmpty");
             return;
         } else{
             int priceInt;
             bool priceNum = int.TryParse(iPrice, out priceInt);
             if(!priceNum){
-                Debug.Log("가격은 숫자여야 합니다.");
+                AlertString.GetComponent<Text>().text = "가격은 숫자여야 합니다.";
+                animator.SetTrigger("isEmpty");
                 return;
-            }
+            }  
         }
 
         // 빈칸이 없으면 아래 실행
