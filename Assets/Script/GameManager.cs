@@ -90,13 +90,13 @@ public class GameManager : MonoBehaviour
         
     }
     
-    string ObjectToJson(object obj){
+    public string ObjectToJson(object obj){
         return JsonUtility.ToJson(obj);
     }
     T JsonToObject<T>(string json){
         return JsonUtility.FromJson<T>(json);
     }
-    void CreatetoJsonFile(string createPath, string filename, string jsonData){
+    public void CreatetoJsonFile(string createPath, string filename, string jsonData){
         FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", createPath, filename), FileMode.Create);
         byte[] data = Encoding.UTF8.GetBytes(jsonData);
         fileStream.Write(data, 0, data.Length);

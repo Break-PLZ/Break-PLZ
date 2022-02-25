@@ -12,7 +12,7 @@ public class TeamDeployManager : Managers
     public GameObject prefabTeamComposition;
     public GameObject TeamListContent;
     public Button prev;
-    TeamList teamList;
+    public TeamList teamList;
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
@@ -43,12 +43,15 @@ public class TeamDeployManager : Managers
     }
     void SetUI(){
         for(int i=0; i < teamList.teamList.Count; i++ ){
-            GameObject tempObject = Instantiate(prefabTeamComposition,TeamListContent.transform);
-            tempObject.transform.Find("TeamNameBlock").Find("NameText").GetComponent<Text>().text = teamList.teamList[i].name;
-            GameObject workspaceObject = tempObject.transform.Find("Content").gameObject;
-            for(int j=0; j< workspaceObject.transform.childCount; j++){
-                workspaceObject.transform.GetChild(j).GetComponent<workerstatus>().worker.teamNumber = teamList.teamList[i].teamNumber;
-            }
+            AddTeam(i);
+        }
+    }
+    public void AddTeam(int i){
+        GameObject tempObject = Instantiate(prefabTeamComposition,TeamListContent.transform);
+        tempObject.transform.Find("TeamNameBlock").Find("NameText").GetComponent<Text>().text = teamList.teamList[i].name;
+        GameObject workspaceObject = tempObject.transform.Find("Content").gameObject;
+        for(int j=0; j< workspaceObject.transform.childCount; j++){
+            workspaceObject.transform.GetChild(j).GetComponent<workerstatus>().worker.teamNumber = teamList.teamList[i].teamNumber;
         }
     }
     public void SetList(int i){
