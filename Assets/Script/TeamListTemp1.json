@@ -1,1 +1,108 @@
-{"teamList":[{"type":"Server","teamNumber":1,"name":"서버 1팀","floor_number":1,"chamber_number":0,"members":[]},{"type":"Server","teamNumber":2,"name":"서버 2팀","floor_number":1,"chamber_number":1,"members":[]},{"type":"Graphic","teamNumber":3,"name":"그래픽 1팀","floor_number":2,"chamber_number":0,"members":[]},{"type":"Graphic","teamNumber":4,"name":"그래픽 2팀","floor_number":2,"chamber_number":1,"members":[]},{"type":"Sound","teamNumber":5,"name":"사운드 1팀","floor_number":2,"chamber_number":2,"members":[]},{"type":"Client","teamNumber":6,"name":"클라 1팀","floor_number":2,"chamber_number":3,"members":[]},{"type":"Server","teamNumber":7,"name":"서버 3팀","floor_number":0,"chamber_number":0,"members":[]},{"type":"Client","teamNumber":8,"name":"클라 2팀","floor_number":0,"chamber_number":3,"members":[]},{"type":"Sound","teamNumber":9,"name":"사운드 2팀","floor_number":-1,"chamber_number":-1,"members":[]},{"type":"Sound","teamNumber":10,"name":"ㅁㄴㅇㄹ","floor_number":-1,"chamber_number":-1,"members":[]},{"type":"Graphic","teamNumber":11,"name":"ㄹㄹㄹㄹ","floor_number":-1,"chamber_number":-1,"members":[]},{"type":"Client","teamNumber":12,"name":"흥냐흥냐","floor_number":-1,"chamber_number":-1,"members":[]},{"type":"Server","teamNumber":13,"name":"호놀룰루","floor_number":-1,"chamber_number":-1,"members":[]}]}
+{
+    "teamList": [
+        {
+            "type": "Server",
+            "teamNumber": 1,
+            "name": "서버 1팀",
+            "floor_number": 1,
+            "chamber_number": 0,
+            "members": []
+        },
+        {
+            "type": "Server",
+            "teamNumber": 2,
+            "name": "서버 2팀",
+            "floor_number": 1,
+            "chamber_number": 1,
+            "members": []
+        },
+        {
+            "type": "Graphic",
+            "teamNumber": 3,
+            "name": "그래픽 1팀",
+            "floor_number": 2,
+            "chamber_number": 0,
+            "members": []
+        },
+        {
+            "type": "Graphic",
+            "teamNumber": 4,
+            "name": "그래픽 2팀",
+            "floor_number": 2,
+            "chamber_number": 1,
+            "members": []
+        },
+        {
+            "type": "Sound",
+            "teamNumber": 5,
+            "name": "사운드 1팀",
+            "floor_number": 2,
+            "chamber_number": 2,
+            "members": []
+        },
+        {
+            "type": "Client",
+            "teamNumber": 6,
+            "name": "클라 1팀",
+            "floor_number": 2,
+            "chamber_number": 3,
+            "members": []
+        },
+        {
+            "type": "Server",
+            "teamNumber": 7,
+            "name": "서버 3팀",
+            "floor_number": 0,
+            "chamber_number": 0,
+            "members": []
+        },
+        {
+            "type": "Client",
+            "teamNumber": 8,
+            "name": "클라 2팀",
+            "floor_number": 0,
+            "chamber_number": 3,
+            "members": []
+        },
+        {
+            "type": "Sound",
+            "teamNumber": 9,
+            "name": "사운드 2팀",
+            "floor_number": -1,
+            "chamber_number": -1,
+            "members": []
+        },
+        {
+            "type": "Sound",
+            "teamNumber": 10,
+            "name": "ㅁㄴㅇㄹ",
+            "floor_number": -1,
+            "chamber_number": -1,
+            "members": []
+        },
+        {
+            "type": "Graphic",
+            "teamNumber": 11,
+            "name": "ㄹㄹㄹㄹ",
+            "floor_number": -1,
+            "chamber_number": -1,
+            "members": []
+        },
+        {
+            "type": "Client",
+            "teamNumber": 12,
+            "name": "흥냐흥냐",
+            "floor_number": -1,
+            "chamber_number": -1,
+            "members": []
+        },
+        {
+            "type": "Server",
+            "teamNumber": 13,
+            "name": "호놀룰루",
+            "floor_number": -1,
+            "chamber_number": -1,
+            "members": []
+        }
+    ]
+}
