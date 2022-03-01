@@ -16,16 +16,16 @@ public class CashEvent : MonoBehaviour
     Button[] instances;
     int itemCnt;
     CashList data;
-
+    int itemIdx = -1;
+    public GameObject dontDestroy;
     int idx = -1;
+    public GameObject addBtn;
+    public GameObject modBtn;
 
     public GameObject panel1, panel2;
     void Start()
     {
-        // GameObject myInstance = Instantiate(prefab, parent);
-        // int[] posX = new int[]{-256, -128, 0, 128, 256};
         float[] posX = new float[]{-457.5f, -305.0f, -152.5f, 0.0f, 152.5f, 305.0f, 457.5f};
-        // float posY = 181;
         float posY = 307.5f;
         data = LoadJsonFile<CashList>(Application.dataPath, "Script/Cash/ItemTemp");
         itemCnt = data.IL.Count;
@@ -37,7 +37,6 @@ public class CashEvent : MonoBehaviour
             float row_float = (float)row;
             float objY = posY - row_float * 152.5f;
             if(data.IL[i].tag == 1){
-                //Button tempInstance = Instantiate(prefab1, parent);
                 GameObject tempInstance = Instantiate(prefab1, parent);
                 SetChild(tempInstance, objX, objY, "Image/CashShop/"+data.IL[i].img_name);
                 int tag = data.IL[i].tag;
@@ -49,7 +48,6 @@ public class CashEvent : MonoBehaviour
                 int index = i;
                 tempInstance.GetComponent<Button>().onClick.AddListener(() => openPanel(tag, type, price, chance, img_name, index, name));
                 Debug.Log(tempInstance);
-                // tempInstance.onClick.AddListener(openPanel);
             } else if(data.IL[i].tag == 2){
                 GameObject tempInstance = Instantiate(prefab2, parent);
                 SetChild(tempInstance, objX, objY, "Image/CashShop/"+data.IL[i].img_name);
@@ -63,8 +61,9 @@ public class CashEvent : MonoBehaviour
                 tempInstance.GetComponent<Button>().onClick.AddListener(() => openPanel(tag, type, price, chance, img_name, index, name));
             }        
         }
+        addBtn.GetComponent<Button>().onClick.AddListener(itemAdd);
+        modBtn.GetComponent<Button>().onClick.AddListener(itemModify);
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -82,16 +81,13 @@ public class CashEvent : MonoBehaviour
     }
 
     public void SetChild(GameObject parent, float objX, float objY, string resourceName){
-        // Vector3 position = parent.transform.localPosition;
-        // position.x = objX;
-        // position.y = objY;
-        // parent.transform.localPosition = position;
         GameObject imageObj = parent.transform.GetChild(0).gameObject;
         imageObj.GetComponent<Image>().sprite = Resources.Load(resourceName, typeof(Sprite)) as Sprite;
     }
 
     public void openPanel(int tag, int type, int price, string chance, string img_name, int index, string name)
     {   
+        itemIdx = index;
         Debug.Log("index: " + index + " and idx: " + idx);
         if(tag==1){
             if(panel1.activeSelf == true && index == idx){
@@ -125,5 +121,18 @@ public class CashEvent : MonoBehaviour
                 panel2.transform.GetChild(4).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = ""+price;
             }
         }
+    }
+
+    public void itemAdd(){
+        SceneManager.LoadScene("AddItemScene");
+    }
+    
+    public void itemModify(){
+        // dontDestroy.name = itemIdx + "";
+        //dontDestroy.gameObject.tag = itemIdx + "";
+        //call.ndtIdx = itemIdx;
+        dontDestroy.GetComponent<DontDestroy>().ndtIdx = itemIdx;
+        DontDestroyOnLoad(dontDestroy);
+        SceneManager.LoadScene("ModifyItemScene");
     }
 }
