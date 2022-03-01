@@ -2884,7 +2884,6 @@ GameObject:
   - component: {fileID: 868741544}
   - component: {fileID: 868741547}
   - component: {fileID: 868741546}
-  - component: {fileID: 868741545}
   m_Layer: 5
   m_Name: WorkerList
   m_TagString: Untagged
@@ -2911,19 +2910,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -0.000015607104}
   m_SizeDelta: {x: 0, y: 800}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &868741545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 868741543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59d0965f241ff154695ee5e3e7cb1161, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  manager: {fileID: 0}
 --- !u!114 &868741546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3507,7 +3493,6 @@ GameObject:
   - component: {fileID: 1540529531}
   - component: {fileID: 1540529530}
   - component: {fileID: 1540529529}
-  - component: {fileID: 1540529532}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -3579,7 +3564,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1540529532}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovingAddItemScene, Assembly-CSharp
         m_MethodName: itemEdit
         m_Mode: 1
@@ -3629,24 +3614,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540529527}
   m_CullTransparentMesh: 1
---- !u!114 &1540529532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1540529527}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a44f17cfa6fccc44800c026a2a6466e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: {fileID: 0}
-  itemPrice: {fileID: 0}
-  m_Dropdown: {fileID: 0}
-  AlertView: {fileID: 0}
-  AlertString: {fileID: 0}
-  dontDestroy: {fileID: 0}
 --- !u!1 &1605940279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4563,7 +4530,6 @@ GameObject:
   - component: {fileID: 1896691645}
   - component: {fileID: 1896691644}
   - component: {fileID: 1896691643}
-  - component: {fileID: 1896691646}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -4634,7 +4600,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1896691646}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: MovingAddItemScene, Assembly-CSharp
         m_MethodName: itemAdd
         m_Mode: 1
@@ -4684,24 +4650,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1896691641}
   m_CullTransparentMesh: 1
---- !u!114 &1896691646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1896691641}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a44f17cfa6fccc44800c026a2a6466e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemName: {fileID: 0}
-  itemPrice: {fileID: 0}
-  m_Dropdown: {fileID: 0}
-  AlertView: {fileID: 0}
-  AlertString: {fileID: 0}
-  dontDestroy: {fileID: 706701399}
 --- !u!1 &1904906883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4972,6 +4920,9 @@ MonoBehaviour:
   prefab1: {fileID: 14005905540149986, guid: 1660a654c18245040873118645c18db8, type: 3}
   prefab2: {fileID: 1825113477837263331, guid: b45d204a21dcc04488754a02c0fc0384, type: 3}
   parent: {fileID: 868741544}
+  dontDestroy: {fileID: 706701399}
+  addBtn: {fileID: 1896691641}
+  modBtn: {fileID: 1540529527}
   panel1: {fileID: 707866575}
   panel2: {fileID: 456825252}
 --- !u!1 &1971748025
