@@ -15,7 +15,6 @@ public class MovingAddItemScene : MonoBehaviour
     public Dropdown m_Dropdown;
     public GameObject AlertView;
     public GameObject AlertString;
-    public GameObject dontDestroy;
     Animator animator;
     void Start()
     {
@@ -26,17 +25,6 @@ public class MovingAddItemScene : MonoBehaviour
     void Update()
     {
         
-    }
-
-    public void itemAdd()
-    {
-        DontDestroyOnLoad(dontDestroy);
-        SceneManager.LoadScene("AddItemScene");
-    }
-    
-    public void itemEdit()
-    {
-        SceneManager.LoadScene("AddItemScene");
     }
 
     public void itemFin()
