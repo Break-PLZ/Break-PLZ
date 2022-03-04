@@ -1,0 +1,13 @@
+{
+    "teamList": [
+    {
+        "type": "Server",
+        "name": "서버 1팀",
+        "teamNumber": 1,
+        "floor_number": -1,
+        "chamber_number": -1,
+        "members": []
+
+    }
+]
+}
