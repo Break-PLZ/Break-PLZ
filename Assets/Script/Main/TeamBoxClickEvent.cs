@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class TeamBoxClickEvent : MonoBehaviour
+public class TeamBoxClickEvent : MonoBehaviour, ISelectHandler, IDeselectHandler
 {
     // Start is called before the first frame update
     public int num=0; // This is for test
@@ -13,11 +13,15 @@ public class TeamBoxClickEvent : MonoBehaviour
     void Start()
     {
         arrangeManager=GameObject.Find("ArrangeManager");
-        gameObject.GetComponent<Button>().onClick.AddListener(sendTeamBoxClicked);
     }
 
-    void sendTeamBoxClicked(){
-        arrangeManager.GetComponent<ArrangeManager>().TeamBoxClick("hi");
-    }
+    public void OnSelect (BaseEventData eventData) 
+	{
+        arrangeManager.GetComponent<ArrangeManager>().TeamBoxClicked(team);
+	}
 
+    public void OnDeselect(BaseEventData data)
+    {
+        arrangeManager.GetComponent<ArrangeManager>().TeamBoxUnclicked();
+    }
 }

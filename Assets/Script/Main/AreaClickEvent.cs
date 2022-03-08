@@ -30,7 +30,7 @@ public class AreaClickEvent : MonoBehaviour, IPointerClickHandler
             }
             else{
                 if(!isAreaFilled){
-                    GameObject.FindWithTag("ArrangeManager").GetComponent<ArrangeManager>().AreaClick(gameObject, lastClickedObject);
+                    GameObject.FindWithTag("ArrangeManager").GetComponent<ArrangeManager>().AreaClick(gameObject);
                 }else{
                     // Exchange Logic needed
                 }
