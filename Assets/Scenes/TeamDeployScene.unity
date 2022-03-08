@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_Options:
     m_Options:
     - m_Text: Server
-      m_Image: {fileID: 0}
+      m_Image: {fileID: 21300000, guid: 29490950e61edf641873e1e9a7ee1412, type: 3}
     - m_Text: Client
       m_Image: {fileID: 0}
     - m_Text: Sound

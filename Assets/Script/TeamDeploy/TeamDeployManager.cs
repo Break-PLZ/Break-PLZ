@@ -49,6 +49,22 @@ public class TeamDeployManager : Managers
     public void AddTeam(int i){
         GameObject tempObject = Instantiate(prefabTeamComposition,TeamListContent.transform);
         tempObject.transform.Find("TeamNameBlock").Find("NameText").GetComponent<Text>().text = teamList.teamList[i].name;
+        string type= teamList.teamList[i].type;
+        switch(type){
+            case "Server":
+                tempObject.transform.Find("TeamNameBlock").GetComponent<Image>().color = new Color(255/255f,202/255f, 58/255f, 1.0f);
+                break;
+            case "Client":
+                tempObject.transform.Find("TeamNameBlock").GetComponent<Image>().color = new Color(255/255f,89/255f, 94/255f, 1.0f);
+                break;
+            case "Graphic":
+                tempObject.transform.Find("TeamNameBlock").GetComponent<Image>().color = new Color(25/255f,130/255f, 196/255f, 1.0f);
+                break;
+            case "Sound":
+                tempObject.transform.Find("TeamNameBlock").GetComponent<Image>().color = new Color(138/255f,201/255f, 38/255f, 1.0f);
+                break;   
+        }
+        tempObject.transform.Find("TeamMark").GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/Team/"+type+"_icon");
         GameObject workspaceObject = tempObject.transform.Find("Content").gameObject;
         for(int j=0; j< workspaceObject.transform.childCount; j++){
             workspaceObject.transform.GetChild(j).GetComponent<workerstatus>().worker.teamNumber = teamList.teamList[i].teamNumber;

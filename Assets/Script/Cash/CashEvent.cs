@@ -13,33 +13,34 @@ public class CashEvent : MonoBehaviour
     public GameObject prefab1;
     public GameObject prefab2;
     public Transform parent;
-    Button[] instances;
     int itemCnt;
     CashList data;
-
+    List<GameObject> prefabs;
+    List<int> indexList;
+    int itemIdx = -1;
+    public GameObject dontDestroy;
     int idx = -1;
-
+    public Button addBtn, modBtn;
     public GameObject panel1, panel2;
-    void Start()
+
+    // for Delete Item
+    public Button delBtn1, delBtn2;
+    public GameObject delPanel;
+    public Button yesBtn, noBtn;
+    public GameObject warnText;
+
+    async void Start()
     {
-        // GameObject myInstance = Instantiate(prefab, parent);
-        // int[] posX = new int[]{-256, -128, 0, 128, 256};
-        float[] posX = new float[]{-457.5f, -305.0f, -152.5f, 0.0f, 152.5f, 305.0f, 457.5f};
-        // float posY = 181;
-        float posY = 307.5f;
+        prefabs = new List<GameObject>();
+        indexList = new List<int>();
+
         data = LoadJsonFile<CashList>(Application.dataPath, "Script/Cash/ItemTemp");
         itemCnt = data.IL.Count;
-        instances = new Button[itemCnt];
-        Debug.Log("itemCnt: " + itemCnt);
+
         for(int i=0;i<itemCnt;i++){
-            float objX = posX[i%7];
-            int row = i/7;
-            float row_float = (float)row;
-            float objY = posY - row_float * 152.5f;
             if(data.IL[i].tag == 1){
-                //Button tempInstance = Instantiate(prefab1, parent);
                 GameObject tempInstance = Instantiate(prefab1, parent);
-                SetChild(tempInstance, objX, objY, "Image/CashShop/"+data.IL[i].img_name);
+                SetChild(tempInstance, "Image/CashShop/"+data.IL[i].img_name);
                 int tag = data.IL[i].tag;
                 int type = data.IL[i].type;
                 int price = data.IL[i].price;
@@ -48,11 +49,11 @@ public class CashEvent : MonoBehaviour
                 string name = data.IL[i].name;
                 int index = i;
                 tempInstance.GetComponent<Button>().onClick.AddListener(() => openPanel(tag, type, price, chance, img_name, index, name));
-                Debug.Log(tempInstance);
-                // tempInstance.onClick.AddListener(openPanel);
+                prefabs.Add(tempInstance);
+                indexList.Add(index);
             } else if(data.IL[i].tag == 2){
                 GameObject tempInstance = Instantiate(prefab2, parent);
-                SetChild(tempInstance, objX, objY, "Image/CashShop/"+data.IL[i].img_name);
+                SetChild(tempInstance, "Image/CashShop/"+data.IL[i].img_name);
                 int tag = data.IL[i].tag;
                 int type = data.IL[i].type;
                 int price = data.IL[i].price;
@@ -61,14 +62,21 @@ public class CashEvent : MonoBehaviour
                 string name = data.IL[i].name;
                 int index = i;
                 tempInstance.GetComponent<Button>().onClick.AddListener(() => openPanel(tag, type, price, chance, img_name, index, name));
+                prefabs.Add(tempInstance);
+                indexList.Add(index);
             }        
         }
+        addBtn.onClick.AddListener(itemAdd);
+        modBtn.onClick.AddListener(itemModify);
+        delBtn1.onClick.AddListener(itemDel);
+        delBtn2.onClick.AddListener(itemDel);
+        yesBtn.onClick.AddListener(itemDelYes);
+        noBtn.onClick.AddListener(itemDelNo);
     }
-
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public T LoadJsonFile<T>(string loadPath, string fileName){
@@ -81,17 +89,28 @@ public class CashEvent : MonoBehaviour
         return JsonUtility.FromJson<T>(jsonData);
     }
 
-    public void SetChild(GameObject parent, float objX, float objY, string resourceName){
-        // Vector3 position = parent.transform.localPosition;
-        // position.x = objX;
-        // position.y = objY;
-        // parent.transform.localPosition = position;
+    string ObjectToJson(object obj){
+        return JsonUtility.ToJson(obj);
+    }
+    T JsonToObject<T>(string json){
+        return JsonUtility.FromJson<T>(json);
+    }
+
+    void CreatetoJsonFile(string createPath, string filename, string jsonData){
+        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", createPath, filename), FileMode.Create);
+        byte[] data = Encoding.UTF8.GetBytes(jsonData);
+        fileStream.Write(data, 0, data.Length);
+        fileStream.Close();
+    }
+
+    public void SetChild(GameObject parent, string resourceName){
         GameObject imageObj = parent.transform.GetChild(0).gameObject;
         imageObj.GetComponent<Image>().sprite = Resources.Load(resourceName, typeof(Sprite)) as Sprite;
     }
 
     public void openPanel(int tag, int type, int price, string chance, string img_name, int index, string name)
     {   
+        itemIdx = indexList[index];
         Debug.Log("index: " + index + " and idx: " + idx);
         if(tag==1){
             if(panel1.activeSelf == true && index == idx){
@@ -108,7 +127,6 @@ public class CashEvent : MonoBehaviour
                 panel1.transform.GetChild(3).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = chance;
                 panel1.transform.GetChild(4).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = ""+price;
             }
-            
         } else if(tag==2){
             if(panel2.activeSelf == true && index == idx){
                 panel2.SetActive(false);
@@ -125,5 +143,41 @@ public class CashEvent : MonoBehaviour
                 panel2.transform.GetChild(4).GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = ""+price;
             }
         }
+    }
+
+
+    public void itemAdd(){
+        SceneManager.LoadScene("AddItemScene");
+    }
+    
+    public void itemModify(){
+        dontDestroy.GetComponent<DontDestroy>().ndtIdx = itemIdx;
+        
+        DontDestroyOnLoad(dontDestroy);
+        SceneManager.LoadScene("ModifyItemScene");
+    }
+
+    public void itemDel(){
+        delPanel.SetActive(true);
+        // Debug.Log(warnText.GetComponent<Text>().text);
+        warnText.GetComponent<Text>().text = "[" + data.IL[itemIdx].name + "] 아이템을 정말 삭제하시겠습니까?";
+    }
+
+    public async void itemDelYes(){
+        data.IL.RemoveAt(itemIdx);
+        Destroy(prefabs[itemIdx]);
+        prefabs.RemoveAt(itemIdx);
+        for(int i= itemIdx; i<indexList.Count;i++){
+            indexList[i]--;
+        }
+        string jsonData_ = ObjectToJson(data);
+        CreatetoJsonFile(Application.dataPath, "Script/Cash/ItemTemp", jsonData_);
+
+        panel1.SetActive(false);
+        panel2.SetActive(false);
+        delPanel.SetActive(false);
+    }
+    public void itemDelNo(){
+        delPanel.SetActive(false);
     }
 }

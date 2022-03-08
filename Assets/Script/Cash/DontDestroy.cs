@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DontDestroy : MonoBehaviour
 {
+    public int ndtIdx = -1;
     // Start is called before the first frame update
     void Start()
     {
