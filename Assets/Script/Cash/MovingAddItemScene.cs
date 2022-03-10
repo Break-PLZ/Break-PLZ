@@ -81,7 +81,7 @@ public class MovingAddItemScene : MonoBehaviour
         else if(m_Dropdown.value == 2) new_class.chance = "단일 아이템";
         new_class.price = priceInt;
         new_class.img_name = "itemEx2";
-        new_class.tag = 1;
+        new_class.tag = 2;
 
         cL.IL.Add(new_class);
 
