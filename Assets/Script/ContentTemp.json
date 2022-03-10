@@ -1,0 +1,26 @@
+{
+    "Contents": [
+        {
+            "type": "dungeon",
+            "name": "던전 1",
+            "teams": [],
+            "server_ability": 0,
+            "client_ability": 0,
+            "graphic_ability": 0,
+            "sound_ability": 0,
+            "duration": 0,
+            "quality": 0
+        },
+        {
+            "type": "quest",
+            "name": "튜토리얼",
+            "teams": [],
+            "server_ability": 0,
+            "client_ability": 0,
+            "graphic_ability": 0,
+            "sound_ability": 0,
+            "duration": 0,
+            "quality": 0
+        }
+    ]
+}
