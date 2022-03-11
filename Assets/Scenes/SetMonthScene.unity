@@ -658,6 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 214538382}
+  managers: {fileID: 581749937}
   num: 0
 --- !u!114 &214538381
 MonoBehaviour:
@@ -1684,6 +1685,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1378295433}
+  managers: {fileID: 581749937}
   num: 0
 --- !u!1 &557657461
 GameObject:
@@ -1737,6 +1739,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 557657465}
+  managers: {fileID: 581749937}
   num: 0
 --- !u!114 &557657464
 MonoBehaviour:
@@ -4070,6 +4073,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1784059843}
+  managers: {fileID: 581749937}
   num: 0
 --- !u!114 &1784059842
 MonoBehaviour:
@@ -4481,6 +4485,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 2011394704}
+  managers: {fileID: 581749937}
   num: 0
 --- !u!114 &2011394703
 MonoBehaviour:

@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 43483920}
+  managers: {fileID: 1921639833}
   num: 0
 --- !u!114 &43483919
 MonoBehaviour:
@@ -562,6 +563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 92552227}
+  managers: {fileID: 1921639833}
   num: 0
 --- !u!114 &92552226
 MonoBehaviour:
@@ -1793,6 +1795,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 695619978}
+  managers: {fileID: 1921639833}
   num: 0
 --- !u!114 &695619977
 MonoBehaviour:
@@ -2275,9 +2278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerSelect: {fileID: 1028430941}
   prefabWorker: {fileID: 7115971920292729417, guid: bca8c2ed7e8157a4f884734ee9961033, type: 3}
-  prefabWorker1: {fileID: 6355604924769942858, guid: 65d96c80fe919bf4ca75f65eff26737d, type: 3}
   WorkerList: {fileID: 2057390052}
-  tmplist: []
   manager: {fileID: 1921639833}
 --- !u!114 &1028430943
 MonoBehaviour:
@@ -2525,6 +2526,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1095932404}
+  managers: {fileID: 1921639833}
   num: 0
 --- !u!114 &1095932403
 MonoBehaviour:
@@ -3414,6 +3416,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1386341763}
+  managers: {fileID: 1921639833}
   num: 0
 --- !u!114 &1386341762
 MonoBehaviour:
@@ -3602,6 +3605,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1395338428}
+  managers: {fileID: 1921639833}
   num: 0
 --- !u!114 &1395338427
 MonoBehaviour:
