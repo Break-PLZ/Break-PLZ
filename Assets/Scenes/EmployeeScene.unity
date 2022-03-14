@@ -1654,6 +1654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 860183336}
+  managers: {fileID: 2006954004}
   num: 0
 --- !u!1 &900075202
 GameObject:
@@ -1899,6 +1900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1094399567}
+  managers: {fileID: 2006954004}
   num: 0
 --- !u!114 &1094399566
 MonoBehaviour:
@@ -2317,7 +2319,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   WorkerSelect: {fileID: 1253167604}
   prefabWorker: {fileID: 7115971920292729417, guid: bca8c2ed7e8157a4f884734ee9961033, type: 3}
-  prefabWorker1: {fileID: 6355604924769942858, guid: 65d96c80fe919bf4ca75f65eff26737d, type: 3}
   WorkerList: {fileID: 1392615559}
   manager: {fileID: 2006954004}
 --- !u!1 &1344844954
@@ -2637,6 +2638,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1365866479}
+  managers: {fileID: 2006954004}
   num: 0
 --- !u!1 &1392615559
 GameObject:
@@ -3097,6 +3099,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1488077061}
+  managers: {fileID: 2006954004}
   num: 0
 --- !u!1 &1516233930
 GameObject:
@@ -3206,6 +3209,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1516233933}
+  managers: {fileID: 2006954004}
   num: 0
 --- !u!1 &1529282658
 GameObject:
@@ -3866,6 +3870,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 1797027120}
+  managers: {fileID: 2006954004}
   num: 0
 --- !u!1 &1873912701
 GameObject:
@@ -4278,7 +4283,7 @@ MonoBehaviour:
     cost: 0
   next: {fileID: 1344844956}
   prev: {fileID: 1529282660}
-  prefabWorker: {fileID: 6355604924769942858, guid: 65d96c80fe919bf4ca75f65eff26737d, type: 3}
+  prefabWorker: {fileID: 344814567311128416, guid: 8642a5be1e3a691499bb5e25de9f6653, type: 3}
   WorkerList: {fileID: 1392615559}
 --- !u!1 &2013203804
 GameObject:

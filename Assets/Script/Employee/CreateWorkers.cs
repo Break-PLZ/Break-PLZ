@@ -10,7 +10,7 @@ public class CreateWorkers : MonoBehaviour
 , IPointerClickHandler
 {
     public GameObject WorkerSelect; // work 선텍 오브젝트 (worker 3개 포함하는 오브젝트)
-    public GameObject prefabWorker,prefabWorker1;
+    public GameObject prefabWorker;
     public GameObject WorkerList;
     List<Dictionary<string, object>> tList; //for talent setting
     public Managers manager;
@@ -80,13 +80,7 @@ public class CreateWorkers : MonoBehaviour
             manager.temp.sound += tmp.sound;
             manager.temp.cost -= tmp.cost;
             manager.temp.WL.Add(tmp);
-            GameObject newPanel1;
-            if(SceneManager.GetActiveScene().name=="EmployeeScene"){
-                newPanel1 = Instantiate(prefabWorker1,WorkerList.transform);
-            }
-            else{
-                newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
-            }
+            GameObject newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
             manager.WorkerContents(newPanel1,manager.temp.WL.Count-1);
             ws.InitProperty();
             ws.setTalents(tList);
