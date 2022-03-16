@@ -14,36 +14,16 @@ public class SelectWorkers : MonoBehaviour
     void Start()
     {
         obj = text.gameObject;
-        if(obj.name.Contains("Server")){
-            num = managers.temp.server;
-        }
-        else if(obj.name.Contains("Client")){
-            num = managers.temp.client;
-        }
-        else if(obj.name.Contains("Graphic")){
-            num = managers.temp.graphic;
-        }
-        else if(obj.name.Contains("Sound")){
-            num = managers.temp.sound;
-        }
-        else if(obj.name.Contains("LText")){
-            num = managers.temp.cost;
-        }
-        else if(obj.name.Contains("SelectedP")){
-            num = managers.temp.WL.Count;
-        }
-        if(obj.name.Contains("LText")){
-            text.text = "$"+num;
-        }
-        else{
-            text.text = ""+num;
-        }
+        UpdateText();
         
     }
 
     // Update is called once per frame
     void Update()
     {
+        UpdateText();
+    }
+    void UpdateText(){
         if(obj.name.Contains("Server")){
             num = managers.temp.server;
         }

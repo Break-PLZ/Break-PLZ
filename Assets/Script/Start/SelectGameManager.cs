@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SelectGameManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject gamemanager;
+    public GameObject gamemanager;
     GameObject SaveList;
     public Button prev;
     public GameObject prefab;
@@ -22,7 +22,7 @@ public class SelectGameManager : MonoBehaviour
             GameObject newPanel = Instantiate(prefab,SaveList.transform);
             newPanel.AddComponent<Button>();
             if(gamemanager.GetComponent<GameManager>().sceneNumber==2){
-                newPanel.GetComponent<Button>().onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetEmployee);
+                newPanel.GetComponent<Button>().onClick.AddListener(this.gameObject.GetComponent<IsOverwrite>().OpenCaution);
             }
             else{
                 newPanel.GetComponent<Button>().onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetEmployee);
