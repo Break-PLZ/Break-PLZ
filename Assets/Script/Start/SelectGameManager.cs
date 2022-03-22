@@ -20,13 +20,17 @@ public class SelectGameManager : MonoBehaviour
     void setSaveList(){
         for(int i=0;i<3;i++){
             GameObject newPanel = Instantiate(prefab,SaveList.transform);
+            newPanel.AddComponent<ConnectSave>();
+            newPanel.GetComponent<ConnectSave>().saveNum = i;
             newPanel.AddComponent<Button>();
+            newPanel.GetComponent<Button>().onClick.AddListener(newPanel.GetComponent<ConnectSave>().connectSave);
             if(gamemanager.GetComponent<GameManager>().sceneNumber==2){
                 newPanel.GetComponent<Button>().onClick.AddListener(this.gameObject.GetComponent<IsOverwrite>().OpenCaution);
             }
             else{
                 newPanel.GetComponent<Button>().onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetEmployee);
             }
+            
         }
     }
     // Update is called once per frame

@@ -229,6 +229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNumber: 0
+  saveNumber: 0
 --- !u!4 &570433132
 Transform:
   m_ObjectHideFlags: 0
