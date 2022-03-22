@@ -1,1 +1,1 @@
-{"IL":[{"name":"HashBrown","type":1,"chance":"chance","price":20,"img_name":"itemEx1","tag":1},{"name":"GoseumDochi2","type":1,"chance":"chancechance","price":100,"img_name":"itemEx2","tag":2},{"name":"GoseumDochi","type":2,"chance":"chance","price":10,"img_name":"itemEx1","tag":2}]}
+{"IL":[{"name":"HashBrown","type":1,"chance":"chance","price":20,"img_name":"itemEx1","tag":1},{"name":"GoseumDochi","type":2,"chance":"chance","price":10,"img_name":"itemEx1","tag":2},{"name":"no","type":1,"chance":"확률형 아이템","price":1,"img_name":"itemEx2","tag":2}]}

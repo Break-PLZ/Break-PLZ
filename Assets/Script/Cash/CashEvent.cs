@@ -29,7 +29,7 @@ public class CashEvent : MonoBehaviour
     public Button yesBtn, noBtn;
     public GameObject warnText;
 
-    async void Start()
+    void Start()
     {
         prefabs = new List<GameObject>();
         indexList = new List<int>();
@@ -163,7 +163,7 @@ public class CashEvent : MonoBehaviour
         warnText.GetComponent<Text>().text = "[" + data.IL[itemIdx].name + "] 아이템을 정말 삭제하시겠습니까?";
     }
 
-    public async void itemDelYes(){
+    public void itemDelYes(){
         data.IL.RemoveAt(itemIdx);
         Destroy(prefabs[itemIdx]);
         prefabs.RemoveAt(itemIdx);
