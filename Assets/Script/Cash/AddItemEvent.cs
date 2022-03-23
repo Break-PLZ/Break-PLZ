@@ -9,25 +9,18 @@ using UnityEngine.SceneManagement;
 
 public class AddItemEvent : MonoBehaviour
 {
-    // Start is called before the first frame update
     public GameObject ChanceItem;
     public GameObject PackageItem;
-    public Transform parent;
     public Dropdown m_Dropdown;
-    public GameObject itemName;
-    public GameObject itemNum;
-    public GameObject plusBtn;
-    public GameObject prefab;
-    public GameObject item;
-    public GameObject itemName2;
-    public GameObject itemNum2;
-    public GameObject prefab2;
-    public GameObject item2;
-    public Transform parent2;
-    public GameObject plusBtn2;
+    Animator animator;
     int state;
-    int y_package = 0;
-    int y_rat = 0;
+
+    public GameObject itemName;
+    public GameObject itemPrice;
+    public GameObject AlertView;
+    public GameObject AlertString;
+
+    // Start is called before the first frame update
     void Start()
     {   
         if(m_Dropdown.value == 0){
@@ -45,8 +38,8 @@ public class AddItemEvent : MonoBehaviour
         m_Dropdown.onValueChanged.AddListener(delegate{
             DropdownValueChanged(m_Dropdown);
         });
-        plusBtn.GetComponent<Button>().onClick.AddListener(clickAddBtn);
-        plusBtn2.GetComponent<Button>().onClick.AddListener(clickAddBtn2);
+
+        animator = AlertView.GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -87,65 +80,90 @@ public class AddItemEvent : MonoBehaviour
         }
     }
 
-    void clickAddBtn(){
-        string name = itemName.GetComponent<Text>().text;
-        string nums = itemNum.GetComponent<Text>().text;
+    public void itemFin()
+    {
+        // 빈 칸이 있는지 확인
+        bool isEmpty = false;
+        int where = -1;
+        string iName = itemName.GetComponent<Text>().text;
+        string iPrice = itemPrice.GetComponent<Text>().text;
+        if(iName.Length==0){
+            isEmpty = true;
+            where = 1;
+        } else if(iPrice.Length==0){
+            isEmpty = true;
+            where = 2;
+        } 
         
-        if(name == "" || nums == ""){
-            Debug.Log("빈칸있어!!");
+        // 빈칸이 있으면 아래 출력
+        if(isEmpty){
+            if(where == 1){
+                AlertString.GetComponent<Text>().text = "이름을 입력해주세요.";
+            } else{
+                AlertString.GetComponent<Text>().text = "값을 입력해주세요.";
+            }
+            animator.SetTrigger("isEmpty");
             return;
-        }
-        int priceInt;
-        bool priceNum = int.TryParse(nums, out priceInt);
-        if(!priceNum){
-            Debug.Log("개수 숫자여야함!!");
-            return;
+        } else{
+            int priceInt;
+            bool priceNum = int.TryParse(iPrice, out priceInt);
+            if(!priceNum){
+                AlertString.GetComponent<Text>().text = "가격은 숫자여야 합니다.";
+                animator.SetTrigger("isEmpty");
+                return;
+            }  
         }
 
-        Debug.Log("name: " + name + " and num : " + nums);
-        
-        GameObject tempInstance = Instantiate(prefab, parent);
-        
-        y_package ++; 
-        Vector3 pos = prefab.transform.localPosition;
-        pos.y = pos.y - 60f * y_package;
-        tempInstance.transform.localPosition = pos;
-        
-        item.transform.GetChild(0).GetChild(0).gameObject.GetComponent<InputField>().text = "";
-        item.transform.GetChild(1).GetChild(0).gameObject.GetComponent<InputField>().text = "";
-
-        tempInstance.transform.GetChild(0).GetChild(0).gameObject.GetComponent<InputField>().text = name;
-        tempInstance.transform.GetChild(1).GetChild(0).gameObject.GetComponent<InputField>().text = nums;
+        // 빈칸이 없으면 아래 실행
+        addJsonData();
+        SceneManager.LoadScene("CashScene");
     }
-    
-    void clickAddBtn2(){
-        string name = itemName2.GetComponent<Text>().text;
-        string nums = itemNum2.GetComponent<Text>().text;
-        
-        if(name == "" || nums == ""){
-            Debug.Log("빈칸있어!!");
-            return;
-        }
+
+    void addJsonData(){
+        string iName = itemName.GetComponent<Text>().text;
+        string iPrice = itemPrice.GetComponent<Text>().text;
         int priceInt;
-        bool priceNum = int.TryParse(nums, out priceInt);
-        if(!priceNum){
-            Debug.Log("개수 숫자여야함!!");
-            return;
-        }
+        bool priceNum = int.TryParse(iPrice, out priceInt);
 
-        Debug.Log("name: " + name + " and num : " + nums);
-        
-        GameObject tempInstance = Instantiate(prefab2, parent2);
-        
-        y_rat ++; 
-        Vector3 pos = prefab2.transform.localPosition;
-        pos.y = pos.y - 60f * y_rat;
-        tempInstance.transform.localPosition = pos;
-        
-        item2.transform.GetChild(0).GetChild(0).gameObject.GetComponent<InputField>().text = "";
-        item2.transform.GetChild(1).GetChild(0).gameObject.GetComponent<InputField>().text = "";
+        CashList cL = LoadJsonFile<CashList>(Application.dataPath, "Script/Cash/ItemTemp");
+        CashClass new_class = new CashClass();
+        new_class.name = iName;
+        new_class.type = 1;
+        new_class.chance = "확률형 아이템";
+        if(m_Dropdown.value==1) new_class.chance = "패키지 아이템";
+        else if(m_Dropdown.value == 2) new_class.chance = "단일 아이템";
+        new_class.price = priceInt;
+        new_class.img_name = "itemEx2";
+        new_class.tag = 2;
 
-        tempInstance.transform.GetChild(0).GetChild(0).gameObject.GetComponent<InputField>().text = name;
-        tempInstance.transform.GetChild(1).GetChild(0).gameObject.GetComponent<InputField>().text = nums;
+        cL.IL.Add(new_class);
+
+        string jsonData_ = ObjectToJson(cL);
+        CreatetoJsonFile(Application.dataPath, "Script/Cash/ItemTemp", jsonData_);
+        
+    }   
+
+    string ObjectToJson(object obj){
+        return JsonUtility.ToJson(obj);
     }
+    T JsonToObject<T>(string json){
+        return JsonUtility.FromJson<T>(json);
+    }
+
+    void CreatetoJsonFile(string createPath, string filename, string jsonData){
+        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", createPath, filename), FileMode.Create);
+        byte[] data = Encoding.UTF8.GetBytes(jsonData);
+        fileStream.Write(data, 0, data.Length);
+        fileStream.Close();
+    }
+    public T LoadJsonFile<T>(string loadPath, string fileName)
+    {
+        FileStream fileStream = new FileStream(string.Format("{0}/{1}.json", loadPath, fileName), FileMode.OpenOrCreate);
+        
+        byte[] data = new byte[fileStream.Length];
+        fileStream.Read(data, 0, data.Length);
+        fileStream.Close();
+        string jsonData = Encoding.UTF8.GetString(data);
+        return JsonUtility.FromJson<T>(jsonData);
+    }   
 }
