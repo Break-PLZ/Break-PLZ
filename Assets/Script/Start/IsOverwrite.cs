@@ -12,6 +12,7 @@ public class IsOverwrite : MonoBehaviour
     {
         cause = GameObject.Find("SelectMenu").transform.Find("CauseScreen").gameObject;
         yesbtn = cause.transform.Find("Panel").transform.Find("Yes").GetComponent<Button>();
+        yesbtn.onClick.AddListener(CreateGameInfo);
         yesbtn.onClick.AddListener(this.gameObject.GetComponent<SelectGameManager>().gamemanager.GetComponent<GameManager>().gotoSetEmployee);
     }
 
@@ -20,7 +21,15 @@ public class IsOverwrite : MonoBehaviour
     {
         
     }
-
+    
+    public void CreateGameInfo(){
+        GameInfo info = new GameInfo();
+        GameManager gm = this.GetComponent<SelectGameManager>().gamemanager.GetComponent<GameManager>();
+        info.gameNumber = gm.saveNumber;
+        string jsonData = gm.ObjectToJson(info);
+        string dirname = "Save/"+gm.saveNumber.ToString()+"/GameInfo";
+        gm.CreatetoJsonFile(Application.dataPath,dirname,jsonData);
+    }
     public void OpenCaution(){
         cause.SetActive(true);
     }
