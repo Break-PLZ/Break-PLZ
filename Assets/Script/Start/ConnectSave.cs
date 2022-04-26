@@ -18,6 +18,6 @@ public class ConnectSave : MonoBehaviour
         
     }
     public void connectSave(){
-        manager.saveNumber = saveNum;
+        manager.gameInfo.gameNumber = saveNum;
     }
 }

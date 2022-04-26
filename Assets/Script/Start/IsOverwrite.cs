@@ -25,9 +25,9 @@ public class IsOverwrite : MonoBehaviour
     public void CreateGameInfo(){
         GameInfo info = new GameInfo();
         GameManager gm = this.GetComponent<SelectGameManager>().gamemanager.GetComponent<GameManager>();
-        info.gameNumber = gm.saveNumber;
+        info.gameNumber = gm.gameInfo.gameNumber;
         string jsonData = gm.ObjectToJson(info);
-        string dirname = "Save/"+gm.saveNumber.ToString()+"/GameInfo";
+        string dirname = "Save/"+gm.gameInfo.gameNumber.ToString()+"/GameInfo";
         gm.CreatetoJsonFile(Application.dataPath,dirname,jsonData);
     }
     public void OpenCaution(){
