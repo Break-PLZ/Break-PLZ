@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     Managers managers;
     public List<Dictionary<string, object>> talentList;
     public int sceneNumber = 0;
+    public GameInfo gameInfo;
     public static GameManager Instance
     {
         get {

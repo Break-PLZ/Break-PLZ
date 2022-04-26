@@ -31,9 +31,6 @@ public class Reconsideration : MonoBehaviour
         img = GameObject.Find("info").transform.Find("Image").gameObject;
         contents = GameObject.Find("contents").gameObject;
     }
-    void dummy(){
-        Debug.Log("delay");
-    }
     // Update is called once per frame
     void Update()
     {
