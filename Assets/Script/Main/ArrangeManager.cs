@@ -30,13 +30,12 @@ public class ArrangeManager : MonoBehaviour
         area.GetComponent<AreaClickEvent>().isAreaFilled=false;
     }
 
-    public void TeamBoxClicked(TeamD team){
-        Debug.Log("TeamBoxClicked");
-        this.team=team;
+
+    public void TeamBoxArrange(TeamD team){
+
     }
 
-    public void TeamBoxUnclicked(){
-        Debug.Log("TeamBoxUnclicked");
-        team=null;
+    public void TeamBoxRelease(){
+
     }
 }

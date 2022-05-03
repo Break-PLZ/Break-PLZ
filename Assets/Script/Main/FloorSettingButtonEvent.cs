@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class FloorSettingButtonEvent : MonoBehaviour
 {
     public bool isFloorSetting = false;
-    // GameObject[] obj_canvas;
+    
     int floorNum, nowFloorNum;
 
     GameObject[] buttons;
