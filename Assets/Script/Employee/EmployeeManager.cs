@@ -33,6 +33,7 @@ public class EmployeeManager : Managers
             GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
             WorkerContents(newPanel,i);
         }
+        Debug.Log(gamemanager.GetComponent<GameManager>().gameInfo.name);
         // var jsonData = gamemanager.GetComponent<GameManager>().LoadJsonFile(Application.dataPath,"EmployeeTemp");
     }
     // Update is called once per frame

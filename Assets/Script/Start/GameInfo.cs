@@ -7,7 +7,7 @@ public class GameInfo
 {
     // Start is called before the first frame update
     public int gameNumber;
-    public int time;
+    public float time;
     public string name;
     public List<string> summary;
 }
