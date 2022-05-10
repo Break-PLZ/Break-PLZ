@@ -24,7 +24,13 @@ Made with Unity 2020.3.1f1
 - 새로운 게임을 시작하려면 New Game을 클릭
 - 게임 세팅을 변경하기 위해서는 Option을 클릭
 ```
-   
+### Select Game
+<이미지 들어갈 곳>
+```
+- Play Game을 클릭하셨다면 원하는 Save Data를 선택하고 [Main]으로 이동하기
+- New Game을 클릭하셨다면 새로 데이터를 생성할 칸을 선택하고 [Employ](#employ)로 이동하기
+```
+### Employ
 ![image](https://user-images.githubusercontent.com/29912716/159853940-a6363977-79d6-430f-ba5e-f49d9c6667e1.png)
 ```
 - 게임을 새로 시작한 경우, 먼저 직원을 채용해야 합니다!
