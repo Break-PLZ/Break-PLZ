@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class ContentsManager : MonoBehaviour
 {
     public Button gotomain, btn_dungeon, btn_boss, btn_quest, btn_region;
     public Button gotodetail;
-    public GameObject detailPanel1, detailPanel2, ContentSettingPanel;
+    public GameObject detailPanel1, detailPanel2, ContentSettingPanel, undeployedTeamPrefab, undeployedList;
+    
     GameObject gamemanager;
-    public TeamList teamList;
+
+    [SerializeField]
+    private DataManager data;
     
     // Start is called before the first frame update
     void Start()
@@ -21,16 +25,10 @@ public class ContentsManager : MonoBehaviour
         btn_boss.onClick.AddListener(DetailPanelVisible);
         btn_quest.onClick.AddListener(DetailPanelVisible);
         btn_region.onClick.AddListener(DetailPanelVisible);
-
         gotodetail.onClick.AddListener(OpenContentSettingPanel);
 
-        teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        ClassifyUndeployedTeam();
+        ShowUndeployedTeam();
     }
 
     void DetailPanelVisible(){
@@ -42,5 +40,47 @@ public class ContentsManager : MonoBehaviour
 
     void OpenContentSettingPanel(){
         ContentSettingPanel.SetActive(true);
+    }
+
+    void ClassifyUndeployedTeam(){
+        List<Team> tmpList = new List<Team>();
+        foreach(var i in data.teamList.teamList){
+            if(i.floor_number == -1){
+                tmpList.Add(i);
+            }
+        }
+
+        data.teamList.teamList = tmpList;
+    }
+
+    public void ShowUndeployedTeam(){
+        data.teamList.teamList = data.teamList.teamList.OrderBy(x => x.teamNumber).ToList();
+
+        foreach(var i in data.teamList.teamList){
+            GameObject o = (GameObject)Instantiate(undeployedTeamPrefab, undeployedList.transform);
+            o.transform.GetChild(1).GetComponent<Text>().text = i.name;
+            o.transform.GetChild(2).GetComponent<Text>().text = i.type;
+            o.GetComponent<SelectTeam>().data = this.data;
+            
+            switch(i.type){
+                    case "Server":
+                        o.transform.GetChild(0).GetComponent<Image>().color = new Color(255/255f,202/255f, 58/255f, 1.0f);
+                        break;
+                    case "Client":
+                        o.transform.GetChild(0).GetComponent<Image>().color = new Color(255/255f,89/255f, 94/255f, 1.0f);
+                        break;
+                    case "Sound":
+                        o.transform.GetChild(0).GetComponent<Image>().color = new Color(138/255f,201/255f, 38/255f, 1.0f);
+                        break;
+                    case "Graphic":
+                        o.transform.GetChild(0).GetComponent<Image>().color = new Color(25/255f,130/255f, 196/255f, 1.0f);
+                        break;
+            }
+
+            // 데이터 저장
+            o.GetComponent<TeamInfo>().teamInfo = i;
+        }
+
+
     }
 }
