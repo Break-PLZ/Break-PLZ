@@ -28,9 +28,8 @@ public class ConnectSave : MonoBehaviour
         int d = (int)(gameInfo.time * 100.0f);
         int minutes = d / (60 * 100);
         int seconds = (d % (60 * 100)) / 100;
-        int hundredths = d % 100;
         this.transform.GetChild(0).GetComponent<Text>().text = gameInfo.name;
-        this.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:00}:{1:00}.{2:00}", minutes, seconds, hundredths);
+        this.transform.GetChild(1).GetComponent<Text>().text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
     public void setSaveGM(){
         manager.gameInfo = gameInfo;
