@@ -9,7 +9,23 @@ public class TeamBoxClickEvent : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     public TeamD team;
     GameObject arrangeManager;
     FreeCamera fc;
-    
+
+    private Vector3 mOffset;
+    private float mZCoord;
+
+    void OnMouseDown(){
+        mZCoord=Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
+        mOffset=gameObject.transform.position - GetMouseWorldPos();
+    }
+
+    private Vector3 GetMouseWorldPos(){
+        Vector3 mousePoint=Input.mousePosition;
+
+        mousePoint.z=mZCoord;
+
+        return Camera.main.ScreenToWorldPoint(mousePoint);
+    }
+
     void Start()
     {
         arrangeManager=GameObject.Find("ArrangeManager");
@@ -22,8 +38,10 @@ public class TeamBoxClickEvent : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     }
 
     public void OnDrag(PointerEventData eventData){
-        Debug.Log("Ondrag"+eventData.position);
-        transform.position=eventData.position;
+        Vector3 mousePos=Input.mousePosition;
+
+        Debug.Log("Ondrag"+mousePos.x+" "+mousePos.y);
+        transform.position=GetMouseWorldPos()+mOffset;
     }
 
     public void OnEndDrag(PointerEventData eventData){
