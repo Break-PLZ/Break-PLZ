@@ -66,6 +66,12 @@ public class GameManager : MonoBehaviour
     public void gotoTeamDeploy(){
         SceneManager.LoadScene("TeamDeployScene");
     }
+    public void gotoTask(){
+        SceneManager.LoadScene("TaskStatusScene");
+    }
+    public void gotoCashShop(){
+        SceneManager.LoadScene("CashShopScene");
+    }
     // additional method
     public void saveEmployee(){
         GameObject obj;

@@ -15,6 +15,8 @@ public class FloorManager : Managers
     public GameObject teamBoxPrefab;
     public Button workerManagementButton;
     public Button teamDeployButton;
+    public Button taskButton;
+    public Button cashShopButton;
 
     GameObject gamemanager;
     TeamList teamList;
@@ -36,6 +38,8 @@ public class FloorManager : Managers
 
         workerManagementButton.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoWorkerManagement);
         teamDeployButton.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoTeamDeploy);
+        taskButton.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoTask);
+        cashShopButton.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoCashShop);
     }
 
     void setFloorNumber(GameObject floorObj, int number){

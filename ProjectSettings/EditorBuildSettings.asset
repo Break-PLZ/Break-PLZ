@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/WorkerManagementScene.unity
     guid: 49371b463b61122429bcb9b8a1202281
   - enabled: 1
-    path: Assets/Scenes/CashScene.unity
+    path: Assets/Scenes/CashShopScene.unity
     guid: 5fd5a8f293f2b6f4f9b40710355cd765
   - enabled: 1
     path: Assets/Scenes/AddItemScene.unity
@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ModifyItemScene.unity
     guid: 61a20febf801aff47b82bdaad7196e70
+  - enabled: 1
+    path: Assets/Scenes/TaskStatusScene.unity
+    guid: 28af3de1969f57f4d8715fc959492048
   m_configObjects: {}
