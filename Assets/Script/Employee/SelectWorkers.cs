@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class SelectWorkers : MonoBehaviour
 {
     public Text text;
+    public Text title;
+    public Slider slider;
     GameObject obj;
     public Managers managers;
     public int num = 0;
@@ -22,6 +24,7 @@ public class SelectWorkers : MonoBehaviour
     void Update()
     {
         UpdateText();
+        setfulfillcolor(slider.value);
     }
     void UpdateText(){
         if(obj.name.Contains("Server")){
@@ -47,6 +50,14 @@ public class SelectWorkers : MonoBehaviour
         }
         else{
             text.text = ""+num;
+        }
+    }
+    void setfulfillcolor(double value){
+        if(value < 400.0f){
+            title.color = Color.white;
+        }
+        else{
+            title.color = Color.red;
         }
     }
 }
