@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,14 @@ public class SelectWorkers : MonoBehaviour
     void Update()
     {
         UpdateText();
-        setfulfillcolor(slider.value);
+        try
+        {
+        // 실행하고자 하는 문장들
+            setfulfillcolor(slider.value);
+        }catch(Exception e){
+            
+        }
+        
     }
     void UpdateText(){
         if(obj.name.Contains("Server")){

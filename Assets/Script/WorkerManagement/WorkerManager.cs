@@ -10,6 +10,7 @@ public class WorkerManager : Managers
     public GameObject WorkerList;
     public CreateWorkers CW;
     public GameObject prefabWorker;
+    public string empDir;
     GameObject gamemanager;
 
     void Start()
@@ -17,7 +18,8 @@ public class WorkerManager : Managers
         gamemanager = GameObject.Find("GameManager");
         prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoMain);
         prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveEmployee);
-        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
+        empDir = "Save/" + gamemanager.GetComponent<GameManager>().gameInfo.gameNumber.ToString()+"/Employees";
+        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,empDir);
         if(temp==null){
             temp = new WorkerList();
             temp.WL = new List<Worker>();

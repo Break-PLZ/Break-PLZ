@@ -41,6 +41,7 @@ public class TimeManager : MonoBehaviour
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         savePeriod = 0.0f;
         gameTime = gameManager.gameInfo.time;
+        gameManager.loadGameInfo();
     }
 
     // Update is called once per frame
@@ -51,8 +52,7 @@ public class TimeManager : MonoBehaviour
         if (savePeriod > 15.0f){
             savePeriod = 0.0f;
             gameManager.gameInfo.time = gameTime;
-            string jsonData = gameManager.ObjectToJson(gameManager.gameInfo);
-            gameManager.CreatetoJsonFile(Application.dataPath,"Save/"+gameManager.gameInfo.gameNumber+"/GameInfo",jsonData);
+            gameManager.saveGameInfo();
         }
     }
 }

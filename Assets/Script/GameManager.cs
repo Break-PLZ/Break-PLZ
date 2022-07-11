@@ -84,7 +84,14 @@ public class GameManager : MonoBehaviour
             managers = obj.GetComponent<WorkerManager>();
         }    
         string jsonData = ObjectToJson(managers.temp);
-        CreatetoJsonFile(Application.dataPath,"Script/EmployeeTemp",jsonData);
+        CreatetoJsonFile(Application.dataPath,"Save/"+gameInfo.gameNumber.ToString()+"/employees",jsonData);
+    }
+    public void saveGameInfo(){
+        string jsonData = ObjectToJson(gameInfo);
+        CreatetoJsonFile(Application.dataPath,"Save/"+gameInfo.gameNumber.ToString()+"/GameInfo",jsonData);
+    }
+    public void loadGameInfo(){
+        gameInfo = LoadJsonFile<GameInfo>(Application.dataPath,"Save/"+gameInfo.gameNumber.ToString()+"/GameInfo");
     }
     void Start()
     {
