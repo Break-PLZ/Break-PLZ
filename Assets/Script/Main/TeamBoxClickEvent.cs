@@ -39,9 +39,11 @@ public class TeamBoxClickEvent : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
     public void OnDrag(PointerEventData eventData){
         Vector3 mousePos=Input.mousePosition;
+        Vector3 tmpPos=GetMouseWorldPos()+mOffset;
+        tmpPos.z=0f;
 
-        Debug.Log("Ondrag"+mousePos.x+" "+mousePos.y);
-        transform.position=GetMouseWorldPos()+mOffset;
+        transform.position=tmpPos;
+        Debug.Log(tmpPos.x+" "+tmpPos.y+" "+tmpPos.z);
     }
 
     public void OnEndDrag(PointerEventData eventData){
