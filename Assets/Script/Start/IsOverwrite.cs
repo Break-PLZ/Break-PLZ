@@ -28,12 +28,18 @@ public class IsOverwrite : MonoBehaviour
     
     public void CreateGameInfo(){
         GameInfo info = new GameInfo();
+        WorkerList wlist = new WorkerList();
+        wlist.WL = new List<Worker>();
+        wlist.cost = 500;
         GameManager gm = this.GetComponent<SelectGameManager>().gamemanager.GetComponent<GameManager>();
         info.name = infoState.transform.Find("Panel").transform.Find("newName").GetComponent<InputField>().text;
         info.gameNumber = gm.gameInfo.gameNumber;
-        string jsonData = gm.ObjectToJson(info);
+        string jsonData1 = gm.ObjectToJson(info); // save info
+        string jsonData2 = gm.ObjectToJson(wlist); // employee info
         string dirname = "Save/"+gm.gameInfo.gameNumber.ToString()+"/GameInfo";
-        gm.CreatetoJsonFile(Application.dataPath,dirname,jsonData);
+        string empDir = "Save/"+gm.gameInfo.gameNumber.ToString()+"/Employees";
+        gm.CreatetoJsonFile(Application.dataPath,empDir,jsonData2);
+        gm.CreatetoJsonFile(Application.dataPath,dirname,jsonData1);
     }
     public void OpenInfo(){
         infoState.SetActive(true);

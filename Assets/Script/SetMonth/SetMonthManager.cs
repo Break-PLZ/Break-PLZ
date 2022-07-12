@@ -9,14 +9,16 @@ public class SetMonthManager : Managers
     GameObject gamemanager;
     public Button prev;
     public Button next;
+    public string empDir;
     
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
         prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetEmployee);
         next.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoMain);
+        empDir = "Save/" + gamemanager.GetComponent<GameManager>().gameInfo.gameNumber.ToString()+"/Employees";
         //next.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoWorkerManagement);
-        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
+        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,empDir);
         if(temp==null){
             temp = new WorkerList();
             temp.WL = new List<Worker>();

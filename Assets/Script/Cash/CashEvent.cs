@@ -9,6 +9,10 @@ using UnityEngine.SceneManagement;
 
 public class CashEvent : MonoBehaviour
 {
+    // Button to main
+    public Button prev;
+    GameObject gamemanager;
+
     // Start is called before the first frame update
     public GameObject prefab1;
     public GameObject prefab2;
@@ -31,6 +35,9 @@ public class CashEvent : MonoBehaviour
 
     void Start()
     {
+        gamemanager = GameObject.Find("GameManager");
+        prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoMain);
+        
         prefabs = new List<GameObject>();
         indexList = new List<int>();
 

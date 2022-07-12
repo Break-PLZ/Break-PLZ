@@ -10,6 +10,7 @@ public class EmployeeManager : Managers
     public Button prev;
     public GameObject prefabWorker;
     public GameObject WorkerList;
+    public string empDir;
     GameObject gamemanager;
 
     void Start()
@@ -17,9 +18,12 @@ public class EmployeeManager : Managers
         gamemanager = GameObject.Find("GameManager");
         next.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoSetMonth);
         next.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveEmployee);
+        next.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveGameInfo);
         prev.onClick.AddListener(() => gamemanager.GetComponent<GameManager>().gotoSelectGame(gamemanager.GetComponent<GameManager>().sceneNumber));
         prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveEmployee);
-        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
+        prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().saveGameInfo);
+        empDir = "Save/" + gamemanager.GetComponent<GameManager>().gameInfo.gameNumber.ToString()+"/Employees";
+        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,empDir);
         if(temp==null){
             temp = new WorkerList();
             temp.WL = new List<Worker>();
@@ -33,13 +37,13 @@ public class EmployeeManager : Managers
             GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
             WorkerContents(newPanel,i);
         }
-        Debug.Log(gamemanager.GetComponent<GameManager>().gameInfo.name);
+        //Debug.Log(gamemanager.GetComponent<GameManager>().gameInfo.name);
         // var jsonData = gamemanager.GetComponent<GameManager>().LoadJsonFile(Application.dataPath,"EmployeeTemp");
     }
     // Update is called once per frame
     void Update()
     {
-    
+        Debug.Log(gamemanager.GetComponent<GameManager>().gameInfo.name);
     }
 
     
