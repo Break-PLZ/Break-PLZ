@@ -6,7 +6,11 @@ using UnityEngine.UI;
 public class SelectTeam : MonoBehaviour
 {
     public DataManager data;
+    public StatManager statM;
     public GameObject SelectedTeamPrefab, selectedList;
+
+    [SerializeField]
+    int server, client, graphic, sound;
 
     Team selected = new Team();
 
@@ -22,8 +26,15 @@ public class SelectTeam : MonoBehaviour
         }
         Destroy(gameObject);
 
-        // // 선택 목록에 추가
+        // 선택 목록에 추가, 팀 능력치 합산
         data.selectedTeams.Add(selected);
+        data.stat.server += selected.stat.server;
+        data.stat.client += selected.stat.client;
+        data.stat.graphic += selected.stat.graphic;
+        data.stat.sound += selected.stat.sound;
+
+        Instantiation();
+        statM.ShowStat();
     }
 
     void Instantiation(){
@@ -33,6 +44,8 @@ public class SelectTeam : MonoBehaviour
         o.transform.GetChild(1).GetComponent<Text>().text = selected.name;
         o.transform.GetChild(2).GetComponent<Text>().text = selected.type;
         o.GetComponent<TeamInfo>().teamInfo = selected;
+        o.GetComponent<DeselectTeam>().data = this.data;
+        o.GetComponent<DeselectTeam>().statM = this.statM;
 
         switch(selected.type){
             case "Server":

@@ -14,6 +14,8 @@ public class ContentsManager : MonoBehaviour
 
     [SerializeField]
     private DataManager data;
+    [SerializeField]
+    private StatManager stat;
     
     // Start is called before the first frame update
     void Start()
@@ -29,6 +31,7 @@ public class ContentsManager : MonoBehaviour
 
         ClassifyUndeployedTeam();
         ShowUndeployedTeam();
+        stat.ShowStat();
     }
 
     void DetailPanelVisible(){
@@ -61,6 +64,7 @@ public class ContentsManager : MonoBehaviour
             o.transform.GetChild(1).GetComponent<Text>().text = i.name;
             o.transform.GetChild(2).GetComponent<Text>().text = i.type;
             o.GetComponent<SelectTeam>().data = this.data;
+            o.GetComponent<SelectTeam>().statM = this.stat;
             
             switch(i.type){
                     case "Server":

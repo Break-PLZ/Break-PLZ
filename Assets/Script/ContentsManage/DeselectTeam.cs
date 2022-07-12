@@ -7,6 +7,7 @@ using System.Linq;
 public class DeselectTeam : MonoBehaviour
 {
     public DataManager data;
+    public StatManager statM;
     public GameObject deSelectedTeamPrefab, deselectedList;
 
     Team deselected = new Team();
@@ -29,8 +30,13 @@ public class DeselectTeam : MonoBehaviour
         // 선택 목록에 추가 및 정렬
         data.teamList.teamList.Add(deselected);
         data.teamList.teamList = data.teamList.teamList.OrderBy(x => x.teamNumber).ToList();
+        data.stat.server -= deselected.stat.server;
+        data.stat.client -= deselected.stat.client;
+        data.stat.graphic -= deselected.stat.graphic;
+        data.stat.sound -= deselected.stat.sound;
 
         Instantiation();
+        statM.ShowStat();
     }
 
     void Instantiation(){
@@ -49,6 +55,8 @@ public class DeselectTeam : MonoBehaviour
         o.transform.GetChild(1).GetComponent<Text>().text = deselected.name;
         o.transform.GetChild(2).GetComponent<Text>().text = deselected.type;
         o.GetComponent<TeamInfo>().teamInfo = deselected;
+        o.GetComponent<SelectTeam>().data = this.data;
+        o.GetComponent<SelectTeam>().statM = this.statM;
 
         switch(deselected.type){
             case "Server":

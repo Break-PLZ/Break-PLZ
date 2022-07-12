@@ -12,8 +12,8 @@
                 "progress" : 0
             },
             "stat":{
-                "server": 0,
-                "client": 0,
+                "server": 5,
+                "client": 1,
                 "graphic": 0,
                 "sound": 0
             }
@@ -30,9 +30,9 @@
                 "progress" : 0
             },
             "stat":{
-                "server": 0,
+                "server": 7,
                 "client": 0,
-                "graphic": 0,
+                "graphic": 3,
                 "sound": 0
             }
         },
@@ -50,8 +50,8 @@
             "stat":{
                 "server": 0,
                 "client": 0,
-                "graphic": 0,
-                "sound": 0
+                "graphic": 6,
+                "sound": 2
             }
         },
         {
@@ -67,9 +67,9 @@
             },
             "stat":{
                 "server": 0,
-                "client": 0,
-                "graphic": 0,
-                "sound": 0
+                "client": 3,
+                "graphic": 1,
+                "sound": 7
             }
         },
         {
@@ -85,7 +85,7 @@
             },
             "stat":{
                 "server": 0,
-                "client": 0,
+                "client": 3,
                 "graphic": 0,
                 "sound": 0
             }
@@ -102,7 +102,7 @@
                 "progress" : 0
             },
             "stat":{
-                "server": 0,
+                "server": 8,
                 "client": 0,
                 "graphic": 0,
                 "sound": 0
@@ -120,10 +120,10 @@
                 "progress" : 0
             },
             "stat":{
-                "server": 0,
-                "client": 0,
+                "server": 3,
+                "client": 3,
                 "graphic": 0,
-                "sound": 0
+                "sound": 4
             }
         },
         {
@@ -139,8 +139,8 @@
             },
             "stat":{
                 "server": 0,
-                "client": 0,
-                "graphic": 0,
+                "client": 4,
+                "graphic": 4,
                 "sound": 0
             }
         },
@@ -157,9 +157,9 @@
             },
             "stat":{
                 "server": 0,
-                "client": 0,
-                "graphic": 0,
-                "sound": 0
+                "client": 1,
+                "graphic": 2,
+                "sound": 5
             }
         },
         {
@@ -175,9 +175,9 @@
             },
             "stat":{
                 "server": 0,
-                "client": 0,
+                "client": 4,
                 "graphic": 0,
-                "sound": 0
+                "sound": 8
             }
         }
 
