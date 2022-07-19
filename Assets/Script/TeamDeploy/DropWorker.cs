@@ -23,6 +23,8 @@ public class DropWorker : MonoBehaviour, IDropHandler
 
             this.GetComponent<workerstatus>().worker.teamNumber = bf;
             container.worker.teamNumber = af;
+            //Debug.Log("nowteam:" + bf.ToString());
+            
         }
     }
     void Start()
