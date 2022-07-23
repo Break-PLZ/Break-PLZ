@@ -3889,6 +3889,21 @@ MonoBehaviour:
     name: 
     img_name: 
     talent: []
+  team:
+    type: 
+    teamNumber: 0
+    name: 
+    floor_number: 0
+    chamber_number: 0
+    members: []
+    task:
+      state: 
+      progress: 0
+    stat:
+      server: 0
+      client: 0
+      graphic: 0
+      sound: 0
 --- !u!114 &1501013713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4264,7 +4279,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneNumber: 0
-  saveNumber: 0
+  gameInfo:
+    gameNumber: 0
+    time: 0
+    name: 
+    summary: []
 --- !u!4 &1812016294
 Transform:
   m_ObjectHideFlags: 0

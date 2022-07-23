@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class DragAndDropContainer : MonoBehaviour
+public class DropTeam : MonoBehaviour, IDropHandler
 {
+    void IDropHandler.OnDrop(PointerEventData eventData){
+        Debug.Log("HI");
+    }
     // Start is called before the first frame update
-    public Worker worker;
-    public Team team;
     void Start()
     {
-        worker = new Worker();
-        team = new Team();
-        gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame

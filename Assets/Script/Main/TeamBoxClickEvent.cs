@@ -4,41 +4,75 @@ using UnityEngine.UI;
 
 public class TeamBoxClickEvent : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    // Start is called before the first frame update
-    public int num=0; // This is for test
     public TeamD team;
 
-    public GameObject canvas;
-    GameObject arrangeManager;
+    DragAndDropContainer container;
+    bool isDragged = false;
 
     FreeCamera fc;
 
-    private Vector3 mOffset;
-    private float mZCoord;
-
     void Start()
     {
-        arrangeManager=GameObject.Find("ArrangeManager");
         fc=GameObject.Find("Main Camera").GetComponent<FreeCamera>();
+
+        container = GameObject.Find("ArrangementMode").transform.Find("Canvas").transform.Find("TeamBoxContainer").GetComponent<DragAndDropContainer>();
     }
 
-    public void OnBeginDrag(PointerEventData eventData){
+    void IBeginDragHandler.OnBeginDrag(PointerEventData eventData)
+    {
         fc.Deactivate();
-        Debug.Log("Start drag"+transform.position);
+        container.gameObject.SetActive(true);
+        // if(this.gameObject.name.IndexOf("Worker")!=-1){
+        //     container.gameObject.SetActive(true);
+        //     container.gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/EmployeeScene/"+this.GetComponent<workerstatus>().worker.img_name);
+        //     container.worker = this.GetComponent<workerstatus>().worker;
+        //     isDragged = true;
+        // }
+        // else{
+        //     if(this.gameObject.GetComponent<Image>().overrideSprite !=null){
+        //         container.gameObject.SetActive(true);
+        //         container.gameObject.GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/EmployeeScene/"+this.GetComponent<workerstatus>().worker.img_name);
+        //         container.worker = this.GetComponent<workerstatus>().worker;
+        //         isDragged = true;
+        //     }
+        //     else{
+        //         return;
+        //     }
+        // }
     }
 
-    public void OnDrag(PointerEventData eventData){
-        Vector3 mousePos=Input.mousePosition;
-        mousePos.z=10;
-
-        Vector3 tmpPos=Camera.main.ScreenToWorldPoint(mousePos);
-        // float canvasScale=canvas.transform.localScale.x;
-
-        transform.position=tmpPos;
+    void IDragHandler.OnDrag(PointerEventData eventData)
+    {
+        if(isDragged){
+            Vector3 mousePos=Input.mousePosition;
+            mousePos.z=10;
+            Vector3 tmpPos=Camera.main.ScreenToWorldPoint(mousePos);
+            
+            container.transform.localPosition = tmpPos;
+        }
     }
 
-    public void OnEndDrag(PointerEventData eventData){
-        Debug.Log("OnEndDrag");
+    void IEndDragHandler.OnEndDrag(PointerEventData eventData)
+    {
         fc.Activate();
+        if(isDragged){
+            if(this.gameObject.name.IndexOf("Worker")!=-1){
+                if(container.GetComponent<Image>().overrideSprite == null){
+                    Destroy(this.gameObject);
+                }
+                else{
+                    this.GetComponent<workerstatus>().worker = container.worker;
+                    this.GetComponent<workerstatus>().showStatus(this.gameObject);
+                }
+            }
+            else{
+                this.GetComponent<workerstatus>().worker = container.worker;
+                this.gameObject.GetComponent<Image>().overrideSprite = container.GetComponent<Image>().overrideSprite;
+            }
+            container.GetComponent<Image>().overrideSprite = null;
+            container.worker = new Worker();
+            container.gameObject.SetActive(false);
+            isDragged = false;
+        }
     }
 }
