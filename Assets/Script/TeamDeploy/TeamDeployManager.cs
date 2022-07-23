@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,11 +14,15 @@ public class TeamDeployManager : Managers
     public GameObject TeamListContent;
     public Button prev;
     public TeamList teamList;
+    public string eDir;
+    public string tDir;
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
         prev.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoMain);
-        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,"Script/EmployeeTemp");
+        eDir = "Save/" + gamemanager.GetComponent<GameManager>().gameInfo.gameNumber.ToString() + "/Employees";
+        tDir = "Save/" + gamemanager.GetComponent<GameManager>().gameInfo.gameNumber.ToString()+"/TeamList";
+        temp = gamemanager.GetComponent<GameManager>().LoadJsonFile<WorkerList>(Application.dataPath,eDir);
         if(temp==null){
             temp = new WorkerList();
             temp.WL = new List<Worker>();
@@ -32,8 +37,15 @@ public class TeamDeployManager : Managers
                 SetList(i);
             }  
         }
-        teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
-        SetUI();
+        teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, tDir);
+        if(teamList != null){
+            SetUI();    
+        }
+        else{
+            teamList = new TeamList();
+            teamList.teamList = new List<TeamD>();
+        }
+        
     }
     
     // Update is called once per frame
@@ -41,6 +53,7 @@ public class TeamDeployManager : Managers
     {
         
     }
+    
     void SetUI(){
         for(int i=0; i < teamList.teamList.Count; i++ ){
             AddTeam(i);
@@ -74,5 +87,20 @@ public class TeamDeployManager : Managers
         GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
         WorkerContents(newPanel,i);
         newPanel.AddComponent<DragWorker>();
+    }
+    public void getWorkerLeft(){
+        GameManager gm = gamemanager.GetComponent<GameManager>();
+        for(int i=0; i < temp.WL.Count; i++){
+            for(int j=0; j < WorkerList.transform.childCount; j++){
+                if(temp.WL[i].name == WorkerList.transform.GetChild(j).GetComponent<workerstatus>().worker.name){
+                   break; 
+                }
+                if(j == WorkerList.transform.childCount-1){
+                    temp.WL[i].teamNumber = 99;
+                }
+            }
+        }
+        string jsonData = gm.ObjectToJson(temp);
+        gm.CreatetoJsonFile(Application.dataPath,eDir,jsonData);
     }
 }
