@@ -12,8 +12,10 @@ GameObject:
   - component: {fileID: 5402405020265003979}
   - component: {fileID: 5402405020265003977}
   - component: {fileID: 5402405020265003978}
+  - component: {fileID: 451658962983194958}
+  - component: {fileID: 5735398330741441748}
   m_Layer: 5
-  m_Name: Area1
+  m_Name: Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +32,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 4500}
   m_LocalScale: {x: 1, y: 1, z: 0}
   m_Children:
-  - {fileID: 5402405020426548091}
   - {fileID: 5402405021278136925}
+  - {fileID: 5402405020426548091}
   - {fileID: 5402405021004371621}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -119,6 +121,61 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FloorNumber: 1
   isAreaFilled: 0
+  team:
+    type: 
+    teamNumber: 0
+    name: 
+    floor_number: 0
+    chamber_number: 0
+    members: []
+    task:
+      state: 
+      progress: 0
+    stat:
+      server: 0
+      client: 0
+      graphic: 0
+      sound: 0
+--- !u!114 &451658962983194958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402405020265003983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7ed93ee1b308ed4793bac2cef23a4f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  container: {fileID: 0}
+--- !u!114 &5735398330741441748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5402405020265003983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1dfc11ed89751c34c8658ee81041aa31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  team:
+    type: 
+    teamNumber: 0
+    name: 
+    floor_number: 0
+    chamber_number: 0
+    members: []
+    task:
+      state: 
+      progress: 0
+    stat:
+      server: 0
+      client: 0
+      graphic: 0
+      sound: 0
 --- !u!1 &5402405020426548088
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5402405020426548091
 RectTransform:
   m_ObjectHideFlags: 0
@@ -149,7 +206,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5402405020265003982}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -272,7 +329,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 
+  m_Text: Blank
 --- !u!1 &5402405021278136914
 GameObject:
   m_ObjectHideFlags: 0
@@ -290,7 +347,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5402405021278136925
 RectTransform:
   m_ObjectHideFlags: 0
@@ -303,7 +360,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 5402405020265003982}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

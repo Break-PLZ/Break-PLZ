@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class TeamList{
-    public List<TeamD> teamList;
+    public List<Team> teamList;
 }
 [System.Serializable]
 public class TeamD

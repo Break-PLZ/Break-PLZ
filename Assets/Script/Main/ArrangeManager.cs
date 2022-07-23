@@ -3,7 +3,7 @@ using UnityEngine;
 public class ArrangeManager : MonoBehaviour
 {
     // Start is called before the first frame update
-    TeamD team;
+    Team team;
     void Start()
     {
         
@@ -31,7 +31,7 @@ public class ArrangeManager : MonoBehaviour
     }
 
 
-    public void TeamBoxArrange(TeamD team){
+    public void TeamBoxArrange(Team team){
 
     }
 

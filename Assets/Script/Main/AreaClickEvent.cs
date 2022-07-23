@@ -6,7 +6,7 @@ public class AreaClickEvent : MonoBehaviour, IPointerClickHandler
 {
     public int FloorNumber=1;   // Default is 1F
     public bool isAreaFilled=false;
-    public TeamD team;
+    public Team team;
 
     const float doubleClickTime=0.5f;
     private static GameObject lastClickedObject=null;
@@ -41,7 +41,7 @@ public class AreaClickEvent : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void arrangeTeam(TeamD team){
+    public void arrangeTeam(Team team){
         gameObject.transform.Find("BlankImage").gameObject.SetActive(false);
         gameObject.transform.Find("NotBlankImage").gameObject.SetActive(true);
         gameObject.transform.Find("Text").gameObject.GetComponent<Text>().text=team.name;
