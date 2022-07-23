@@ -82,7 +82,13 @@ public class TeamDeployManager : Managers
         for(int j=0; j< workspaceObject.transform.childCount; j++){
             workspaceObject.transform.GetChild(j).GetComponent<workerstatus>().worker.teamNumber = teamList.teamList[i].teamNumber;
         }
+        
+        for(int j=0; j < teamList.teamList[i].members.Count; j++){
+            workspaceObject.transform.GetChild(j).GetComponent<workerstatus>().worker = teamList.teamList[i].members[j];
+            workspaceObject.transform.GetChild(j).GetComponent<Image>().overrideSprite = Resources.Load<Sprite>("Image/EmployeeScene/"+teamList.teamList[i].members[j].img_name);
+        }
     }
+    
     public void SetList(int i){
         GameObject newPanel = Instantiate(prefabWorker,WorkerList.transform);
         WorkerContents(newPanel,i);
@@ -93,6 +99,7 @@ public class TeamDeployManager : Managers
         for(int i=0; i < temp.WL.Count; i++){
             for(int j=0; j < WorkerList.transform.childCount; j++){
                 if(temp.WL[i].name == WorkerList.transform.GetChild(j).GetComponent<workerstatus>().worker.name){
+                   temp.WL[i].teamNumber = 0;
                    break; 
                 }
                 if(j == WorkerList.transform.childCount-1){
@@ -102,5 +109,19 @@ public class TeamDeployManager : Managers
         }
         string jsonData = gm.ObjectToJson(temp);
         gm.CreatetoJsonFile(Application.dataPath,eDir,jsonData);
+    }
+    public void findTeam(){
+        GameManager gm = gamemanager.GetComponent<GameManager>();
+        for(int i = 0; i < TeamListContent.transform.childCount; i++){
+            Transform workers = TeamListContent.transform.GetChild(i).transform.Find("Content").transform;
+            teamList.teamList[i].members.Clear();
+            for(int j=0; j < workers.childCount; j++){
+                if(workers.GetChild(j).GetComponent<workerstatus>().worker.name != ""){
+                    teamList.teamList[i].members.Add(workers.GetChild(j).GetComponent<workerstatus>().worker);
+                } 
+            }
+        }
+        string jsonData = gm.ObjectToJson(teamList);
+        gm.CreatetoJsonFile(Application.dataPath,tDir,jsonData);
     }
 }
