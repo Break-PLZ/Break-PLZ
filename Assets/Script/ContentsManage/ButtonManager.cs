@@ -71,7 +71,7 @@ public class ButtonManager : MonoBehaviour
 
         // 초기화
         GameObject gameManager = GameObject.Find("GameManager");
-        data.teamList = gameManager.GetComponent<GameManager>().LoadJsonFile<TeamListS>(Application.dataPath, "Script/TeamListTemp");
+        data.teamList = gameManager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp");
         saver.contentsInfo.init();
         data.selectedTeams.Clear();
         data.stat.server = 0;
