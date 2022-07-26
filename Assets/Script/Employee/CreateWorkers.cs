@@ -65,27 +65,36 @@ public class CreateWorkers : MonoBehaviour
     }
 
     IEnumerator RunPause(workerstatus ws){
+        
         Worker tmp = ws.worker;
-        GameObject reconsider = Instantiate(Resources.Load("Prefabs/Pause"),GameObject.FindWithTag("Background").transform) as GameObject;
-        reconsider.GetComponent<Reconsideration>().setcontents(tmp.name,"Cost: "+tmp.cost,"Server: " + tmp.server + "\n"
-        + "Client: " + tmp.client + "\n" + "Graphic: " + tmp.graphic + "\n"
-        + "Sound: " + tmp.sound, "정말 고용하시겠습니까?",tmp.img_name);
-        yield return StartCoroutine(reconsider.GetComponent<Reconsideration>().decision());
-        bool result  = reconsider.GetComponent<Reconsideration>().result;
-        Destroy(reconsider);
-        if(result){         
-            manager.temp.server += tmp.server;
-            manager.temp.client += tmp.client;
-            manager.temp.graphic += tmp.graphic;
-            manager.temp.sound += tmp.sound;
-            manager.temp.cost -= tmp.cost;
-            manager.temp.WL.Add(tmp);
-            GameObject newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
-            manager.WorkerContents(newPanel1,manager.temp.WL.Count-1);
-            ws.InitProperty();
-            ws.setTalents(tList);
-            ws.showStatus(ws.gameObject);
+        if(tmp.teamNumber == 0){
+            GameObject reconsider = Instantiate(Resources.Load("Prefabs/Pause"),GameObject.FindWithTag("Background").transform) as GameObject;
+            reconsider.GetComponent<Reconsideration>().setcontents(tmp.name,"Cost: "+tmp.cost,"Server: " + tmp.server + "\n"
+            + "Client: " + tmp.client + "\n" + "Graphic: " + tmp.graphic + "\n"
+            + "Sound: " + tmp.sound, "정말 고용하시겠습니까?",tmp.img_name);
+            yield return StartCoroutine(reconsider.GetComponent<Reconsideration>().decision());
+            bool result  = reconsider.GetComponent<Reconsideration>().result;
+            Destroy(reconsider);
+            if(result){         
+                manager.temp.server += tmp.server;
+                manager.temp.client += tmp.client;
+                manager.temp.graphic += tmp.graphic;
+                manager.temp.sound += tmp.sound;
+                manager.temp.cost -= tmp.cost;
+                manager.temp.WL.Add(tmp);
+                GameObject newPanel1 = Instantiate(prefabWorker,WorkerList.transform);
+                manager.WorkerContents(newPanel1,manager.temp.WL.Count-1);
+                ws.InitProperty();
+                ws.setTalents(tList);
+                ws.showStatus(ws.gameObject);
+            }
         }
+        else{
+            GameObject alertPrevent = Instantiate(Resources.Load("Prefabs/AlertPrevent"),GameObject.FindWithTag("Background").transform) as GameObject;
+            yield return StartCoroutine(alertPrevent.GetComponent<AlertPrevent>().decision());
+            Destroy(alertPrevent);
+        }
+        
     }
 
 }

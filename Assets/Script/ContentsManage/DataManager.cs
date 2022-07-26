@@ -6,15 +6,16 @@ public class DataManager : MonoBehaviour
 {
     GameObject gameManager;
     
-    public TeamListS teamList;
+    public TeamList teamList;
     public List<Team> selectedTeams;
     public Stat stat;
+    public int duration;
 
     // Start is called before the first frame update
     void Start()
     {
         gameManager = GameObject.Find("GameManager");
-        teamList = gameManager.GetComponent<GameManager>().LoadJsonFile<TeamListS>(Application.dataPath, "Script/TeamListTemp");
+        teamList = gameManager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp");
     }
 
     // Update is called once per frame

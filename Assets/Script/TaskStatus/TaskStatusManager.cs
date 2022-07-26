@@ -11,14 +11,14 @@ public class TaskStatusManager : MonoBehaviour
     public GameObject content;
 
     GameObject gamemanager;
-    public TeamListS teamInfo;
+    public TeamList teamInfo;
     public FloorInfo floorInfo;
 
     // Start is called before the first frame update
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
-        teamInfo = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamListS>(Application.dataPath, "Script/TeamListTemp");
+        teamInfo = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp");
 
         OrganizeFloor();
         SetUI();
