@@ -63,11 +63,11 @@ public class FloorManager : Managers
         }
     }
 
-    void arrangeTeam(TeamD team){
+    void arrangeTeam(Team team){
         floorList[team.floor_number-1].transform.Find("FloorCanvas").GetChild(team.chamber_number).GetComponent<AreaClickEvent>().arrangeTeam(team);
     }
 
-    void addTeamToScrollView(TeamD team){
+    void addTeamToScrollView(Team team){
         GameObject tmpTeamBox=GameObject.Instantiate(teamBoxPrefab, teamBoxPrefab.transform.parent, true);
         tmpTeamBox.transform.GetChild(0).GetComponent<Text>().text=team.name;
         tmpTeamBox.GetComponent<TeamBoxClickEvent>().team=team;

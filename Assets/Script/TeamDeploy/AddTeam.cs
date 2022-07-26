@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class AddTeam : MonoBehaviour
 {
     // Start is called before the first frame update
-    TeamD newTeam;
+    Team newTeam;
     TeamDeployManager tm;
     GameManager gm;
     public InputField teamName;
@@ -15,7 +15,7 @@ public class AddTeam : MonoBehaviour
     {
         tm = GameObject.Find("TeamDeployManager").GetComponent<TeamDeployManager>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
-        newTeam = new TeamD();
+        newTeam = new Team();
         gameObject.SetActive(false);
     }
     // Update is called once per frame

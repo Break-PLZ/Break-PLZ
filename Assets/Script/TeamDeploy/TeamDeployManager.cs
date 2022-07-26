@@ -43,7 +43,7 @@ public class TeamDeployManager : Managers
         }
         else{
             teamList = new TeamList();
-            teamList.teamList = new List<TeamD>();
+            teamList.teamList = new List<Team>();
         }
         
     }

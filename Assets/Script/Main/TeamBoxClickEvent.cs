@@ -6,7 +6,7 @@ public class TeamBoxClickEvent : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 {
     // Start is called before the first frame update
     public int num=0; // This is for test
-    public TeamD team;
+    public Team team;
 
     public GameObject canvas;
     GameObject arrangeManager;

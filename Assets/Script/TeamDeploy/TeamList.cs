@@ -4,10 +4,23 @@ using UnityEngine;
 
 [System.Serializable]
 public class TeamList{
-    public List<TeamD> teamList;
+    public List<Team> teamList;
 }
 [System.Serializable]
-public class TeamD
+public class Task{
+    public string state;
+    public int progress;
+}
+
+[System.Serializable]
+public class Stat{
+    public int server;
+    public int client;
+    public int graphic;
+    public int sound;
+}
+[System.Serializable]
+public class Team
 {
     public string type;
     public int teamNumber;
@@ -16,8 +29,10 @@ public class TeamD
     public int chamber_number;
 
     public List<Worker> members;
+    public Task task;
+    public Stat stat;
 
-    public void SetProperty(TeamD team){
+    public void SetProperty(Team team){
         teamNumber = team.teamNumber;
         name = team.name;
         type = team.type;
