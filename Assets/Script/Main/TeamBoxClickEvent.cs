@@ -7,24 +7,14 @@ public class TeamBoxClickEvent : MonoBehaviour, IBeginDragHandler, IEndDragHandl
     // Start is called before the first frame update
     public int num=0; // This is for test
     public TeamD team;
+
+    public GameObject canvas;
     GameObject arrangeManager;
+
     FreeCamera fc;
 
     private Vector3 mOffset;
     private float mZCoord;
-
-    void OnMouseDown(){
-        mZCoord=Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
-        mOffset=gameObject.transform.position - GetMouseWorldPos();
-    }
-
-    private Vector3 GetMouseWorldPos(){
-        Vector3 mousePoint=Input.mousePosition;
-
-        mousePoint.z=mZCoord;
-
-        return Camera.main.ScreenToWorldPoint(mousePoint);
-    }
 
     void Start()
     {
@@ -39,11 +29,12 @@ public class TeamBoxClickEvent : MonoBehaviour, IBeginDragHandler, IEndDragHandl
 
     public void OnDrag(PointerEventData eventData){
         Vector3 mousePos=Input.mousePosition;
-        Vector3 tmpPos=GetMouseWorldPos()+mOffset;
-        tmpPos.z=0f;
+        mousePos.z=10;
+
+        Vector3 tmpPos=Camera.main.ScreenToWorldPoint(mousePos);
+        // float canvasScale=canvas.transform.localScale.x;
 
         transform.position=tmpPos;
-        Debug.Log(tmpPos.x+" "+tmpPos.y+" "+tmpPos.z);
     }
 
     public void OnEndDrag(PointerEventData eventData){

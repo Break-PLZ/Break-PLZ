@@ -32,11 +32,18 @@ public class AddTeam : MonoBehaviour
     public void saveNewTeam(){
         newTeam.type = teamType.options[teamType.value].text;
         newTeam.name = teamName.text;
-        newTeam.teamNumber = tm.teamList.teamList.Count + 1;
+        int max = 0;
+        for(int i=0; i < tm.teamList.teamList.Count; i++){
+            if(max < tm.teamList.teamList[i].teamNumber){
+                max = tm.teamList.teamList[i].teamNumber;
+            }
+        }
+        newTeam.teamNumber = max + 1;
         tm.teamList.teamList.Add(newTeam);
         string jsonData = gm.ObjectToJson(tm.teamList);
-        gm.CreatetoJsonFile(Application.dataPath,"Script/TeamListTemp1",jsonData);
-        tm.teamList = gm.LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
+        
+        gm.CreatetoJsonFile(Application.dataPath,tm.tDir,jsonData);
+        tm.teamList = gm.LoadJsonFile<TeamList>(Application.dataPath, tm.tDir);
         tm.AddTeam(newTeam.teamNumber-1);
     }
 }

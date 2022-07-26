@@ -39,6 +39,7 @@ public class DoubleClickedWorker : MonoBehaviour, IPointerClickHandler
                 }
                 this.GetComponent<Image>().overrideSprite = null;
                 this.GetComponent<workerstatus>().worker = new Worker();
+                this.GetComponent<workerstatus>().worker.name = "";
                 this.GetComponent<workerstatus>().worker.teamNumber = teamNumber;
             }
             else{
