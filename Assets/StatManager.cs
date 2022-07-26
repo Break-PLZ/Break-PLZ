@@ -29,6 +29,7 @@ public class StatManager : MonoBehaviour
 
     public void ChangeDuration(){
         int duration = (int)DurationSlider.value;
+        data.duration = duration;
         DurationText.text = duration.ToString() + "개월";
     }
 }

@@ -9,6 +9,7 @@ public class DataManager : MonoBehaviour
     public TeamListS teamList;
     public List<Team> selectedTeams;
     public Stat stat;
+    public int duration;
 
     // Start is called before the first frame update
     void Start()
