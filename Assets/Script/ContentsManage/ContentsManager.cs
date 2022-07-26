@@ -3,12 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using UnityEngine.EventSystems;
 
 public class ContentsManager : MonoBehaviour
 {
     public Button gotomain, btn_dungeon, btn_boss, btn_quest, btn_region;
     public Button gotodetail;
     public GameObject detailPanel1, detailPanel2, ContentSettingPanel, undeployedTeamPrefab, undeployedList;
+    public Text detail1ExplanationText;
+
+    public Text contentsTypeText, contentsNameText, contentsDurationText, contentsQualityText;
+
+    public bool chking;
+    public int previousType = 0;
     
     GameObject gamemanager;
 
@@ -16,11 +23,14 @@ public class ContentsManager : MonoBehaviour
     private DataManager data;
     [SerializeField]
     private StatManager stat;
+    [SerializeField]
+    private ContentsInfoSaver contentsInfo;
     
     // Start is called before the first frame update
     void Start()
     {
         gamemanager = GameObject.Find("GameManager");
+        chking = false;
 
         gotomain.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoMain);
         btn_dungeon.onClick.AddListener(DetailPanelVisible);
@@ -35,10 +45,38 @@ public class ContentsManager : MonoBehaviour
     }
 
     void DetailPanelVisible(){
-        if(detailPanel1.activeSelf == false)
+        GameObject clickedObj = EventSystem.current.currentSelectedGameObject;
+        string contentstype = "";
+        int typenum = 0;
+        
+        switch(clickedObj.name){
+            case "DungeonButton":
+                contentstype = "던전";
+                typenum = 1;
+                break;
+            case "BossButton":
+                contentstype = "보스";
+                typenum = 2;
+                break;
+            case "QuestButton":
+                contentstype = "퀘스트";
+                typenum = 3;
+                break;
+            case "RegionButton":
+                contentstype = "지역";
+                typenum = 4;
+                break;
+        }
+
+        if(detailPanel1.activeSelf == false || previousType != typenum){
             detailPanel1.SetActive(true);
-        else if(detailPanel1.activeSelf == true)
+            detail1ExplanationText.text = "컨텐츠 타입: "+ contentstype;
+            contentsInfo.contentsInfo.type = contentstype;
+        }
+        else if(detailPanel1.activeSelf == true && previousType == typenum)
             detailPanel1.SetActive(false);
+
+        previousType = typenum;
     }
 
     void OpenContentSettingPanel(){
@@ -84,7 +122,26 @@ public class ContentsManager : MonoBehaviour
             // 데이터 저장
             o.GetComponent<TeamInfo>().teamInfo = i;
         }
+    }
 
+    public void ShowContentsDetail(){
+        contentsTypeText.text = "컨텐츠 타입: " + contentsInfo.contentsInfo.type;
+        contentsDurationText.text = "예상 기간: " + contentsInfo.contentsInfo.duration + "개월";
+        contentsQualityText.text = "예상 품질: " + contentsInfo.contentsInfo.quality;
+    }
 
+    public void buttonInteration(){
+        if(chking){
+            btn_dungeon.GetComponent<Button>().interactable = false;
+            btn_boss.GetComponent<Button>().interactable = false;
+            btn_quest.GetComponent<Button>().interactable = false;
+            btn_region.GetComponent<Button>().interactable = false;
+        }
+        else{
+            btn_dungeon.GetComponent<Button>().interactable = true;
+            btn_boss.GetComponent<Button>().interactable = true;
+            btn_quest.GetComponent<Button>().interactable = true;
+            btn_region.GetComponent<Button>().interactable = true;
+        }
     }
 }

@@ -19,4 +19,15 @@ public class ContentsD
     public int duration;
     public int quality;
 
+    public void init(){
+        type = "";
+        name = "";
+        teams.Clear();
+        server = 0;
+        client = 0;
+        graphic = 0;
+        sound = 0;
+        duration = 0;
+        quality = 0;
+    }
 }
