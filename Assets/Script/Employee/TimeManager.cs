@@ -11,6 +11,7 @@ public class TimeManager : MonoBehaviour
     public float gameTime;
     bool isPause;
     float inGamePeriod;
+    Text times;
     // Start is called before the first frame update
     public static TimeManager Instance
     {
@@ -55,6 +56,10 @@ public class TimeManager : MonoBehaviour
         if(SceneManager.GetActiveScene().name=="MainScene"){
             isPause = false;
             gameTime = gameManager.gameInfo.time;
+            if(times == null){
+                times = GameObject.Find("Times").GetComponent<Text>();
+                Debug.Log("find");
+            }
         }
         else{
             isPause = true;
@@ -63,7 +68,7 @@ public class TimeManager : MonoBehaviour
         if(!isPause){
             inGamePeriod += Time.deltaTime;
             gameTime += Time.deltaTime;
-            
+            times.text = getTimetext(gameTime);
         }
         if(inGamePeriod > 15.0f){
                 inGamePeriod = 0.0f;
@@ -71,5 +76,19 @@ public class TimeManager : MonoBehaviour
                 gameManager.saveGameInfo();
         }
         
+    }
+    string getTimetext(float time){
+        string timeText = "";
+        float hours = (time)/60.0f;
+        int days = (int) (hours / 24.0f) ;
+        int part = ((int)hours % 24) ;
+        if(part > 12){
+            timeText = days.ToString()+"일차 오후";
+        }
+        else{
+            timeText = days.ToString()+"일차 오전";
+        }
+        
+        return timeText;
     }
 }

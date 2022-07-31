@@ -1,1 +1,1 @@
-{"teamList":[{"type":"Server","teamNumber":1,"name":"서버 2팀","floor_number":-1,"chamber_number":-1,"members":[]}]}
+{"teamList":[{"type":"Server","teamNumber":1,"name":"서버 2팀","floor_number":-1,"chamber_number":-1,"members":[],"task":{"state":"","progress":0},"stat":{"server":0,"client":0,"graphic":0,"sound":0}}]}
