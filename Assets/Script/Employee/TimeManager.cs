@@ -60,7 +60,11 @@ public class TimeManager : MonoBehaviour
             gameTime = gameManager.gameInfo.time;
             if(times == null){
                 times = GameObject.Find("Times").GetComponent<Text>();
-                Debug.Log("find");
+                
+            }
+            if(backgroundColor == null){
+                backgroundColor = GameObject.Find("Background").GetComponent<SpriteRenderer>();
+                
             }
         }
         else{
