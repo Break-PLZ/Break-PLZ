@@ -13,7 +13,9 @@ public class DropTeam : MonoBehaviour, IDropHandler
     public DragAndDropContainer container;
 
     void IDropHandler.OnDrop(PointerEventData eventData){
-        if(container.gameObject.GetComponent<TeamStatus>().name!=null){
+        Debug.Log("1");
+        if(container.gameObject.GetComponent<DragAndDropContainer>().team.name!=null){
+            Debug.Log("2");
             Team temp = container.team;
             int bf = this.GetComponent<TeamStatus>().team.teamNumber;
             int af = container.team.teamNumber;

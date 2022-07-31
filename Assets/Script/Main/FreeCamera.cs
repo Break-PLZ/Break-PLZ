@@ -55,7 +55,6 @@ public class FreeCamera : MonoBehaviour
 
                 if (my < 0)
                 {
-                    Debug.Log(transform.position.y+" "+background_down);
                     if (transform.position.y < background_down)
                         transform.Translate(0, -speed*my, 0);
                 }
