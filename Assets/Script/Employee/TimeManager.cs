@@ -12,6 +12,7 @@ public class TimeManager : MonoBehaviour
     bool isPause;
     float inGamePeriod;
     Text times;
+    SpriteRenderer backgroundColor;
     // Start is called before the first frame update
     public static TimeManager Instance
     {
@@ -48,6 +49,7 @@ public class TimeManager : MonoBehaviour
         inGamePeriod = 0.0f;
         gameTime = gameManager.gameInfo.time;
         gameManager.loadGameInfo();
+        backgroundColor = GameObject.Find("Background").GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -79,16 +81,26 @@ public class TimeManager : MonoBehaviour
     }
     string getTimetext(float time){
         string timeText = "";
-        float hours = (time)/60.0f;
+        float hours = (time)/30.0f;
         int days = (int) (hours / 24.0f) ;
         int part = ((int)hours % 24) ;
         if(part > 12){
             timeText = days.ToString()+"일차 오후";
+            backgroundChange(1);
         }
         else{
             timeText = days.ToString()+"일차 오전";
+            backgroundChange(0);
         }
         
         return timeText;
+    }
+    void backgroundChange(int index){
+        if(index == 1){
+            backgroundColor.color = new Color(0.9f,0.2f,0.2f);
+        }
+        else{
+            backgroundColor.color = new Color(0.3f,0.4f,0.9f);
+        }
     }
 }
