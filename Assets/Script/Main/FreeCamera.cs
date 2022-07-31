@@ -9,7 +9,7 @@ public class FreeCamera : MonoBehaviour
 
     GameObject background, canvas;
     float background_left, background_right, background_up, background_down;
-
+    float speed=0.2f;
     bool isActive = true;
 
     void Start()
@@ -39,26 +39,30 @@ public class FreeCamera : MonoBehaviour
 
                 if(hit.collider!=null) return;
 
-                if (Input.GetAxis("Mouse X") < 0)
+                float mx=Input.GetAxis("Mouse X");
+                float my=Input.GetAxis("Mouse Y");
+
+                if (mx < 0)
                 {
-                    if (transform.position.x < background_right)
-                        transform.Translate(0.07f, 0, 0);
+                    if (transform.position.x < background_left)
+                        transform.Translate(-speed*mx, 0, 0);
                 }
-                else if (Input.GetAxis("Mouse X") > 0)
+                else if (mx > 0)
                 {
-                    if (transform.position.x > background_left)
-                        transform.Translate(-0.07f, 0, 0);
+                    if (transform.position.x > background_right)
+                        transform.Translate(-speed*mx, 0, 0);
                 }
 
-                if (Input.GetAxis("Mouse Y") < 0)
+                if (my < 0)
                 {
-                    if (transform.position.y < background_up)
-                        transform.Translate(0, 0.07f, 0);
+                    Debug.Log(transform.position.y+" "+background_down);
+                    if (transform.position.y < background_down)
+                        transform.Translate(0, -speed*my, 0);
                 }
-                else if (Input.GetAxis("Mouse Y") > 0)
+                else if (my > 0)
                 {
-                    if (transform.position.y > background_down)
-                        transform.Translate(0, -0.07f, 0);
+                    if (transform.position.y > background_up)
+                        transform.Translate(0, -speed*my, 0);
                 }
             }
         //}
