@@ -43,7 +43,7 @@ public class EmployeeManager : Managers
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(gamemanager.GetComponent<GameManager>().gameInfo.name);
+       // Debug.Log(gamemanager.GetComponent<GameManager>().gameInfo.name);
     }
 
     
