@@ -3063,11 +3063,9 @@ MonoBehaviour:
     cost: 0
   floorNum: 3
   floorPrefab: {fileID: 552088574}
-  teamBoxPrefab: {fileID: 1764347347}
   workerManagementButton: {fileID: 602968073}
   teamDeployButton: {fileID: 46081865}
   taskButton: {fileID: 1608712712}
-  cashShopButton: {fileID: 0}
 --- !u!4 &1560801587
 Transform:
   m_ObjectHideFlags: 0
@@ -4371,6 +4369,7 @@ MonoBehaviour:
     graphic: 0
     sound: 0
     cost: 0
+  teamBoxPrefab: {fileID: 1764347347}
   teamList:
     teamList: []
   eDir: 

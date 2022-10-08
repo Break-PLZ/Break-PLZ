@@ -13,9 +13,20 @@ public class AreaClickEvent : MonoBehaviour, IPointerClickHandler
 
     float lastClickedTime=0f;
     GameObject floorSettingButton;
+    GameObject blankImage;
+    GameObject notBlankImage;
+    GameObject text;
     // Start is called before the first frame update
     void Start()
     {
+        blankImage=this.transform.GetChild(0).gameObject;
+        notBlankImage=this.transform.GetChild(1).gameObject;
+        text=this.transform.GetChild(2).gameObject;
+
+        blankImage.SetActive(true);
+        notBlankImage.SetActive(false);
+        text.SetActive(false);
+
         floorSettingButton=GameObject.Find("FloorSettingButton");
     }
 
@@ -25,14 +36,8 @@ public class AreaClickEvent : MonoBehaviour, IPointerClickHandler
             bool bSameObjectClicked=lastClickedObject==eventData.pointerCurrentRaycast.gameObject;
             
             if(timeSinceLastClick<doubleClickTime&&bSameObjectClicked){
-                // Double Clicked
-                if(isAreaFilled) GameObject.FindWithTag("ArrangeManager").GetComponent<ArrangeManager>().AreaRelease(gameObject);
-            }
-            else{
-                if(!isAreaFilled){
-                    GameObject.FindWithTag("ArrangeManager").GetComponent<ArrangeManager>().AreaClick(gameObject);
-                }else{
-                    // Exchange Logic needed
+                if(isAreaFilled){
+                    GameObject.FindWithTag("ArrangeManager").GetComponent<ArrangeManager>().AreaRelease(gameObject);
                 }
             }
 
@@ -42,11 +47,14 @@ public class AreaClickEvent : MonoBehaviour, IPointerClickHandler
     }
 
     public void arrangeTeam(Team team){
-        gameObject.transform.Find("BlankImage").gameObject.SetActive(false);
-        gameObject.transform.Find("NotBlankImage").gameObject.SetActive(true);
-        gameObject.transform.Find("Text").gameObject.GetComponent<Text>().text=team.name;
+        text.GetComponent<Text>().text=team.name;
+
+        blankImage.SetActive(false);
+        notBlankImage.SetActive(true);
+        text.SetActive(true);
 
         isAreaFilled=true;
+
         this.team=team;
     }
 }

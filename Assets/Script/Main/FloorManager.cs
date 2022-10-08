@@ -12,14 +12,11 @@ public class FloorManager : Managers
     List<GameObject> floorList=new List<GameObject>();
 
     public GameObject floorPrefab;
-    public GameObject teamBoxPrefab;
     public Button workerManagementButton;
     public Button teamDeployButton;
     public Button taskButton;
-    public Button cashShopButton;
 
-    GameObject gamemanager;
-    TeamList teamList;
+    GameObject gm;
     // Start is called before the first frame update
     void Start()
     {      
@@ -30,15 +27,11 @@ public class FloorManager : Managers
             setFloorNumber(tmpFloor, i);
             floorList.Add(tmpFloor);
         }
+        gm = GameObject.Find("GameManager");
 
-        // Read JSON and arrange team
-        gamemanager = GameObject.Find("GameManager");
-        teamList = gamemanager.GetComponent<GameManager>().LoadJsonFile<TeamList>(Application.dataPath, "Script/TeamListTemp1");
-        arrangeTeamfromJSON();
-
-        workerManagementButton.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoWorkerManagement);
-        teamDeployButton.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoTeamDeploy);
-        taskButton.onClick.AddListener(gamemanager.GetComponent<GameManager>().gotoTask);
+        workerManagementButton.onClick.AddListener(gm.GetComponent<GameManager>().gotoWorkerManagement);
+        teamDeployButton.onClick.AddListener(gm.GetComponent<GameManager>().gotoTeamDeploy);
+        taskButton.onClick.AddListener(gm.GetComponent<GameManager>().gotoTask);
     }
 
     void setFloorNumber(GameObject floorObj, int number){
@@ -51,26 +44,7 @@ public class FloorManager : Managers
         }
     }
 
-    void arrangeTeamfromJSON(){
-        for(int i=0; i < teamList.teamList.Count; i++ ){
-            int tmpFloorNumber=teamList.teamList[i].floor_number;
-            
-            if(tmpFloorNumber>0){
-                arrangeTeam(teamList.teamList[i]);
-            }else{
-                addTeamToScrollView(teamList.teamList[i]);
-            }
-        }
-    }
-
-    void arrangeTeam(Team team){
+    public void arrangeTeam(Team team){
         floorList[team.floor_number-1].transform.Find("FloorCanvas").GetChild(team.chamber_number).GetComponent<AreaClickEvent>().arrangeTeam(team);
-    }
-
-    void addTeamToScrollView(Team team){
-        GameObject tmpTeamBox=GameObject.Instantiate(teamBoxPrefab, teamBoxPrefab.transform.parent, true);
-        tmpTeamBox.transform.GetChild(0).GetComponent<Text>().text=team.name;
-        tmpTeamBox.GetComponent<TeamStatus>().team=team;
-        tmpTeamBox.SetActive(true);
     }
 }
